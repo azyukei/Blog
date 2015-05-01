@@ -1,0 +1,521 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android - Drawable Animation | Kei Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Azyueki">
+    
+
+    
+    <meta name="description" content="原文：http://developer.android.com/guide/topics/graphics/drawable-animation.html
+XML 動畫資源檔可以用 xml 像下面這樣來定義動畫，檔案放在 res/drawable 目錄下，這個範例中檔名叫做 rocket_thrust.xml。&amp;lt;animation-list xmlns:android=&quot;http://sch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android - Drawable Animation">
+<meta property="og:url" content="http://azyukei.github.io/2015/04/Android-api-Drawable-Animation/index.html">
+<meta property="og:site_name" content="Kei Note">
+<meta property="og:description" content="原文：http://developer.android.com/guide/topics/graphics/drawable-animation.html
+XML 動畫資源檔可以用 xml 像下面這樣來定義動畫，檔案放在 res/drawable 目錄下，這個範例中檔名叫做 rocket_thrust.xml。&amp;lt;animation-list xmlns:android=&quot;http://sch">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android - Drawable Animation">
+<meta name="twitter:description" content="原文：http://developer.android.com/guide/topics/graphics/drawable-animation.html
+XML 動畫資源檔可以用 xml 像下面這樣來定義動畫，檔案放在 res/drawable 目錄下，這個範例中檔名叫做 rocket_thrust.xml。&amp;lt;animation-list xmlns:android=&quot;http://sch">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Kei Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Kei Note" title="Kei Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Kei Note">Kei Note</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:azyukei.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Android-api-Drawable-Animation/" title="Android - Drawable Animation" itemprop="url">Android - Drawable Animation</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-15T02:32:46.000Z" itemprop="datePublished"> 發表於 2015-04-15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#XML_動畫資源檔"><span class="toc-number">1.</span> <span class="toc-text">XML 動畫資源檔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用動畫資源檔"><span class="toc-number">2.</span> <span class="toc-text">使用動畫資源檔</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ImageView-setBackgroundResource()"><span class="toc-number">2.1.</span> <span class="toc-text">ImageView.setBackgroundResource()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ImageView-setImageDrawable()"><span class="toc-number">2.2.</span> <span class="toc-text">ImageView.setImageDrawable()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#讓動畫在_Activity_載入時開始"><span class="toc-number">2.3.</span> <span class="toc-text">讓動畫在 Activity 載入時開始</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在程式中建立_Drawable_Animation"><span class="toc-number">3.</span> <span class="toc-text">在程式中建立 Drawable Animation</span></a></li></ol>
+		
+		</div>
+		
+		<p>原文：<a href="http://developer.android.com/guide/topics/graphics/drawable-animation.html" target="_blank" rel="external">http://developer.android.com/guide/topics/graphics/drawable-animation.html</a></p>
+<h2 id="XML_動畫資源檔">XML 動畫資源檔</h2><p>可以用 xml 像下面這樣來定義動畫，檔案放在 <code>res/drawable</code> 目錄下，這個範例中檔名叫做 <code>rocket_thrust.xml</code>。<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">animation-list</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="attribute">android:oneshot</span>=<span class="value">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:drawable</span>=<span class="value">"@drawable/rocket_thrust1"</span> <span class="attribute">android:duration</span>=<span class="value">"200"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:drawable</span>=<span class="value">"@drawable/rocket_thrust2"</span> <span class="attribute">android:duration</span>=<span class="value">"200"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:drawable</span>=<span class="value">"@drawable/rocket_thrust3"</span> <span class="attribute">android:duration</span>=<span class="value">"200"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">animation-list</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><code>android:oneshot</code> 為 <code>true</code> 時，動畫會從第一張影像開始播放一次，停在最後一張，若為 <code>false</code> 動畫會一直重複播放。</p>
+<h2 id="使用動畫資源檔">使用動畫資源檔</h2><p>需要使用 <code>ImageView</code> 來顯示 Drawable 動畫、Drawable 動畫的類別叫做 <code>AnimationDrawable</code>，要播放動畫要呼叫 AnimationDrawable.start()。</p>
+<p>有兩種方法可以設定動畫：</p>
+<h3 id="ImageView-setBackgroundResource()">ImageView.setBackgroundResource()</h3><p>在 ImageView 直接把動畫資源設定好，AnimationDrawable，再用 getBackground() 拿出來。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">AnimationDrawable rocketAnimation;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.main);</span><br><span class="line"></span><br><span class="line">  ImageView rocketImage = (ImageView) findViewById(R.id.rocket_image);</span><br><span class="line">  rocketImage.setBackgroundResource(R.drawable.rocket_thrust);</span><br><span class="line">  rocketAnimation = (AnimationDrawable) rocketImage.getBackground();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (event.getAction() == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">    rocketAnimation.start();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="ImageView-setImageDrawable()">ImageView.setImageDrawable()</h3><p>這個方法需要多用一個 <code>Resources</code> 來取得 Drawable Resource 給 AnimationDrawable，再用 setImageDrawable() 設定給 ImageView。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">AnimationDrawable rocketAnimation;</span><br><span class="line">Resources res;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.main);</span><br><span class="line"></span><br><span class="line">  res = getResources();</span><br><span class="line"></span><br><span class="line">  ImageView rocketImage = (ImageView) findViewById(R.id.rocket_image);</span><br><span class="line">  rocketAnimation = (AnimationDrawable) res.getDrawable(R.drawable.rocket_thrust);</span><br><span class="line">  rocketImage.setImageDrawable(rocketAnimation);</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (event.getAction() == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">    rocketAnimation.start();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="讓動畫在_Activity_載入時開始">讓動畫在 Activity 載入時開始</h3><p>上面兩種方法的最下面有個 onTouchEvent() 要點一下畫面才會呼叫 start() 開始播放動畫，如果要讓動畫在 Activity 一載入就開始播放，要用 <code>onWindowFocusChanged()</code> 當 Window 被 Focus 時就會動了（一般會想說在 OnCreate() 裡面呼叫 start()，但是這時候 AnimationDrawable 其實還沒載入到 Window，所以不能在這裡呼叫 start() ）。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onWindowFocusChanged</span><span class="params">(<span class="keyword">boolean</span> hasFocus)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onWindowFocusChanged(hasFocus);</span><br><span class="line">    rocketAnimation.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="在程式中建立_Drawable_Animation">在程式中建立 Drawable Animation</h2><p>書上有提到可以用程式碼建立 Drawable Animation，把上面的範例直接改會變成下面這樣。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">AnimationDrawable rocketAnimation;</span><br><span class="line">Resources res;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.main);</span><br><span class="line"></span><br><span class="line">  res = getResources();</span><br><span class="line"></span><br><span class="line">  ImageView rocketImage = (ImageView) findViewById(R.id.rocket_image);</span><br><span class="line">  <span class="comment">//--------------</span></span><br><span class="line">  rocketAnimation = <span class="keyword">new</span> AnimationDrawable;</span><br><span class="line">  rocketAnimation.setOneShot(<span class="keyword">true</span>);</span><br><span class="line">  rocketAnimation.addFrame(res.getDrawable(R.drawable.rocket_thrust1), <span class="number">200</span>);</span><br><span class="line">  rocketAnimation.addFrame(res.getDrawable(R.drawable.rocket_thrust2), <span class="number">200</span>);</span><br><span class="line">  rocketAnimation.addFrame(res.getDrawable(R.drawable.rocket_thrust3), <span class="number">200</span>);</span><br><span class="line">  <span class="comment">//--------------</span></span><br><span class="line">  rocketImage.setImageDrawable(rocketAnimation);</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (event.getAction() == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">    rocketAnimation.start();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>變成直接把 AnimationDrawable new 出來，再把原本寫在 xml 裡面的東西設定給他。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-API-Guides/">Android API Guides</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://azyukei.github.io/2015/04/Android-api-Drawable-Animation/" data-title="Android - Drawable Animation | Kei Note" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/Android-api-Processes-and-Threads/" title="Android - Processes and Threads">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Android - Processes and Threads</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/04/Android-022-View-Animation/"  title="Android 022 使用 View Animation 動畫效果">
+ <strong>下一篇：</strong><br/> 
+ <span>Android 022 使用 View Animation 動畫效果
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#XML_動畫資源檔"><span class="toc-number">1.</span> <span class="toc-text">XML 動畫資源檔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用動畫資源檔"><span class="toc-number">2.</span> <span class="toc-text">使用動畫資源檔</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ImageView-setBackgroundResource()"><span class="toc-number">2.1.</span> <span class="toc-text">ImageView.setBackgroundResource()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ImageView-setImageDrawable()"><span class="toc-number">2.2.</span> <span class="toc-text">ImageView.setImageDrawable()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#讓動畫在_Activity_載入時開始"><span class="toc-number">2.3.</span> <span class="toc-text">讓動畫在 Activity 載入時開始</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在程式中建立_Drawable_Animation"><span class="toc-number">3.</span> <span class="toc-text">在程式中建立 Drawable Animation</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android-API-Guides/" title="Android API Guides">Android API Guides<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/" title="Android Dev">Android Dev<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/Reading-Note/" title="Reading Note">Reading Note<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sublime-Text/" title="Sublime Text">Sublime Text<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon-Taiwan/" title="Hackathon Taiwan">Hackathon Taiwan<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GitHub/" title="GitHub">GitHub<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Google-Analytics/" title="Google Analytics">Google Analytics<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Azyueki">Azyueki</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'kei-note';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

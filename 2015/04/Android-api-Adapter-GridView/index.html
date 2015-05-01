@@ -1,0 +1,586 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android - Layouts(Adapter) ＋ GridView | Kei Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Azyueki">
+    
+
+    
+    <meta name="description" content="為了看懂 GridView 所以回去看 Layouts 的 Adapter 部分所以這篇有一部份的 Layouts + GridView
+LayoutsLayout 用來定義 UI 的視覺結構，有兩種方法可以定義 Layout：
+
+XML
+用編程的方式，讓 Layout 在執行期實現
+
+可以兩種方式一起用，用 XML 定義 Layout 和他的特性，之後可以在執行期被修改。
+Write the X">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android - Layouts(Adapter) ＋ GridView">
+<meta property="og:url" content="http://azyukei.github.io/2015/04/Android-api-Adapter-GridView/index.html">
+<meta property="og:site_name" content="Kei Note">
+<meta property="og:description" content="為了看懂 GridView 所以回去看 Layouts 的 Adapter 部分所以這篇有一部份的 Layouts + GridView
+LayoutsLayout 用來定義 UI 的視覺結構，有兩種方法可以定義 Layout：
+
+XML
+用編程的方式，讓 Layout 在執行期實現
+
+可以兩種方式一起用，用 XML 定義 Layout 和他的特性，之後可以在執行期被修改。
+Write the X">
+<meta property="og:image" content="http://developer.android.com/images/ui/listview-small.png">
+<meta property="og:image" content="http://developer.android.com/images/ui/gridview-small.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android - Layouts(Adapter) ＋ GridView">
+<meta name="twitter:description" content="為了看懂 GridView 所以回去看 Layouts 的 Adapter 部分所以這篇有一部份的 Layouts + GridView
+LayoutsLayout 用來定義 UI 的視覺結構，有兩種方法可以定義 Layout：
+
+XML
+用編程的方式，讓 Layout 在執行期實現
+
+可以兩種方式一起用，用 XML 定義 Layout 和他的特性，之後可以在執行期被修改。
+Write the X">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Kei Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Kei Note" title="Kei Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Kei Note">Kei Note</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:azyukei.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Android-api-Adapter-GridView/" title="Android - Layouts(Adapter) ＋ GridView" itemprop="url">Android - Layouts(Adapter) ＋ GridView</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-09T03:19:54.000Z" itemprop="datePublished"> 發表於 2015-04-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Layouts"><span class="toc-number">1.</span> <span class="toc-text">Layouts</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Write_the_XML"><span class="toc-number">1.1.</span> <span class="toc-text">Write the XML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Load_the_XML_Resource"><span class="toc-number">1.2.</span> <span class="toc-text">Load the XML Resource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#…中略…"><span class="toc-number">1.3.</span> <span class="toc-text">…中略…</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building_Layouts_with_an_Adapter"><span class="toc-number">1.4.</span> <span class="toc-text">Building Layouts with an Adapter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Filling_an_adapter_view_with_data"><span class="toc-number">1.5.</span> <span class="toc-text">Filling an adapter view with data</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ArrayAdapter"><span class="toc-number">1.5.1.</span> <span class="toc-text">ArrayAdapter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SimpleCursorAdapter"><span class="toc-number">1.5.2.</span> <span class="toc-text">SimpleCursorAdapter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Handling_click_events"><span class="toc-number">1.6.</span> <span class="toc-text">Handling click events</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GridView"><span class="toc-number">2.</span> <span class="toc-text">GridView</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Example"><span class="toc-number">2.1.</span> <span class="toc-text">Example</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>為了看懂 <a href="http://developer.android.com/guide/topics/ui/layout/gridview.html" target="_blank" rel="external">GridView</a> 所以回去看 Layouts 的 Adapter 部分<br>所以這篇有一部份的 Layouts + GridView</p>
+<h1 id="Layouts"><a href="http://developer.android.com/guide/topics/ui/declaring-layout.html" target="_blank" rel="external">Layouts</a></h1><p>Layout 用來定義 UI 的視覺結構，有兩種方法可以定義 Layout：</p>
+<ul>
+<li>XML</li>
+<li>用編程的方式，讓 Layout 在執行期實現</li>
+</ul>
+<p>可以兩種方式一起用，用 XML 定義 Layout 和他的特性，之後可以在執行期被修改。</p>
+<h2 id="Write_the_XML">Write the XML</h2><p>直接寫 XML ，定義完 layout 將 XML 檔（.xml）放在 <code>res/layout/</code> 路徑下，就會被正確的編譯。</p>
+<h2 id="Load_the_XML_Resource">Load the XML Resource</h2><p>當你編譯你的 APP，每個 XML layout 檔被編譯到 View resource 中，你可以在你的 Activity.onCreate() Callback 中用程式碼讀取 layout resource。<br>例如你的 XML layout 儲存為 <code>main_layout.xml</code>，你應該要讓你的 Activity 這樣讀取：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">	setContentView(R.layout.main_layout);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>你的 Activity 中的 <code>onCreate()</code> callback 方法，會在你的 Activity 啟動時，由 Android framework 呼叫。</p>
+<h2 id="…中略…">…中略…</h2><p>目標是下面的 Adapter</p>
+<h2 id="Building_Layouts_with_an_Adapter">Building Layouts with an Adapter</h2><p>當 layout 的內容是動態的或是不能預先決定，你可以用 layout 的子類別 AdapterView 在執行期時將 View 填入 layout。<br>子類別 AdapterView 使用 Adapter 來結合資料到 layouts。<br>Adapter 是資料來源和 AdapterView layout 的中間人，Adapter 取回資料（資料來源像是 array 或是資料庫查詢）<br>並轉換成資料到 View 中，讓他們可以被加入到 AdapterView layout 中。</p>
+<p>支持 Adapter 的 layout 有：<br><a href="http://developer.android.com/guide/topics/ui/layout/listview.html" target="_blank" rel="external">List View</a><br><img src="http://developer.android.com/images/ui/listview-small.png" alt="顯示可以捲動的一列清單"><br><a href="http://developer.android.com/guide/topics/ui/layout/gridview.html" target="_blank" rel="external">Grid View</a><br><img src="http://developer.android.com/images/ui/gridview-small.png" alt="顯示可以捲動的行列網格"></p>
+<h2 id="Filling_an_adapter_view_with_data">Filling an adapter view with data</h2><p>你可以藉由結合 AdapterView 到一個 Adapter 來填入像是 ListView 或 GridView 的 AdapterView，他會從額外來源獲取資料並且建立一個 View。</p>
+<p>Android 提供幾個 Adapter 子類別，來取回不同種類的資料並且結合 views 到 AdapterView。下面兩個是最常見的 Adapter：</p>
+<h3 id="ArrayAdapter"><a href="http://developer.android.com/reference/android/widget/ArrayAdapter.html" target="_blank" rel="external">ArrayAdapter</a></h3><p>用這個 Adapter 可以用陣列當作資料來源。<br>ArrayAdapter 建立一個 view 時預設會把陣列中每一個項目呼叫 toString() 並把他們放到 TextView。</p>
+<p>例如，如果你有一個字串陣列，你想要用 ListView來顯示他，用建構式初始化一個 ArrayAdapter：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ArrayAdapter&lt;String&gt; adapter = <span class="keyword">new</span> ArrayAdapter&lt;String&gt;(<span class="keyword">this</span>,</span><br><span class="line">	android.R.layout.simple_list_item_1, myStringArray);</span><br></pre></td></tr></table></figure></p>
+<p>建構式的參數是：</p>
+<ul>
+<li>你的 app Context</li>
+<li>layout，用來容納陣列中每個字串的 TextView</li>
+<li>字串陣列</li>
+</ul>
+<p>之後在你的 ListView 簡單的呼叫 setAdapter()：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ListView listView = (ListView) findViewById(R.id.listview);</span><br><span class="line">listView.setAdapter(adapter);</span><br></pre></td></tr></table></figure></p>
+<p>要自訂每個項目的外表，可以為你的陣列物件 override toString() 方法，<br>或是要為一些 TextView 以外其他種類的東西建立 view（例如想要為陣列的每個項目建立 ImageView），可以 extend ArrayAdapter 並 override getView() 來為每個項目回傳你想要的型態的 veiw。</p>
+<h3 id="SimpleCursorAdapter"><a href="http://developer.android.com/reference/android/widget/SimpleCursorAdapter.html" target="_blank" rel="external">SimpleCursorAdapter</a></h3><p>當你的資料來自 <a href="http://developer.android.com/reference/android/database/Cursor.html" target="_blank" rel="external">Cursor</a>（不是滑鼠游標，是讀取資料庫用的 android.database.Cursor）可以使用這個 Adapter。<br>你必須指定一個 layout 給每個 Cursor 的 Row 使用，而且每個 Cursor 的 Columns 必須加入到 layout 中的 view。<br>例如你要建立某些人的姓名與電話清單，你可以回傳 Cursor 做的查詢結果，包含每個人的姓名與電話，然後建立一個字串陣列指定哪個查詢結果的 column 要放到哪裡，<br>建立一個整數陣列指定相對每個 coulmn 要被放進去的 view:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String[] fromColumns = &#123;ContactsContract.Data.DISPLAY_NAME,</span><br><span class="line">						ContactsContract.CommonDataKinds.Phone.NUMBER&#125;;</span><br><span class="line"><span class="keyword">int</span>[] toViews = &#123;R.id.display_name, R.id.phone_number&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>翻譯感覺不太順，簡單來說就是把查詢結果放到 String Array 中，然後在另一個 int Array 把這些資料要放進去哪個 view 的 id 指定好。</p>
+<p>當你實做 SimpleCursorAdapter 時，傳入要使用的 layout，包含查詢結果的 Cursor，還有上面兩個陣列：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">SimpleCursorAdapter adapter = <span class="keyword">new</span> SimpleCursorAdapter(<span class="keyword">this</span>,</span><br><span class="line">		R.layout.person_name_and_number, cursor, fromColumns, toViews, <span class="number">0</span>);</span><br><span class="line">ListView listView = getListView();</span><br><span class="line">listView.setAdapter(adapter);</span><br></pre></td></tr></table></figure></p>
+<p>如果 Course 在 APP 執行中，你更改 adapter 讀取的底層資料，你必須呼叫 notifyDataSetChanged()。<br>這個方法會通知所屬的 view 資料被更動了，必須更新。</p>
+<h2 id="Handling_click_events">Handling click events</h2><p>你可以藉由實現 AdapterView.OnItemClickListener 介面，回應 AdapterView 每個項目的點擊事件，例如：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Create a message handling object as an anonymous class.</span></span><br><span class="line"><span class="keyword">private</span> OnItemClickListener mMessageClickedHandler = <span class="keyword">new</span> OnItemClickListener() &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(AdapterView parent, View v, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// Do something in response to the click</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">listView.setOnItemClickListener(mMessageClickedHandler);</span><br></pre></td></tr></table></figure></p>
+<h1 id="GridView"><a href="http://developer.android.com/guide/topics/ui/layout/gridview.html" target="_blank" rel="external">GridView</a></h1><p>GridView 是 ViewGroup 用二維可捲動的格狀方式顯示項目。這些項目可以用 ListAdapter 自動加入 layout。</p>
+<h2 id="Example">Example</h2><p>在這個教學中，你將建立一個格狀的影像縮圖。當一個項目被選擇時，一個 toast message 機會顯示該位置的影像。</p>
+<ul>
+<li>開啟一個新專案叫做 HelloGridView</li>
+<li>找一些你喜歡圖片，或是下載<a href="http://developer.android.com/shareables/sample_images.zip" target="_blank" rel="external">這些範例圖片</a>。把圖片儲存到專案中的 <code>res/drawable/</code> 目錄下。</li>
+<li><p>打開 <code>res/layout/activity_main.xml</code> 把這些打進去：</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">GridView</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">	<span class="attribute">android:id</span>=<span class="value">"@+id/gridview"</span></span><br><span class="line">	<span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></span><br><span class="line">	<span class="attribute">android:layout_height</span>=<span class="value">"match_parent"</span></span><br><span class="line">	<span class="attribute">android:columnWidth</span>=<span class="value">"90dp"</span></span><br><span class="line">	<span class="attribute">android:numColumns</span>=<span class="value">"auto_fit"</span></span><br><span class="line">	<span class="attribute">android:verticalSpacing</span>=<span class="value">"10dp"</span></span><br><span class="line">	<span class="attribute">android:horizontalSpacing</span>=<span class="value">"10dp"</span></span><br><span class="line">	<span class="attribute">android:stretchMode</span>=<span class="value">"columnWidth"</span></span><br><span class="line">	<span class="attribute">android:gravity</span>=<span class="value">"center"</span></span><br><span class="line">/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  這個 GridView 將會填滿整個畫面。</p>
+</li>
+<li><p>打開 <code>MainActivity.java</code> 把這些程式碼家到 onCreate() 方法中：</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">	setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">	GridView gridView = (GridView) findViewById(R.id.gridview);</span><br><span class="line">	gridView.setAdapter(<span class="keyword">new</span> ImageAdapter(<span class="keyword">this</span>));</span><br><span class="line"></span><br><span class="line">	gridView.setOnItemClickListener(<span class="keyword">new</span> AdapterView.OnItemClickListener() &#123;</span><br><span class="line">		<span class="annotation">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</span><br><span class="line">			Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">""</span> + position, Toast.LENGTH_SHORT).show();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  在把 ContentView 設為 activity_main 之後，GridView layout 被 findViewById(int) 抓進來。<br>  之後 setAdapter() 方法設定一個自訂的 Adapter (<code>ImageAdapter</code>) 作為資料來源，讓所有項目被顯示在表格中，<code>ImageAdapter</code> 會在下一步驟建立。<br>  要讓表格中的項目被點擊時能做些什麼，要用 setOnItemClickListener 方法，傳入一個 new AdapterView.OnItemClickListener。<br>  這個匿名實例定義了 onItemClick() callback 方法來顯示一個 Toast 來展示被選擇項目的 index position(從0開始)（實際的情況是，position 被用在其他的任務中取得全尺寸的影像）。</p>
+</li>
+<li><p>建立一個叫做 <code>ImageAdapter</code> 的新 class，extends BaseAdapter:</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImageAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Context mContext;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ImageAdapter</span><span class="params">(Context c)</span> </span>&#123;</span><br><span class="line">		mContext = c;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> mThumbIds.length;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getItemId</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// create a new ImageView for each item referenced by the Adapter</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">		ImageView imageView;</span><br><span class="line">		<span class="keyword">if</span> (convertView == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="comment">// if it's not recycled, initialize some attributes</span></span><br><span class="line">			imageView = <span class="keyword">new</span> ImageView(mContext);</span><br><span class="line">			imageView.setLayoutParams(<span class="keyword">new</span> GridView.LayoutParams(<span class="number">85</span>, <span class="number">85</span>));</span><br><span class="line">			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);</span><br><span class="line">			imageView.setPadding(<span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			imageView = (ImageView) convertView;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		imageView.setImageResource(mThumbIds[position]);</span><br><span class="line">		<span class="keyword">return</span> imageView;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// references to our images</span></span><br><span class="line">	<span class="keyword">private</span> Integer[] mThumbIds = &#123;</span><br><span class="line">			R.drawable.sample_2, R.drawable.sample_3,</span><br><span class="line">			R.drawable.sample_4, R.drawable.sample_5,</span><br><span class="line">			R.drawable.sample_6, R.drawable.sample_7,</span><br><span class="line">			R.drawable.sample_0, R.drawable.sample_1,</span><br><span class="line">			R.drawable.sample_2, R.drawable.sample_3,</span><br><span class="line">			R.drawable.sample_4, R.drawable.sample_5,</span><br><span class="line">			R.drawable.sample_6, R.drawable.sample_7,</span><br><span class="line">			R.drawable.sample_0, R.drawable.sample_1,</span><br><span class="line">			R.drawable.sample_2, R.drawable.sample_3,</span><br><span class="line">			R.drawable.sample_4, R.drawable.sample_5,</span><br><span class="line">			R.drawable.sample_6, R.drawable.sample_7</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  首先實現一些繼承自 BaseAdapter 的方法，通常 getCount(int) 必須能傳入 position 回傳項目，但是在這個範例中就先忽略了，<br>  同樣的 getItemId(int) 需要回傳某個項目的 row id，但是在這裡我們也用不到。<br>  第一個必須的方法是 getView()。這個方法建立一個 View，把每個影像加入 ImageAdapter。當這個方法被呼叫時 view 會被傳入，通常這是可以回收在利用的物件（被呼叫一次以後），<br>  所以這裡會檢查如果這個物件是不是空的（null），如果是的話會建立一個 ImageView 並把特性設定成影像想要展現的樣子。</p>
+<ul>
+<li><code>setLayoutParams(ViewGroup.LayoutParams)</code> 設定 view 的高和寬已確保不論 drawable 的大小，每個影像可以適當的被調整和裁剪成適合的尺寸。</li>
+<li><code>setScaleType(ImageView.ScaleType)</code> 宣告這些影像如果需要時會被朝中心裁剪。</li>
+<li><code>setPadding(int, int, int, int)</code> 定義每一邊的 padding。（注意，當影像有不同的常寬比時，當他不符合ImageView的尺寸時，較少的 padding 會造成更多的剪裁。）<br>如果傳入的 View 不是空值，被傳入的 <code>position</code> 會被用來在 mThumbIds 陣列中選擇影像，他會為 ImageView 設定影像來源。</li>
+</ul>
+</li>
+<li>執行APP！</li>
+</ul>
+<p>嘗試看看調整 GridView 和 ImageView 的特性，例如不要用 setLayoutParams(ViewGroup.LayoutParams) 改用 setAdjustViewBounds(boolean)。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-API-Guides/">Android API Guides</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://azyukei.github.io/2015/04/Android-api-Adapter-GridView/" data-title="Android - Layouts(Adapter) ＋ GridView | Kei Note" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/Android-Err-R/" title="Android Studio Cannot resolve symbol &#39;R&#39;">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Android Studio Cannot resolve symbol &#39;R&#39;</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/04/Hexo-Google-Analytics/"  title="在 Hexo 使用 Google Analytics">
+ <strong>下一篇：</strong><br/> 
+ <span>在 Hexo 使用 Google Analytics
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Layouts"><span class="toc-number">1.</span> <span class="toc-text">Layouts</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Write_the_XML"><span class="toc-number">1.1.</span> <span class="toc-text">Write the XML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Load_the_XML_Resource"><span class="toc-number">1.2.</span> <span class="toc-text">Load the XML Resource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#…中略…"><span class="toc-number">1.3.</span> <span class="toc-text">…中略…</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building_Layouts_with_an_Adapter"><span class="toc-number">1.4.</span> <span class="toc-text">Building Layouts with an Adapter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Filling_an_adapter_view_with_data"><span class="toc-number">1.5.</span> <span class="toc-text">Filling an adapter view with data</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ArrayAdapter"><span class="toc-number">1.5.1.</span> <span class="toc-text">ArrayAdapter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SimpleCursorAdapter"><span class="toc-number">1.5.2.</span> <span class="toc-text">SimpleCursorAdapter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Handling_click_events"><span class="toc-number">1.6.</span> <span class="toc-text">Handling click events</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GridView"><span class="toc-number">2.</span> <span class="toc-text">GridView</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Example"><span class="toc-number">2.1.</span> <span class="toc-text">Example</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android-API-Guides/" title="Android API Guides">Android API Guides<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/" title="Android Dev">Android Dev<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/Reading-Note/" title="Reading Note">Reading Note<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sublime-Text/" title="Sublime Text">Sublime Text<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon-Taiwan/" title="Hackathon Taiwan">Hackathon Taiwan<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GitHub/" title="GitHub">GitHub<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Google-Analytics/" title="Google Analytics">Google Analytics<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Azyueki">Azyueki</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'kei-note';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

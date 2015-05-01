@@ -1,0 +1,544 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>在 GitHub Pages 上部屬 Hexo | Kei Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Azyueki">
+    
+
+    
+    <meta name="description" content="要發佈到GitHub Pages需要先安裝 hexo-deployer-git。$ npm install hexo-deployer-git --save
+GitHub PagesGitHub Pages可以讓你放靜態網頁，也有內建一些 CSS 主題給你選，除了自己編輯這些網頁以外，也可以用 OctoPress 或是 Hexo 之類的 Blog Framework 來產生靜態網頁發佈上來，Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 GitHub Pages 上部屬 Hexo">
+<meta property="og:url" content="http://azyukei.github.io/2015/03/Hexo-on-Github/index.html">
+<meta property="og:site_name" content="Kei Note">
+<meta property="og:description" content="要發佈到GitHub Pages需要先安裝 hexo-deployer-git。$ npm install hexo-deployer-git --save
+GitHub PagesGitHub Pages可以讓你放靜態網頁，也有內建一些 CSS 主題給你選，除了自己編輯這些網頁以外，也可以用 OctoPress 或是 Hexo 之類的 Blog Framework 來產生靜態網頁發佈上來，Git">
+<meta property="og:image" content="/2015/03/Hexo-on-Github/GithubPages.png">
+<meta property="og:image" content="/2015/03/Hexo-on-Github/UserRepo.png">
+<meta property="og:image" content="/2015/03/Hexo-on-Github/RepoSettings.png">
+<meta property="og:image" content="/2015/03/Hexo-on-Github/GithubPagesGenerator.png">
+<meta property="og:image" content="/2015/03/Hexo-on-Github/NewPage.png">
+<meta property="og:image" content="/2015/03/Hexo-on-Github/PageTheme.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 GitHub Pages 上部屬 Hexo">
+<meta name="twitter:description" content="要發佈到GitHub Pages需要先安裝 hexo-deployer-git。$ npm install hexo-deployer-git --save
+GitHub PagesGitHub Pages可以讓你放靜態網頁，也有內建一些 CSS 主題給你選，除了自己編輯這些網頁以外，也可以用 OctoPress 或是 Hexo 之類的 Blog Framework 來產生靜態網頁發佈上來，Git">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Kei Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Kei Note" title="Kei Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Kei Note">Kei Note</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:azyukei.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/03/Hexo-on-Github/" title="在 GitHub Pages 上部屬 Hexo" itemprop="url">在 GitHub Pages 上部屬 Hexo</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-03-30T05:08:12.000Z" itemprop="datePublished"> 發表於 2015-03-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#GitHub_Pages"><span class="toc-number">1.</span> <span class="toc-text">GitHub Pages</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#User_or_organization_site"><span class="toc-number">1.1.</span> <span class="toc-text">User or organization site</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Project_site"><span class="toc-number">1.2.</span> <span class="toc-text">Project site</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p><img src="/2015/03/Hexo-on-Github/GithubPages.png" alt=""><br>要發佈到GitHub Pages需要先安裝 <code>hexo-deployer-git</code>。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<h3 id="GitHub_Pages">GitHub Pages</h3><p><a href="https://pages.github.com/" target="_blank" rel="external">GitHub Pages</a>可以讓你放靜態網頁，也有內建一些 CSS 主題給你選，除了自己編輯這些網頁以外，也可以用 OctoPress 或是 Hexo 之類的 Blog Framework 來產生靜態網頁發佈上來，GitHub Pages 分成兩種：</p>
+<h4 id="User_or_organization_site">User or organization site</h4><p>第一種網址為 <code>http://username.github.io</code> ，作為使用者或帳號用的網頁，一個帳號只能有一個，建立步驟：</p>
+<ul>
+<li><p>建立一個 Repository，名稱為：<code>username.github.io</code>，username 記得改成自己的。<br><img src="/2015/03/Hexo-on-Github/UserRepo.png" alt=""></p>
+</li>
+<li><p>設定 Hexo 的<code>_config.yml</code><br>  這個 Repository 就是你網站的 webroot，一般來說可以自己 push 網頁上來，不過我們是要用 hexo來產生靜態網頁發佈上來，所以要去設定 hexo 的<code>_config.yml</code> 中的 <code>deploy</code> 部分，把 <code>deploy</code> 設定成下面這樣：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">deploy:&#10;  type: git&#10;  repo: https://github.com/username/username.github.io.git&#10;  branch: master</span><br></pre></td></tr></table></figure>
+<p>  username 一樣要記得改，之後就可以 hexo deploy 直接部屬到 githib page 上囉。</p>
+</li>
+</ul>
+<hr>
+<h4 id="Project_site">Project site</h4><p>第二種 Project site 的網址為 <code>http://username.github.io/projectname</code> ，作為 Repo 或專案的介紹網頁，一個帳號有無限多個，每個 Repository 都可以幫他開一個，做法如下：</p>
+<ul>
+<li><p>進入一個 Repository，在他的右邊選單點選 Settings。<br><img src="/2015/03/Hexo-on-Github/RepoSettings.png" alt=""></p>
+</li>
+<li><p>在 GitHub Pages 項目中點選 Automatic page generator。<br><img src="/2015/03/Hexo-on-Github/GithubPagesGenerator.png" alt=""></p>
+</li>
+<li><p>點進去以後他會讓你編輯第一個頁面，不過我們是要用 Hexo 來發佈文章，所以這邊不用管他直接按下 Continue to layouts。<br><img src="/2015/03/Hexo-on-Github/NewPage.png" alt=""></p>
+</li>
+<li><p>皆下來是選主題，一樣對於要用 Hexo 的我們沒有用處，直接按下 Publish page 就 OK了！<br><img src="/2015/03/Hexo-on-Github/PageTheme.png" alt=""></p>
+</li>
+<li><p>設定 Hexo 的<code>_config.yml</code>：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">deploy:&#10;  type: git&#10;  repo: https://github.com/username/projectname.git&#10;  branch: gh-pages</span><br></pre></td></tr></table></figure>
+<p>  username 和 projectname 要改成自己的，要注意的是這裡的 branch 不是 master，master 是你原來的專案內容，<code>gh-pages</code> 分支才是 webroot，所以 branch 要改成 <code>gh-pages</code>，hexo deploy 才會把網頁部屬到這個分支。</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/GitHub/">GitHub</a><a href="/tags/Hexo/">Hexo</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://azyukei.github.io/2015/03/Hexo-on-Github/" data-title="在 GitHub Pages 上部屬 Hexo | Kei Note" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/Hexo-Comment/" title="Hexo 啟用 Disqus 回應功能">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Hexo 啟用 Disqus 回應功能</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/03/Hexo-Intro/"  title="Hexo 簡介">
+ <strong>下一篇：</strong><br/> 
+ <span>Hexo 簡介
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#GitHub_Pages"><span class="toc-number">1.</span> <span class="toc-text">GitHub Pages</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#User_or_organization_site"><span class="toc-number">1.1.</span> <span class="toc-text">User or organization site</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Project_site"><span class="toc-number">1.2.</span> <span class="toc-text">Project site</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android-API-Guides/" title="Android API Guides">Android API Guides<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/" title="Android Dev">Android Dev<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/Reading-Note/" title="Reading Note">Reading Note<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sublime-Text/" title="Sublime Text">Sublime Text<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon-Taiwan/" title="Hackathon Taiwan">Hackathon Taiwan<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GitHub/" title="GitHub">GitHub<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Google-Analytics/" title="Google Analytics">Google Analytics<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Azyueki">Azyueki</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'kei-note';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

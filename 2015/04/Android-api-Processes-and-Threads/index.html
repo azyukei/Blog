@@ -1,0 +1,578 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android - Processes and Threads | Kei Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Azyueki">
+    
+
+    
+    <meta name="description" content="原文：http://developer.android.com/guide/components/processes-and-threads.html
+當一個 APP 元件啟動，而且沒有其他 APP 元件在執行，Android 系統會開啟一個新的 Single thread Linux process 給這個 APP 執行。基本上，所有同一個 APP 的元件是在同一個 Thread 和 Proce">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android - Processes and Threads">
+<meta property="og:url" content="http://azyukei.github.io/2015/04/Android-api-Processes-and-Threads/index.html">
+<meta property="og:site_name" content="Kei Note">
+<meta property="og:description" content="原文：http://developer.android.com/guide/components/processes-and-threads.html
+當一個 APP 元件啟動，而且沒有其他 APP 元件在執行，Android 系統會開啟一個新的 Single thread Linux process 給這個 APP 執行。基本上，所有同一個 APP 的元件是在同一個 Thread 和 Proce">
+<meta property="og:image" content="http://developer.android.com/images/anr.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android - Processes and Threads">
+<meta name="twitter:description" content="原文：http://developer.android.com/guide/components/processes-and-threads.html
+當一個 APP 元件啟動，而且沒有其他 APP 元件在執行，Android 系統會開啟一個新的 Single thread Linux process 給這個 APP 執行。基本上，所有同一個 APP 的元件是在同一個 Thread 和 Proce">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Kei Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Kei Note" title="Kei Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Kei Note">Kei Note</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:azyukei.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Android-api-Processes-and-Threads/" title="Android - Processes and Threads" itemprop="url">Android - Processes and Threads</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-17T00:03:30.000Z" itemprop="datePublished"> 發表於 2015-04-17</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Processes"><span class="toc-number">1.</span> <span class="toc-text">Processes</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Process_lifecycle"><span class="toc-number">1.1.</span> <span class="toc-text">Process lifecycle</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Thread"><span class="toc-number">2.</span> <span class="toc-text">Thread</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Worker_threads"><span class="toc-number">2.1.</span> <span class="toc-text">Worker threads</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using_AsyncTask"><span class="toc-number">2.2.</span> <span class="toc-text">Using AsyncTask</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thread-safe_methods"><span class="toc-number">2.3.</span> <span class="toc-text">Thread-safe methods</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Interprocess_Communication"><span class="toc-number">3.</span> <span class="toc-text">Interprocess Communication</span></a></li></ol>
+		
+		</div>
+		
+		<p>原文：<a href="http://developer.android.com/guide/components/processes-and-threads.html" target="_blank" rel="external">http://developer.android.com/guide/components/processes-and-threads.html</a></p>
+<p>當一個 APP 元件啟動，而且沒有其他 APP 元件在執行，Android 系統會開啟一個新的 Single thread Linux process 給這個 APP 執行。<br>基本上，所有同一個 APP 的元件是在同一個 Thread 和 Process（叫做 “main” thread）上執行。如果一個 APP 元件啟動，而這個 APP 已經有 Thread 了（其他元件還在這個APP上執行），這時元件會啟動在同一個 Thread 上執行。<br>你也可以安排你 APP 上的不同的元件在獨立的 Process 上執行，你可以為任何 Process 建立額外的 Thread。<br>這個文件將討論 Process 和 Thread 在 Android 應用程式中如何運作。</p>
+<h1 id="Processes">Processes</h1><p>如果你需要自己控制 Process，可以從 manifest 檔案來控制。<br>manifest 裡面有各種 元件的標籤 <code>&lt;activity&gt;</code>, <code>&lt;service&gt;</code>, <code>&lt;receiver&gt;</code>, <code>&lt;provider&gt;</code>，用 <code>android:process</code> 屬性可以更動元件執行的 Process。<br>你可以幫每個元件設定這個屬性讓他們執行在自己的 Process 中，你也可以設定 <code>android:process</code> 讓不同 APP 的元件執行在同一個 Process，讓他們共享同一個 Linux user ID 並且用同一個憑證註冊。</p>
+<p><code>&lt;application&gt;</code> 也支援 <code>android:process</code> 屬性，用來設定所有元件的預設值。</p>
+<p>Android 決定在某些時候關閉 Process，當記憶體不足以供應其他使用者正在使用的 Process 需求時，APP 元件執行的 Process 會被殺掉。當重新執行這些元件時，會有新的 Process 給他們執行。</p>
+<p>要決定殺掉某個 Process，Android 系統會衡量他們對於使用者的重要性，例如：會先殺掉用來服務某個不再顯示畫面的 Activity 會比看的到畫面的 Activity 容易被殺掉。<br>決定是否終止 Process 是由裡面執行的元件來決定，決定刪除哪個 Process 的規則會在下面討論。</p>
+<h2 id="Process_lifecycle">Process lifecycle</h2><p>Android 系統會試著讓 APP Process 盡可能的存活更久，但是最後還是會需要刪除舊的 Process 來回收記憶體給新的、更重要的 Process 使用。要決定哪個 Process 要留著，哪個 Process 要殺掉，系統基於元件的狀態給每個元件執行的 Process 一個 <code>importance hierarchy</code> （重要性等級），低重要性的 Process 會先被刪掉，再來是第二低重要性的…等，來回收系統資源。</p>
+<p>重要性有五個等級，以下介紹不同種類的 Process，依照重要性排列（第一個是最重要的，會最後殺掉）：</p>
+<ol>
+<li><code>Foreground process</code>（前景）<br> 使用者正在操作的 Process，如果 Process 符合以下狀況就是 Foreground process：<ul>
+<li>與使用者互動的 Activity（Activity 的 onResume()被呼叫）</li>
+<li>與上面那種 Activity 結合的 Service</li>
+<li>在前景執行的 Service－服務被 startForeground()呼叫</li>
+<li>執行一個 Lifecycle Callbacks（onCreate(), onStart() 或 onDestory() ）的 Service</li>
+<li>正在執行 onReceive() 的 BroadcastReceiver<br></li></ul>一般來說在同一時間中只會有一些前景 Process 再執行。他們只會在記憶體非常低，低到所有 Foreground process 不能全部繼續執行時才會被殺掉。一般來說在這個狀況下，設備會變成 memory paging 的狀況，所以刪除一些 Foreground process 來保持使用者介面會動。</li>
+
+
+<li><code>Visible process</code>（可見）<br> 一個 Process 雖然沒有前景元件，但還是可以對使用者看到的畫面有作用。如果 Process 符合下列狀況就可以是 Visible process：<ul>
+<li>執行的 Activity 雖然不在前景，但是使用者依然可以看到他（ onPause() 方法被呼叫），舉例來說，如果一個前景 Activity 啟動一個對話框，還是能允許原本的 Activity 留在背後。</li>
+<li>與上面那種 Activity 結合的 Service</li>
+</ul>
+</li>
+<li><code>Service process</code> （服務）<br> 執行 Service 的 Process（呼叫 startService() 方法執行 Service），且不屬於上面兩種 Process 之一。雖然服務 Process 不會直接被使用者看到，他們通常做一些使用者關心的事情（像是在背景播放音樂或是從網路上下載資料），所以系統會讓他們保持執行，除非記憶體不足維持上面兩種 Process。</li>
+<li><code>Background process</code> （背景）<br> Process 保持一個現在使用者看不到的 Activity（Activity onStop() 方法被呼叫）。這種 Process 不會直接影響使用者經驗，系統可能會在任何時候殺掉他們來回收記憶體給前三種 Process 使用。<br> 通常有許多背景 Process 在執行，所以他們被存在一個 LRU（least recently used 最近很少用）清單來刪除這些 Process 中使用者久沒用的 Process。<br> 如果 Activity 正確的實現他的生命週期方法，且將目前狀態儲存下來，刪除這個 Process 將不會影響使用者經驗，因為當使用者回到這個 Activity 時，他會回覆所有狀態。更多關於儲存和回復狀態的文件請看<a href="http://developer.android.com/guide/components/activities.html#SavingActivityState" target="_blank" rel="external">Activities</a>。</li>
+<li><code>Empty process</code> （空的）<br> Process 中沒有任何執行的元件，保留這種 Process 唯一的原因是為了作為快取，用來增加下次啟動這個元件的速度，系統通常會殺掉種 Process 來平衡整個系統資源。</li>
+</ol>
+<p>Android 會盡可能的將 Process 的重要性等級評的較高，如果一個 Process 提供一個服務而且是可見的，他的 Process 評分會是可見 Process 而不是服務 Process。</p>
+<h1 id="Thread">Thread</h1><p>當應用程式啟動，系統會建立一個 Thread 來給應用程式執行，稱為 “main”。這個 Thread 非常重要因為他負責指派事件給合適的 UI widgets 包含 drawing 事件。他也是應用程式從 Android UI toolkit（android.widget 和 android.view packages 的元件）和元件交流的 Thread。因此 main thread 有時候會呼叫 UI thread。</p>
+<p>系統不會為每個元件的實例建立獨立的 Thread，所有的元件在同一個 Process 中執行，實做在 UI thread 中，這個 Thread 指派系統呼叫每個元件。因此回應 system callbacks 的方法總是在 UI thread 中執行（像是 onKeyDown() 這種回應使用者的動作或是生命週期 callback 方法）。</p>
+<p>舉例來說，當一個使用者觸碰畫面上的按鈕，APP 的 UI thread 指派 touch event 給 widget，讓他將自己設定為按下的狀態並告訴 event queue 將請求作廢，UI thread 將請求移除以後再通知 widget 讓他重新繪製。</p>
+<p>當你的 APP 密集的進行影響 UI 的工作，這個 Single thread 的模型將會變的效能很差，除非你正確的實現你的應用程式。<br>具體來說，如果每一件事都發生在 UI thread，像是從網路訪問請求資料庫這種長時間的操作，將會讓你目前的 UI 卡住。當這個 Thread 被卡住，就沒辦法指派事件，包含 drawing event，在使用者的觀點，應用程式看起來就像當掉了。更糟的是如果 UI thread 被卡住超過幾秒鐘（目前大約是5秒）使用者會看到這個應用程式沒有回應（<a href="http://developer.android.com/training/articles/perf-anr.html" target="_blank" rel="external">ANR</a>）的視窗問使用者要不要關掉 APP，使用者通常會決定關掉你的 APP 並且很生氣的把他移除。<br><img src="http://developer.android.com/images/anr.png" alt=""></p>
+<p>另外 Android UI toolkit 並不是 Thread-safe。所以你不能在 Worker thread 操作 UI ，你必須在 UI thread 進行所有對 UI 的操作，因此對 Android 的 Single thread 模型有兩個簡單的規則：</p>
+<ol>
+<li>不要讓你的 UI thread 卡住</li>
+<li>不要從 UI thread 以外的地方存取 Android UI toolkit</li>
+</ol>
+<h2 id="Worker_threads">Worker threads</h2><p>因為 Single thread 模型像上面說的那樣，不讓 UI 卡住的去回應應用程式 UI 非常重要，如果你要進行一些不會即時反應的操作，你應該要確保讓這些事在別的 Thread 中執行（<code>background</code> 或 <code>worker</code> thread）。</p>
+<p>例如，下面有一些 click listener 的程式碼，要在一個獨立的 Thread 中下載一個影像並讓他顯示在 ImageView：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Bitmap b = loadImageFromNetwork(<span class="string">"http://example.com/image.png"</span>);</span><br><span class="line">            mImageView.setImageBitmap(b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>乍看之下看起來可以順利執行，因為他建立一個新的 Thread 來負責網路操作，然而這違反了 Single thread 模型第二條規則：不要從 UI thread 以外的地方存取 Android UI toolkit。<br>這裡簡單的從 Worker thread 取代 UI thread 去修改 ImageView，這會造成未定義或是意外的行為的結果，如果出問題DEBUG的時候可能會難以追蹤又耗時。</p>
+<p>要修正這個問題，Android 提出幾個方法來從其他 Thread 存取 UI thread：</p>
+<ul>
+<li>[Activity.runOnUiThread(Runnable)]<a href="http://developer.android.com/reference/android/app/Activity.html#runOnUiThread(java.lang.Runnable)" target="_blank" rel="external">http://developer.android.com/reference/android/app/Activity.html#runOnUiThread(java.lang.Runnable)</a></li>
+<li>[View.post(Runnable)]<a href="http://developer.android.com/reference/android/view/View.html#post(java.lang.Runnable)" target="_blank" rel="external">http://developer.android.com/reference/android/view/View.html#post(java.lang.Runnable)</a></li>
+<li>[View.postDelayed(Runnable, long)]<a href="http://developer.android.com/reference/android/view/View.html#postDelayed(java.lang.Runnable,%20long)" target="_blank" rel="external">http://developer.android.com/reference/android/view/View.html#postDelayed(java.lang.Runnable,%20long)</a></li>
+</ul>
+<p>例如你可以用 <code>View.post(Runnable)</code> 來修正上面的程式碼：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">final</span> Bitmap bitmap = loadImageFromNetwork(<span class="string">"http://example.com/image.png"</span>);</span><br><span class="line">            mImageView.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    mImageView.setImageBitmap(bitmap);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>這樣就變成 Thread-safe 了：網路操作在其他 Thread 結束，同時 ImageView 由 UI thread 操作。</p>
+<p>然而如果有一組複雜的操作，這類的程式碼會很複雜而且難以維持，要處理更多與 Worker thread 複雜的互動，你可以考慮在你的 Worker thread 使用 Handler 來處理和 UI thread 之間的訊息傳遞。<br>或許有更好的解決方法，就是繼承 <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank" rel="external">AsyncTask</a> 這個類別，他可以簡單的處理 需要和 UI 互動的 Worker thread 任務。</p>
+<h2 id="Using_AsyncTask">Using AsyncTask</h2><p><a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank" rel="external">AsyncTask</a> 允許你在 UI 做非同步的工作，他把會造成 Blocking 的操作放在 Worker thread，之後在發佈結果到 UI thread，這樣就不需要自己去掌握 thread 和 Handle。</p>
+<p>要使用這個，你必須繼承 AsyncTask 並在子類別實現 <code>doInBackground()</code> Callback 方法，這會在 Background thread 執行。要更新你的 UI，你需要實現 <code>onPostExecute()</code>，這將會傳遞 <code>doInBackground()</code> 的結果並在 UI thread 執行，所以你可以安全的更新你的 UI，然後你就可以呼叫 <code>execute()</code> 在 UI thread 執行任務。</p>
+<p>舉例來說，如果你用 AsyncTask 實現上面的範例：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">new</span> DownloadImageTask().execute(<span class="string">"http://example.com/image.png"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloadImageTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span>&lt;<span class="title">String</span>, <span class="title">Void</span>, <span class="title">Bitmap</span>&gt; </span>&#123;</span><br><span class="line">    <span class="javadoc">/** The system calls this to perform work in a Worker thread and</span><br><span class="line">      * delivers it the parameters given to AsyncTask.execute() */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Bitmap <span class="title">doInBackground</span><span class="params">(String... urls)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> loadImageFromNetwork(urls[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="javadoc">/** The system calls this to perform work in the UI thread and delivers</span><br><span class="line">      * the result from doInBackground() */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span><span class="params">(Bitmap result)</span> </span>&#123;</span><br><span class="line">        mImageView.setImageBitmap(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>這樣你的程式碼就變的安全又簡單了，因為會把工作分別在 Worker thread 和 UI thread 上完成。</p>
+<p>如果要瞭解如何使用這個類別，你可以閱讀 <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank" rel="external">AsyncTask</a> 的參考資料，這裡只會對他如何運作做一個簡單的概述：</p>
+<ul>
+<li>參數的型別都可以自訂</li>
+<li>doInBackground() 方法會自動執行在 Worker thread</li>
+<li>onPreExecute(), onPostExecute() 和 onProgressUpdate() 都會在 UI thread 被呼叫</li>
+<li>doInBackground() 的回傳直會送給 onPostExecute()</li>
+<li>你可以在 doInBackground() 中的任何地方呼叫 publishProgress() 來讓 onProgressUpdate() 在 UI thread 執行</li>
+<li>你可以在任何時候、任何 Thread 取消任務</li>
+</ul>
+<blockquote>
+<p>注意：另一個可能會遇到的問題是由於執行期的配置改變（像是使用者改變了畫面的方向），你使用的 Worker thread 在 Activity 可能會意外的重新啟動，可能會破壞你的 Worker thread。<br>要知道如何在重新啟動時保持留的任務，還有當 Activity 被消除時如何正確的取消工作，請看 <a href="http://code.google.com/p/shelves/" target="_blank" rel="external">Shelves</a> 範例程式的原始碼。</p>
+</blockquote>
+<h2 id="Thread-safe_methods">Thread-safe methods</h2><p>在某些情況下，你實現的方法可能會在不同的 Thread 中被呼叫，所以必須要寫成 Thread-safe 才行。</p>
+<p>主要是讓方法可以被遠端呼叫，像是 <a href="http://developer.android.com/guide/components/bound-services.html" target="_blank" rel="external">Bound Services</a> 中的方法。<br>TODO</p>
+<h1 id="Interprocess_Communication">Interprocess Communication</h1>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-API-Guides/">Android API Guides</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://azyukei.github.io/2015/04/Android-api-Processes-and-Threads/" data-title="Android - Processes and Threads | Kei Note" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/Android-api-Bound-Services/" title="Android - Bound Services">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Android - Bound Services</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/04/Android-api-Drawable-Animation/"  title="Android - Drawable Animation">
+ <strong>下一篇：</strong><br/> 
+ <span>Android - Drawable Animation
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Processes"><span class="toc-number">1.</span> <span class="toc-text">Processes</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Process_lifecycle"><span class="toc-number">1.1.</span> <span class="toc-text">Process lifecycle</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Thread"><span class="toc-number">2.</span> <span class="toc-text">Thread</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Worker_threads"><span class="toc-number">2.1.</span> <span class="toc-text">Worker threads</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using_AsyncTask"><span class="toc-number">2.2.</span> <span class="toc-text">Using AsyncTask</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thread-safe_methods"><span class="toc-number">2.3.</span> <span class="toc-text">Thread-safe methods</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Interprocess_Communication"><span class="toc-number">3.</span> <span class="toc-text">Interprocess Communication</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android-API-Guides/" title="Android API Guides">Android API Guides<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/" title="Android Dev">Android Dev<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/Reading-Note/" title="Reading Note">Reading Note<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sublime-Text/" title="Sublime Text">Sublime Text<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon-Taiwan/" title="Hackathon Taiwan">Hackathon Taiwan<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GitHub/" title="GitHub">GitHub<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Google-Analytics/" title="Google Analytics">Google Analytics<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Azyueki">Azyueki</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'kei-note';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

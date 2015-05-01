@@ -1,0 +1,592 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android - Application Fundamentals | Kei Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Azyueki">
+    
+
+    
+    <meta name="description" content="原文：http://developer.android.com/guide/components/fundamentals.html
+Android apps 用 JAVA 這個程式語言撰寫，與其他資料或 Resource 檔案一起由 Android SDK tools 編譯成一個 APK（Android Package 副檔名為 .apk），APK 檔案包含了 Android APP 的所有內容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android - Application Fundamentals">
+<meta property="og:url" content="http://azyukei.github.io/2015/04/Android-api-Application-Fundamentals/index.html">
+<meta property="og:site_name" content="Kei Note">
+<meta property="og:description" content="原文：http://developer.android.com/guide/components/fundamentals.html
+Android apps 用 JAVA 這個程式語言撰寫，與其他資料或 Resource 檔案一起由 Android SDK tools 編譯成一個 APK（Android Package 副檔名為 .apk），APK 檔案包含了 Android APP 的所有內容">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android - Application Fundamentals">
+<meta name="twitter:description" content="原文：http://developer.android.com/guide/components/fundamentals.html
+Android apps 用 JAVA 這個程式語言撰寫，與其他資料或 Resource 檔案一起由 Android SDK tools 編譯成一個 APK（Android Package 副檔名為 .apk），APK 檔案包含了 Android APP 的所有內容">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Kei Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Kei Note" title="Kei Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Kei Note">Kei Note</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:azyukei.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Android-api-Application-Fundamentals/" title="Android - Application Fundamentals" itemprop="url">Android - Application Fundamentals</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-22T01:47:34.000Z" itemprop="datePublished"> 發表於 2015-04-22</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#App_Components"><span class="toc-number">1.</span> <span class="toc-text">App Components</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Activity"><span class="toc-number">1.1.</span> <span class="toc-text">Activity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Service"><span class="toc-number">1.2.</span> <span class="toc-text">Service</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Content_provider"><span class="toc-number">1.3.</span> <span class="toc-text">Content provider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Broadcast_receiver"><span class="toc-number">1.4.</span> <span class="toc-text">Broadcast receiver</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Activating_Components"><span class="toc-number">2.</span> <span class="toc-text">Activating Components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The_Manifest_File"><span class="toc-number">3.</span> <span class="toc-text">The Manifest File</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Declaring_Components"><span class="toc-number">3.1.</span> <span class="toc-text">Declaring Components</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Declaring_component_capabilities"><span class="toc-number">3.2.</span> <span class="toc-text">Declaring component capabilities</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Declaring_app_requirements"><span class="toc-number">3.3.</span> <span class="toc-text">Declaring app requirements</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App_Resources"><span class="toc-number">4.</span> <span class="toc-text">App Resources</span></a></li></ol>
+		
+		</div>
+		
+		<p>原文：<a href="http://developer.android.com/guide/components/fundamentals.html" target="_blank" rel="external">http://developer.android.com/guide/components/fundamentals.html</a></p>
+<p>Android apps 用 JAVA 這個程式語言撰寫，與其他資料或 Resource 檔案一起由 Android SDK tools 編譯成一個 APK（Android Package 副檔名為 <code>.apk</code>），APK 檔案包含了 Android APP 的所有內容，可以用來讓 Android 裝置安裝 APP。</p>
+<p>當 APP 安裝在裝置上時，每個 Android APP 活在他自己的安全沙盒中：</p>
+<ul>
+<li>Android OS 是一個多使用者的 Linux 系統，每個 APP 都是一個不同的使用者。</li>
+<li>系統預設會分配給每個 APP 一個獨立的 User ID（只在系統上使用，且其他 APP 不會知道）。系統會設定權限給 APP 中的每個檔案，所以只有那個 User ID 可以訪問 APP 來存許他們。</li>
+<li>每個 Process 有他自己的虛擬機器（VM），所以一個 APP 的程式碼的執行和其他 APP 是隔離開的。</li>
+<li>每個 APP 預設會在他自己的 Linux Process 中執行，當任何 APP Components 需要執行時，Android 會啟動 Process，當 Components 不用了或是系統要回收記憶體給其他 APP 時會關閉 Process。</li>
+</ul>
+<p>如此 Android 系統實踐了最小權限原則（principle of least privilege），也就是說每個 APP 預設只能存許他需要的 Components 來做他的工作。這樣建立了一個非常安全的環境讓 APP 不能存取其他系統沒給他權限的部分。</p>
+<p>然而還是有些方法讓 APP 和其他 APP 分享資料，還有讓 APP 存許系統服務：</p>
+<ul>
+<li>可以安排讓兩個 APP 使用同一個 Linux user ID，在這情況下，他們可以互相存取檔案。為了節省系統資源，相同 User ID 也可以分配在同一個 Linux Process 中執行，且分享相同的 VM （這些 APP 必須要註冊相同的憑證）。</li>
+<li>APP 可以要求存取裝置上資料的權限，像是使用者的通訊錄、簡訊、SD 卡、相機、藍牙﹍﹍等。所有 APP 要求的權限需要在安裝時得到使用者的允許。</li>
+</ul>
+<p>考量這些東西改變了 Android APP 存在系統中的基礎，這份文件將介紹：</p>
+<ul>
+<li>定義你 APP 的 Core framework components。</li>
+<li>用來宣告 Components 還有為你的 APP 要求裝置功能的 Manifest 檔案。</li>
+<li>與 APP 程式碼獨立的 Resources，允許你的 APP 針對不同的裝置配置優化適合的使用行為。</li>
+</ul>
+<h2 id="App_Components">App Components</h2><p>Android 系統設計的獨特之處是任何 APP 可以啟動另一個 APP 的 Component。<br>例如：如果你希望使用者從攝影機拍攝一張影像，可能是從別的 APP 來拍攝，然後你的 APP 可以使用影像，而不是自己開發一個擷取影像的 Activity。<br>你不需要自己加入或是連結相機 APP 的程式碼。你可以簡單的啟動攝影 APP 來擷取影像，完成後照片可以回傳給你的 APP，讓你使用它。在使用者看來就好像相機 APP 是你的 APP 的一部份。</p>
+<p>當系統啟動一個 Component，為 APP 啟動一個 Process（如果它沒有在執行的話）並實現 Component 所需的類別。<br>例如：如果你的 APP 開啟一個攝影機 APP 的 Activity 來拍攝照片，這個 Activity 的 Process 是在攝影機 APP 而不是你的 APP 中。</p>
+<p>Android 不像其他大多數的系統，Android 的 APP 沒有單一的入口點（例：沒有main() 函式）。APP 運行在系統中的一個單獨的 Process 中，每個 APP 有他的檔案權限，限制其他的 APP 存取，因此你的 APP 不能直接啟動其他 APP 的元件。<br>而 Android 系統是可以的，在其他 APP 啟動一個 Component，你必須提供一個訊息給系統，指定你的意圖（Intent）來開啟 Component，然後系統啟動 Component 為你服務。</p>
+<p>App components 是 Android app 的重要基石，有四種不同類型的 Components 每種類型有不同的目的、並有明顯的生命週期來定義 component 何時被創建和銷毀。</p>
+<h3 id="Activity">Activity</h3><p>Activity 代表使用者介面中的一個畫面，例如電子郵件 APP，他有一個 Activity 用來顯示新郵件、另一個 Activity 撰寫電子郵件、另一個 Activity 用來讀取郵件。<br>雖然這個電子郵件 APP 的 UX 是由這些 Activities 一起工作來建立的，但每個 Activity 是相互獨立的。<br>因此其他 APP 可以啟動這些 Activities 中的任何一個（如果這個電子郵件 APP 允許的話）。<br>例如：相機 APP 可以開啟電子郵件 APP 中撰寫郵件的 Activity 以便使用者分享他們的照片。</p>
+<p>Activity 被作為 Activity 的子類別實現，詳閱 <a href="http://developer.android.com/guide/components/activities.html" target="_blank" rel="external">Activity 的 developer guide</a>。</p>
+<h3 id="Service">Service</h3><p>Service 是在後台執行，負責執行長時間運行的操作或是遠端處理。<br>Service 不提供使用者介面。<br>例如：一個 Service 可以在背景撥放音樂，而使用者可以在其他 APP 或上網，不會被撥放音樂的 Activity 阻擋到介面。另一個 component 像是一個 Activity 可以啟動該服務，讓它執行並與它結合，以便和它互動。</p>
+<p>Service 被作為 Service 的子類別實現，詳閱 <a href="http://developer.android.com/guide/components/services.html" target="_blank" rel="external">Service 的 developer guide</a>。</p>
+<h3 id="Content_provider">Content provider</h3><p>Content provider 管理 APP 的共享資料，你可以儲存資料在檔案系統、SQLite 資料庫、網路上或是任何你的 APP 可以訪問的儲存位置。<br>通過 Content provider，其他 APP 可以查詢甚至修改資料（如果使用者允許的話）。<br>例如：APP 系統提供一個 Content provider 來管理聯絡人訊息，因此任何 APP 拿到權限時都可以查詢聯絡人訊息的 Content provider(ContactsContract.Data) 來讀寫個人訊息。</p>
+<p>Content provider 也可以專用在你的 APP 讀寫資料而不共享給其他 APP。<br>例如：筆記本 APP 使用一個 Content provider 來儲存筆記。</p>
+<p>Content provider 被實現為 ContentProvider 的子類別，必須實現一組標準 API 來讓其他 APP 存取，詳閱 <a href="http://developer.android.com/guide/topics/providers/content-providers.html" target="_blank" rel="external">ContentProvider 的 developer guide</a>。</p>
+<h3 id="Broadcast_receiver">Broadcast receiver</h3><p>用來回應全系統的廣播通知。<br>有許多廣播從系統發出，例如：廣播會宣布螢幕被關閉、電池低電量或是螢幕截了一張圖。<br>APP 也可以發起廣播，例如：為了讓其他 APP 知道資料已經被下載到設備上供他們使用。<br>雖然 Broadcast receiver 沒有顯示出使用者介面，他們可以在收到廣播時建立一個狀態欄通知來提醒使用者。<br>通常廣播接收器只是一個關聯其他 components 的門戶，工作量很小。<br>例如：廣播接收器可能會根據一個事件來啟動一個服務。</p>
+<p>Broadcast receiver 被實現為 BroadcastReceiver 的子類別，每個廣播由一個 Intent 物件來傳遞，詳閱 <a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank" rel="external">BroadcastReceiver 的 developer guide</a>。</p>
+<h2 id="Activating_Components">Activating Components</h2><p>其中三種 Compnents－Avtivity, Service, Broadcast Receiver 通過一個非同步消息來啟動，稱為 Intent（意圖）。<br>執行中，Intent 讓 Component 互相結合（可以把它看成是要求其他 Component 啟動的使者）。</p>
+<p>Intent 由 Intent 物件建立，他定義一個訊息來啟動其他特定的 Component 或是其他特定 Component 的”型別”，一個 Intent 可以是明示的或暗示的。<br>(這邊應該是說 Intent 可以啟動某一個特定的組件，或是只指定啟動某一類型的組件，像是要求要啟動某個相機 APP，但是讓使用者自己選要用哪個相機 APP 來拍照之類的)</p>
+<p>對於 Activities 和 Services，一個 Intent 定義一個動作來執行（例如：來看或是發送東西），而且可能作用於特定 URI 中的資料（該 Component 被啟動可能需要知道的其他事情）。<br>例如：一個 Intent 可能傳達一個請求給一個 Activity 來顯示影像或打開網頁。</p>
+<p>某些情況下，你可以啟動 Activity 來獲得結果，在這種情況下，這個 Activity 也可以回傳一個 Intent（例如你可以發出一個 Intent 讓使用者選擇一個聯絡人資料，並將他回傳給你，回傳的 Intent 包含一個URI指向被選擇的聯絡人）。</p>
+<p>在 Broadcast Receiver中，Intent 只是簡單地把要公布的東西廣播出來（例如一個廣播指示設備電池電量低時，只包含一個已知的字串 “battery is low”）。</p>
+<p>Components 中只有 Content Provider 不是由 Intent 來啟動。<br>相反的，他是由目標透過 ContentResolver 來請求。<br>Content Resolver（內容解析器）處理所有與內容提供者之間的所有直接交易（存取？），使該 Component 不需要與提供者執行交易，而是呼叫 ContentResolver 物件中的方法。<br>這樣在內容提供者和 Component 請求訊息之間留下一層抽象（這是為了安全性）。</p>
+<p>有以下不同的方法來啟動每種Component：</p>
+<ul>
+<li>Activity: 透過傳遞 Intent 到 startActivity() 或是 startActivityForResult()</li>
+<li>Service: 傳遞 Intent 到 startService() 中，或是綁定一個服務，透過傳入 Intent 到 bindService() 中</li>
+<li>Broadcast: 傳遞 Intetn 到 sendBroadcast(), sendOrderedBroadcast() 或是 sentStickyBroadcast()</li>
+<li>Content provider: 透過呼叫 ContentResolver 的 query() 方法來查詢訊息提供者</li>
+</ul>
+<p>更多Intent的資訊，詳閱 <a href="http://developer.android.com/guide/components/intents-filters.html" target="_blank" rel="external">Intents and Intent Filters 文件</a>。</p>
+<h2 id="The_Manifest_File">The Manifest File</h2><p>在 Android 系統啟動 App Component 之前，系統必須透過讀取 App 的 AndroidManifest.xml 檔案來知道有那些 Component 存在。你的 App 必須聲明所有 Component 在這個檔案中，而這個檔案必須在 App 專案的跟目錄下。</p>
+<p>Manifest 除了聲明 App 的 Component 以外還做了很多事情，像是：</p>
+<ul>
+<li>確定 App 需要那些使用者權限，例如存取網路或存取聯絡人資料</li>
+<li>聲明 App 所需的最低 API Level</li>
+<li>聲明 App 需要使用的硬體和軟體功能，像是相機、藍芽服務或是多點觸控</li>
+<li>App 需要的 API 函式（除了 Android framework 以外）像是 Google Maps library 等</li>
+<li>其他</li>
+</ul>
+<h3 id="Declaring_Components">Declaring Components</h3><p>Manifest 的主要任務是告訴系統這個 App 有哪些元件和元件的相關資訊。<br>例如：一個 manifest 檔案可以像以下這樣聲明 Activity：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">manifest</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">application</span> <span class="attribute">android:icon</span>=<span class="value">"@drawable/app_icon.png"</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">activity</span> <span class="attribute">android:name</span>=<span class="value">"com.example.project.ExampleActivity"</span></span><br><span class="line">                  <span class="attribute">android:label</span>=<span class="value">"@string/example_label"</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">activity</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="title">application</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p> <code>&lt;application&gt;</code> 中的 <code>android:icon</code> 屬性填入 Resource 作為 APP 的識別 Icon<br> <code>&lt;activity&gt;</code> 的 <code>android:name</code> 屬性說明完整的 Activity 子類別的物件名稱，<code>android:label</code> 屬性用 String 說明 Activity 的 User-visible label<br> 你可以在這裡用這些標籤元素宣告所有的元件：</p>
+<ul>
+<li>Activities：<code>&lt;activity&gt;</code></li>
+<li>Services：<code>&lt;service&gt;</code></li>
+<li>Broadcast Receivers：<code>&lt;receiver&gt;</code></li>
+<li>Content Providers：<code>&lt;provider&gt;</code><br>Activities、Services 和 Content Providers 如果在程式碼中有寫但沒有宣告在 Manifest 中，系統會看不到他們，也既沒法被執行。但是 Broadcast Receivers 可以在任何地方被宣告，在 Manifest 或是在程式中動態的產生（ BroadcastReceiver 物件）再讓系統呼叫 registerReceiver() 來註冊就可以了。</li>
+</ul>
+<p>更多關於 Manifest 檔案的結構，可以閱讀 <a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html" target="_blank" rel="external">App Manifest</a> 文件。</p>
+<h3 id="Declaring_component_capabilities">Declaring component capabilities</h3><p>如同上面討論的，如要啟動 Components 你可以用 Intent 來啟動 Activities, Services 和 Broadcast Receivers，你可以在 Intent 中設定一個明確的 Component 作為目標（用物件名稱）。然而 Intents 真正厲害在於 Implicit Intents 的概念，Implicit Intents 可以簡單的描述了要操作的動作類型（另外也可以加上你希望操作這些動作的資料），並允許系統在裝置上找到一個 Component，讓系統去啟動與操作他。如果有不只一個 Components 可以操作這個 Inetnet 描述的動作，使用者就可以自己選出一個 Component 來用。</p>
+<p>系統從裝置上的其他 APP 的 Manifest 檔案提供中的 <code>Intent filters</code> 識別出可以回應這個 Intent 的 Components。</p>
+<p>當你在 Manifest 宣告一個 Activity，你可以選擇在把 Intent filter 加進去，這樣他就能回應給其他 APP 的 Intents。你可以加入 <code>&lt;intent-filter&gt;</code> 作為 Component 的子元素來宣告 Intent filter。</p>
+<p>例如你要建立一個 email APP，有一個撰寫新郵件的 Activity，你可以宣告 Intent filter 來回應 <code>Send</code> Intents，像這樣：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">manifest</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="title">application</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">activity</span> <span class="attribute">android:name</span>=<span class="value">"com.example.project.ComposeEmailActivity"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">action</span> <span class="attribute">android:name</span>=<span class="value">"android.intent.action.SEND"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">data</span> <span class="attribute">android:type</span>=<span class="value">"*/*"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">category</span> <span class="attribute">android:name</span>=<span class="value">"android.intent.category.DEFAULT"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">activity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">application</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>當其他 APP 用 ACTION_SEND 建立一個 Intent，然後呼叫 startActivity()，系統可能就會啟動你的 Activity 來讓使用者撰寫並寄出 email。</p>
+<p>更多關於建立 Intent filters 的資訊可以看 <a href="http://developer.android.com/guide/components/intents-filters.html" target="_blank" rel="external">Intents and Intent Filters</a> 文件。</p>
+<h3 id="Declaring_app_requirements">Declaring app requirements</h3><p>Android 支援提供不同的功能與效能的多種裝置，為了防止 APP 安裝在某個缺乏你需要的功能的裝置上，清楚的定義你的 APP 支援哪種類行的裝置是很重要的，可以在 Manifest 中宣告裝置和軟體需求。這些宣告大多只是提供一些訊息，系統不會讀取他們，但是外在的服務，像是 Google Play 會讀取他們，提供使用者搜尋時做為篩選出適合他們裝置的 APP 用。</p>
+<p>例如，如果你的 APP 需要 攝影機還有使用 Android 2.1（API Level 7）的APIs，你需要在你的 Manifest 檔案宣告這些需求：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">manifest</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">uses-feature</span> <span class="attribute">android:name</span>=<span class="value">"android.hardware.camera.any"</span></span><br><span class="line">                  <span class="attribute">android:required</span>=<span class="value">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">uses-sdk</span> <span class="attribute">android:minSdkVersion</span>=<span class="value">"7"</span> <span class="attribute">android:targetSdkVersion</span>=<span class="value">"19"</span> /&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="title">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>現在，沒有攝影機還有 Android 版本低於 2.1 的裝置就不能在 Google Play 安裝你的 APP。</p>
+<p>然而你也可以宣告 APP 使用攝影機，但不是必須的。在這個案例中，你的 APP 會把 <code>required</code> 屬性設為 <code>false</code>，然後在執行期中檢查裝置有沒有攝影機來決定停用攝影機相關的功能。</p>
+<p>更多關於管理 APP 和不同裝置的相容性的資訊在 <a href="http://developer.android.com/guide/practices/compatibility.html" target="_blank" rel="external">Device Compatibility 文件中</a>。</p>
+<h2 id="App_Resources">App Resources</h2><p>Android APP 不只是由程式碼組成的，他需要獨立於原始碼的 Resources，像是影像、影片檔和任何為 APP 做出視覺表現有關的東西。例如你會需要定義一些動畫、選單、樣式、顏色還有定義出 Activity UI 的 Layout XML 檔。使用 APP Resources 可以更簡單的更新 APP 的許多東西而不用更動程式碼。藉由提供一組 Alternative Resources ，可以讓你針對多樣化的裝置去優化配置（像是不同的語言或螢幕尺寸）。</p>
+<p>SDK Build tools 為你的 Android Project 中的每個 Resource 定義一個唯一的整數 ID，讓你可以使用在 APP 程式碼中參考到其他 XML 中定義的 Resource。例如你的 APP 中有個影像檔叫做 <code>logo.png</code>（存在 <code>res/drawable/</code> 目錄中），SDK tools 會產生一個 Resource ID 叫做 <code>R.drawable.logo</code>，你可以用這個 ID 參考到這張影像來把他加入到 UI 中。</p>
+<p>其中最重要的是，為你的程式碼分別提供 Resources，讓 Alternative Resources 可以有為不同裝置配置的能力。例如在 XML 中定義 UI 的字串，你可以把字串翻譯成其他語言，並把這些字串獨立在另一個檔案，然後放在加上 language <code>Qualifier</code> 的檔案目錄中（像是 <code>res/values-fr/</code> 用來存法語），根據使用者的語言設定，Android 系統會幫 UI 套用適合的字串。</p>
+<p>Android 為你的 Alternative Resources 支援非常多不同的 <code>Qualifier</code>，<code>Qualifier</code> 是在檔案資料夾名稱中的短字串，根據裝置設定來定義哪種 Resources 該被使用。舉例來說你應該常常會幫 Activity 建立不同的 layout 來對應不同的螢幕方向和尺寸，例如當裝置在 Portrait Orientation（高）的狀態下，你可能會希望 Layout 中的按鈕是垂直排列的，但是當螢幕是在 Landscape Orientation（寬）的狀態下，你會希望按鈕是水平對齊的。你可以定義兩個不同的 Layouts 並分別幫他們的檔案目錄名稱套用適合的 <code>Qualifier</code>，然後系統會根據現在的裝置方向，自動的套用適合的 Layout。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-API-Guides/">Android API Guides</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://azyukei.github.io/2015/04/Android-api-Application-Fundamentals/" data-title="Android - Application Fundamentals | Kei Note" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/Android-api-Device-Compatibility/" title="Android - Device Compatibility">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Android - Device Compatibility</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/04/Android-api-Bound-Services/"  title="Android - Bound Services">
+ <strong>下一篇：</strong><br/> 
+ <span>Android - Bound Services
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#App_Components"><span class="toc-number">1.</span> <span class="toc-text">App Components</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Activity"><span class="toc-number">1.1.</span> <span class="toc-text">Activity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Service"><span class="toc-number">1.2.</span> <span class="toc-text">Service</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Content_provider"><span class="toc-number">1.3.</span> <span class="toc-text">Content provider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Broadcast_receiver"><span class="toc-number">1.4.</span> <span class="toc-text">Broadcast receiver</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Activating_Components"><span class="toc-number">2.</span> <span class="toc-text">Activating Components</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The_Manifest_File"><span class="toc-number">3.</span> <span class="toc-text">The Manifest File</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Declaring_Components"><span class="toc-number">3.1.</span> <span class="toc-text">Declaring Components</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Declaring_component_capabilities"><span class="toc-number">3.2.</span> <span class="toc-text">Declaring component capabilities</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Declaring_app_requirements"><span class="toc-number">3.3.</span> <span class="toc-text">Declaring app requirements</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App_Resources"><span class="toc-number">4.</span> <span class="toc-text">App Resources</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android-API-Guides/" title="Android API Guides">Android API Guides<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/" title="Android Dev">Android Dev<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/Reading-Note/" title="Reading Note">Reading Note<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sublime-Text/" title="Sublime Text">Sublime Text<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon-Taiwan/" title="Hackathon Taiwan">Hackathon Taiwan<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GitHub/" title="GitHub">GitHub<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Google-Analytics/" title="Google Analytics">Google Analytics<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Azyueki">Azyueki</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'kei-note';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

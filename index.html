@@ -1,0 +1,1235 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Kei Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Azyueki">
+    
+
+    
+    <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kei Note">
+<meta property="og:url" content="http://azyukei.github.io/index.html">
+<meta property="og:site_name" content="Kei Note">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kei Note">
+<meta name="twitter:description">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Kei Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Kei Note" title="Kei Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Kei Note">Kei Note</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:azyukei.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Android-api-System-Permissions/" title="Android - System Permissions" itemprop="url">Android - System Permissions</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-28T08:17:40.000Z" itemprop="datePublished"> 發表於 2015-04-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Android 是一個 privilege-separated（權限分離）的作業系統，其中每個應用程式使用不同的系統 ID 來執行（Linux user ID 和 group ID）。其中一部份系統也有獨立的 ID。Linux 依此將每個應用程式從系統中彼此隔離。</p>
+<p>其他劃分更細的安全功能由 <code>permission</code> 的機制提供，他會強行限制</p>
+<h2 id="Security_Architecture">Security Architecture</h2><h2 id="Application_Signing">Application Signing</h2><h2 id="User_IDs_and_File_Access">User IDs and File Access</h2><h2 id="Using_Permissions">Using Permissions</h2><h2 id="Declaring_and_Enforcing_Permissions">Declaring and Enforcing Permissions</h2><h3 id="…in_AndroidManifest-xml">…in AndroidManifest.xml</h3><h3 id="…when_Sending_Broadcasts">…when Sending Broadcasts</h3><h3 id="Other_Permission_Enforcement">Other Permission Enforcement</h3><h2 id="URI_Permissions">URI Permissions</h2>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-API-Guides/">Android API Guides</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/Android-api-System-Permissions/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Android-api-Device-Compatibility/" title="Android - Device Compatibility" itemprop="url">Android - Device Compatibility</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-27T03:26:54.000Z" itemprop="datePublished"> 發表於 2015-04-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>原文：<a href="http://developer.android.com/guide/practices/compatibility.html" target="_blank" rel="external">http://developer.android.com/guide/practices/compatibility.html</a></p>
+<p>Android 設計為可以在非常多不同種類的裝置上執行，像是手機、平版或是電視。作為開發人員，你的 APP 有很大範圍、不同裝置的潛在用戶。為了讓你的 APP 可以成功的在各種裝置上執行，他應該要能相容一些功能差異，並提供能適應不同螢幕配置的靈活 UI。</p>
+<p>為了方便你朝著這個目標努力，Android 提供一個動態 APP framework 讓你可以提供特定配置的靜態 APP Resources（像是為不同螢幕尺寸撰寫不同的 XML layouts），然後 Android 會基於目前裝置的配置來讀取適合的 Resources。因此設計你的 APP 時配合一些預先規劃與額外的 APP Resources 你可以發佈能針對多樣化裝置優化使用者經驗的單一 APK。</p>
+<p>如果有必要的話你可以具體說明 APP 的功能需求來控制哪種裝置可以在 Google Play 商店中安裝你的 APP。這裡會解釋如何讓你控制哪種裝置可以存取你的 APP、如何讓你的 APP 讓正確範圍的使用者看到。更多關於如何讓 APP 調整成適合不同的裝置請閱讀 <a href="http://developer.android.com/training/basics/supporting-devices/index.html" target="_blank" rel="external">Supporting Different Devices</a>。</p>
+<h2 id="What_Does_“Compatibility”_Mean?">What Does “Compatibility” Mean?</h2><p>當你閱讀更多關於 Android 開發的東西，你可能會在各種情況中遇到<code>相容性</code>一詞，有兩種相容性：<code>裝置相容性</code> 和 <code>APP 相容性</code>。</p>
+<p>因為 Android 是一個 Open source 專案，任何生產者都可以製造執行 Android OS 的裝置，只有在他可以執行為 Android 執行環境撰寫的 APP 時這個裝置才符合 Android 相容性。關於確切的詳情，Android 執行環境是由 <a href="http://source.android.com/compatibility/overview.html" target="_blank" rel="external">Android Compatibility Program</a> 定義，每個裝置必須通過 Compatibility Test Suite（CTS）的測試才能視為有相容性。</p>
+<p>至於 APP 開發者，你不需要擔心裝置是否符合相容性，因為只有和 Android 相容的裝置會有 Google Play Store。所以你可以放心，從 Google Play 商店中安裝你的 APP 的就是使用與 Android 相容的裝置。</p>
+<p>然而，你不需要考慮你的 APP 是否和各種配置的潛在的裝置是有相容性的，因為 Android 執行在各式各樣的裝置配置上，有些功能不會每個裝置都有，像是一些裝置可能沒有電子羅盤。如果你的 APP 主要功能需要使用電子羅盤，你的 APP 只對擁有電子羅盤的裝置有相容性。</p>
+<h2 id="Controlling_Your_App’s_Availability_to_Devices">Controlling Your App’s Availability to Devices</h2><p>APP 可以透過 Playform APIs 來利用 Android 支援的各種功能，有些功能是基於硬體的（像是電子羅盤），有些是基於軟體的（像是 APP Widgets），還有些有需求平台版本。並非所有裝置都支援所有功能，所以你可能需要基於 APP 需求的功能去控制你的 APP 可用性。</p>
+<p>為了幫你的 APP 取得更多的潛在用戶，你需要盡可能的讓你的單一 APK 檔可以支援更多的裝置配置，在大多情況下，你可以在執行期讓一些可選功能失效，並且提供具有不同配置的 APP Resources（像是為不同螢幕尺寸準備不同的 layouts）。如果有必要你可以依據下面這些裝置特性，透過 Google Play 商店限制 APP 的可用性：</p>
+<ul>
+<li>Device features（裝置功能）</li>
+<li>Platform version（平台版本）</li>
+<li>Screen configuration（畫面配置）</li>
+</ul>
+<h3 id="Device_features">Device features</h3><p>為了讓你管理基於裝置功能的 APP 可用性，Android 幫所有硬體與軟體功能定義了可能不適用於所有裝置的 feature ID，例如電子羅盤的 feature ID 為 <code>FEATURE_SENSOR_COMPASS</code>，APP Widgets 的是 <code>FEATURE_APP_WIDGETS</code>。</p>
+<p>如果必要的話，當使用者的裝置沒有提供你 APP 的 manifest 檔案中 <code>&lt;uses-feature&gt;</code> 裡宣告的功能，你可以不讓使用者安裝。</p>
+<p>例如你的 APP 最於沒有電子羅盤的裝置是無意義的，你可以在 manifest 中宣告電子羅盤為 <code>required</code> 像這樣：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">manifest</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">uses-feature</span> <span class="attribute">android:name</span>=<span class="value">"android.hardware.sensor.compass"</span></span><br><span class="line">                  <span class="attribute">android:required</span>=<span class="value">"true"</span> /&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="title">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Google Play Store 會比較使用者裝置有沒有提供 APP 需求的功能來確認你的 APP 是否相容於每個裝置。如果裝置沒有提供所有 APP 要求的功能，使用者就不能安裝這個 APP。</p>
+<p>如果你的 APP 的主要功能不需要要求裝置功能，你應該把 <code>required</code> 屬性社為 <code>false</code> 並且在執行期檢查裝置提供的功能，如果 APP 的某些功能在裝置上是不可用的，可以適當的將 APP 的功能減少。例如你可以呼叫 <code>hasSystemFeature()</code> 來查詢功能是否可用：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">PackageManager pm = getPackageManager();</span><br><span class="line"><span class="keyword">if</span> (!pm.hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS)) &#123;</span><br><span class="line">    <span class="comment">// This device does not have a compass, turn off the compass feature</span></span><br><span class="line">    disableCompassFeature();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>關於可用於控制使用者能不能透過 Google Play Store 安裝你的 APP 的篩選器的所有資訊，請看 <a href="http://developer.android.com/google/play/filters.html" target="_blank" rel="external">Filters on Google Play</a> 文件。</p>
+<blockquote>
+<p>Note：有些 system permissions 需要裝置功能可用才能用，像是如果 APP 要求使用 BLUETOOTH 的 permission，也一定會需求 <code>FEATURE_BLUETOOTH</code> 裝置功能。<br>你可以來關閉篩選器讓 APP 能在沒有藍芽的裝置使用，在 <code>&lt;uses-feature&gt;</code> 標籤中 把 <code>required</code> 的設定改為 <code>false</code> 即可。更多關於裝置功能需求的資訊請閱讀 <a href="http://developer.android.com/guide/topics/manifest/uses-feature-element.html#permissions" target="_blank" rel="external">Permissions that Imply Feature Requirements</a>。</p>
+</blockquote>
+<h3 id="Platform_version">Platform version</h3><p>不同的裝置可能會執行不同版本的 Android Platform，像是 Android 4.0 或 Android 4.4。每個後續的平台版本通常會新增一些先前版本不能用的 APIs。為了要指示哪些 APIs 是可用的，每個平台版本會定義一個 API level。例如 Android 1.0 是 API level 1，Android 4.4 是 API level 19。</p>
+<p>API level 允許你宣告 APP 相容的最低版本，在<code>&lt;uses-sdk&gt;</code> manifest 標籤中加入 <code>minSdkVersion</code> 屬性。</p>
+<p>例如，Calendar Provider APIs 是在 Android 4.0（API level 14）新增的，如果你的 APP 需要使用這個 APIs 來提供功能，你必須將 API level 14 宣告為 APP 的最低支援版本，像這樣：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">manifest</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">uses-sdk</span> <span class="attribute">android:minSdkVersion</span>=<span class="value">"14"</span> <span class="attribute">android:targetSdkVersion</span>=<span class="value">"19"</span> /&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="title">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><code>minSdkVersion</code> 屬性宣告 APP 相容的最低版本，<code>targetSdkVersion</code> 屬性宣告 APP 經過你優化的最高版本。當你使用 Android APIs 的文件，Android 為使用以前平台版本 APIs 的 APP 提供了後續版本的相容性，所以你的 APP 總是能相容未來版本的 Android。</p>
+<blockquote>
+<p>Note：<code>targetSdkVersion</code> 屬性不會阻止你的 APP 在更高平台版本的裝置上安裝，但還是很重要，因為他指示系統你的 APP 是否應該從更新的版本繼承改變過的行為，如果你沒有將 <code>targetSdkVersion</code> 更新到最新的版本，系統會假設你的 APP 在最新版本執行時需要向下相容一些行為。例如 Android 4.4 改變的行為中，Alarms 由 <code>AlarmManager</code> APIs 建立的，目前 Alarms 是不精確的，因為系統會批次的做警告來節省電力，但如果你的 APP target API level 小於 19，系統還是會保留先前 API 的行為。</p>
+</blockquote>
+<p>然而，如果你的 APP 使用較新平台版本新增的 APIs ，但不是用在核心功能上，你可以在執行期檢查 API level，當 API level 太低時來適當的減少這個功能。在這個情況下為你的核心功能盡可能的設定 <code>minSdkVersion</code> 為最低值，然後比較目前系統的版本—<code>Build.VERSION.SDK_INT</code>與 <code>Build.VERSION_CODE.版本代號</code> 是不是符合你想檢查的 API level，例如：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.HONEYCOMB) &#123;</span><br><span class="line">    <span class="comment">// Running on something older than API level 11, so disable</span></span><br><span class="line">    <span class="comment">// the drag/drop features that use ClipboardManager APIs</span></span><br><span class="line">    disableDragAndDrop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Screen_configuration">Screen configuration</h3><p>Android 執行在很多種不同尺寸的裝置，從手機、平板到電視。為了用螢幕尺寸去分類裝置，Android 為每個裝置定義了兩個特性：screen size（螢幕的物理尺寸）和 screen density（螢幕上像素的物理密度，叫做 DPI, Dot per inch）。為了更簡單的設定不同的配置，Android 概括的把他們分類，讓他們更容易被標記：</p>
+<ul>
+<li>尺寸：small, normal, large, xlarge</li>
+<li>密度：mdpi (medium), hdpi (high), xhdpi (extra high), xxhdpi (extra-extra high), other</li>
+</ul>
+<p>你的 APP 預設會相容所有螢幕尺寸和密度，因為系統會為你的 UI layout 對每種螢幕進行適當的調整，並為每種螢幕選擇使用適當的 Image resources。然而，你必須為不同的螢幕尺寸加入專門的 layouts 還有為不同的螢幕密度提供優化的點陣圖來為每種螢幕配置優化使用者經驗。</p>
+<p>更多關於如何為不同的螢幕建立替代 Resources 還有如何在特定的螢幕尺寸限制你的 APP，請閱讀 <a href="http://developer.android.com/training/basics/supporting-devices/screens.html" target="_blank" rel="external">Supporting Different Screens</a>。</p>
+<h2 id="Controlling_Your_App’s_Availability_for_Business_Reasons">Controlling Your App’s Availability for Business Reasons</h2><p>你可能會需要為了商業或法律的因素去限制 APP 的可用性，例如一個顯示倫敦火車時刻表的 APP 對英國以外的用戶不太有用，在這種情況下，Google Play 商店在開發者的控制台中提供過濾選項，允許你非技術性的去控制 APP 可用性，像是使用者的地區或電信商。</p>
+<p>技術相容性的篩選（像是需求某個硬體元件）的資訊總是包含在你的 APK 檔案中，但是非技術相容性（像是地理位置）總是由 Google Play 開發者控制台來管理。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-API-Guides/">Android API Guides</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/Android-api-Device-Compatibility/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Android-api-Application-Fundamentals/" title="Android - Application Fundamentals" itemprop="url">Android - Application Fundamentals</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-22T01:47:34.000Z" itemprop="datePublished"> 發表於 2015-04-22</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>原文：<a href="http://developer.android.com/guide/components/fundamentals.html" target="_blank" rel="external">http://developer.android.com/guide/components/fundamentals.html</a></p>
+<p>Android apps 用 JAVA 這個程式語言撰寫，與其他資料或 Resource 檔案一起由 Android SDK tools 編譯成一個 APK（Android Package 副檔名為 <code>.apk</code>），APK 檔案包含了 Android APP 的所有內容，可以用來讓 Android 裝置安裝 APP。</p>
+<p>當 APP 安裝在裝置上時，每個 Android APP 活在他自己的安全沙盒中：</p>
+<ul>
+<li>Android OS 是一個多使用者的 Linux 系統，每個 APP 都是一個不同的使用者。</li>
+<li>系統預設會分配給每個 APP 一個獨立的 User ID（只在系統上使用，且其他 APP 不會知道）。系統會設定權限給 APP 中的每個檔案，所以只有那個 User ID 可以訪問 APP 來存許他們。</li>
+<li>每個 Process 有他自己的虛擬機器（VM），所以一個 APP 的程式碼的執行和其他 APP 是隔離開的。</li>
+<li>每個 APP 預設會在他自己的 Linux Process 中執行，當任何 APP Components 需要執行時，Android 會啟動 Process，當 Components 不用了或是系統要回收記憶體給其他 APP 時會關閉 Process。</li>
+</ul>
+<p>如此 Android 系統實踐了最小權限原則（principle of least privilege），也就是說每個 APP 預設只能存許他需要的 Components 來做他的工作。這樣建立了一個非常安全的環境讓 APP 不能存取其他系統沒給他權限的部分。</p>
+<p>然而還是有些方法讓 APP 和其他 APP 分享資料，還有讓 APP 存許系統服務：</p>
+<ul>
+<li>可以安排讓兩個 APP 使用同一個 Linux user ID，在這情況下，他們可以互相存取檔案。為了節省系統資源，相同 User ID 也可以分配在同一個 Linux Process 中執行，且分享相同的 VM （這些 APP 必須要註冊相同的憑證）。</li>
+<li>APP 可以要求存取裝置上資料的權限，像是使用者的通訊錄、簡訊、SD 卡、相機、藍牙﹍﹍等。所有 APP 要求的權限需要在安裝時得到使用者的允許。</li>
+</ul>
+<p>考量這些東西改變了 Android APP 存在系統中的基礎，這份文件將介紹：</p>
+<ul>
+<li>定義你 APP 的 Core framework components。</li>
+<li>用來宣告 Components 還有為你的 APP 要求裝置功能的 Manifest 檔案。</li>
+<li>與 APP 程式碼獨立的 Resources，允許你的 APP 針對不同的裝置配置優化適合的使用行為。</li>
+</ul>
+<h2 id="App_Components">App Components</h2><p>Android 系統設計的獨特之處是任何 APP 可以啟動另一個 APP 的 Component。<br>例如：如果你希望使用者從攝影機拍攝一張影像，可能是從別的 APP 來拍攝，然後你的 APP 可以使用影像，而不是自己開發一個擷取影像的 Activity。<br>你不需要自己加入或是連結相機 APP 的程式碼。你可以簡單的啟動攝影 APP 來擷取影像，完成後照片可以回傳給你的 APP，讓你使用它。在使用者看來就好像相機 APP 是你的 APP 的一部份。</p>
+<p>當系統啟動一個 Component，為 APP 啟動一個 Process（如果它沒有在執行的話）並實現 Component 所需的類別。<br>例如：如果你的 APP 開啟一個攝影機 APP 的 Activity 來拍攝照片，這個 Activity 的 Process 是在攝影機 APP 而不是你的 APP 中。</p>
+<p>Android 不像其他大多數的系統，Android 的 APP 沒有單一的入口點（例：沒有main() 函式）。APP 運行在系統中的一個單獨的 Process 中，每個 APP 有他的檔案權限，限制其他的 APP 存取，因此你的 APP 不能直接啟動其他 APP 的元件。<br>而 Android 系統是可以的，在其他 APP 啟動一個 Component，你必須提供一個訊息給系統，指定你的意圖（Intent）來開啟 Component，然後系統啟動 Component 為你服務。</p>
+<p>App components 是 Android app 的重要基石，有四種不同類型的 Components 每種類型有不同的目的、並有明顯的生命週期來定義 component 何時被創建和銷毀。</p>
+<h3 id="Activity">Activity</h3><p>Activity 代表使用者介面中的一個畫面，例如電子郵件 APP，他有一個 Activity 用來顯示新郵件、另一個 Activity 撰寫電子郵件、另一個 Activity 用來讀取郵件。<br>雖然這個電子郵件 APP 的 UX 是由這些 Activities 一起工作來建立的，但每個 Activity 是相互獨立的。<br>因此其他 APP 可以啟動這些 Activities 中的任何一個（如果這個電子郵件 APP 允許的話）。<br>例如：相機 APP 可以開啟電子郵件 APP 中撰寫郵件的 Activity 以便使用者分享他們的照片。</p>
+<p>Activity 被作為 Activity 的子類別實現，詳閱 <a href="http://developer.android.com/guide/components/activities.html" target="_blank" rel="external">Activity 的 developer guide</a>。</p>
+<h3 id="Service">Service</h3><p>Service 是在後台執行，負責執行長時間運行的操作或是遠端處理。<br>Service 不提供使用者介面。<br>例如：一個 Service 可以在背景撥放音樂，而使用者可以在其他 APP 或上網，不會被撥放音樂的 Activity 阻擋到介面。另一個 component 像是一個 Activity 可以啟動該服務，讓它執行並與它結合，以便和它互動。</p>
+<p>Service 被作為 Service 的子類別實現，詳閱 <a href="http://developer.android.com/guide/components/services.html" target="_blank" rel="external">Service 的 developer guide</a>。</p>
+<h3 id="Content_provider">Content provider</h3><p>Content provider 管理 APP 的共享資料，你可以儲存資料在檔案系統、SQLite 資料庫、網路上或是任何你的 APP 可以訪問的儲存位置。<br>通過 Content provider，其他 APP 可以查詢甚至修改資料（如果使用者允許的話）。<br>例如：APP 系統提供一個 Content provider 來管理聯絡人訊息，因此任何 APP 拿到權限時都可以查詢聯絡人訊息的 Content provider(ContactsContract.Data) 來讀寫個人訊息。</p>
+<p>Content provider 也可以專用在你的 APP 讀寫資料而不共享給其他 APP。<br>例如：筆記本 APP 使用一個 Content provider 來儲存筆記。</p>
+<p>Content provider 被實現為 ContentProvider 的子類別，必須實現一組標準 API 來讓其他 APP 存取，詳閱 <a href="http://developer.android.com/guide/topics/providers/content-providers.html" target="_blank" rel="external">ContentProvider 的 developer guide</a>。</p>
+<h3 id="Broadcast_receiver">Broadcast receiver</h3><p>用來回應全系統的廣播通知。<br>有許多廣播從系統發出，例如：廣播會宣布螢幕被關閉、電池低電量或是螢幕截了一張圖。<br>APP 也可以發起廣播，例如：為了讓其他 APP 知道資料已經被下載到設備上供他們使用。<br>雖然 Broadcast receiver 沒有顯示出使用者介面，他們可以在收到廣播時建立一個狀態欄通知來提醒使用者。<br>通常廣播接收器只是一個關聯其他 components 的門戶，工作量很小。<br>例如：廣播接收器可能會根據一個事件來啟動一個服務。</p>
+<p>Broadcast receiver 被實現為 BroadcastReceiver 的子類別，每個廣播由一個 Intent 物件來傳遞，詳閱 <a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank" rel="external">BroadcastReceiver 的 developer guide</a>。</p>
+<h2 id="Activating_Components">Activating Components</h2><p>其中三種 Compnents－Avtivity, Service, Broadcast Receiver 通過一個非同步消息來啟動，稱為 Intent（意圖）。<br>執行中，Intent 讓 Component 互相結合（可以把它看成是要求其他 Component 啟動的使者）。</p>
+<p>Intent 由 Intent 物件建立，他定義一個訊息來啟動其他特定的 Component 或是其他特定 Component 的”型別”，一個 Intent 可以是明示的或暗示的。<br>(這邊應該是說 Intent 可以啟動某一個特定的組件，或是只指定啟動某一類型的組件，像是要求要啟動某個相機 APP，但是讓使用者自己選要用哪個相機 APP 來拍照之類的)</p>
+<p>對於 Activities 和 Services，一個 Intent 定義一個動作來執行（例如：來看或是發送東西），而且可能作用於特定 URI 中的資料（該 Component 被啟動可能需要知道的其他事情）。<br>例如：一個 Intent 可能傳達一個請求給一個 Activity 來顯示影像或打開網頁。</p>
+<p>某些情況下，你可以啟動 Activity 來獲得結果，在這種情況下，這個 Activity 也可以回傳一個 Intent（例如你可以發出一個 Intent 讓使用者選擇一個聯絡人資料，並將他回傳給你，回傳的 Intent 包含一個URI指向被選擇的聯絡人）。</p>
+<p>在 Broadcast Receiver中，Intent 只是簡單地把要公布的東西廣播出來（例如一個廣播指示設備電池電量低時，只包含一個已知的字串 “battery is low”）。</p>
+<p>Components 中只有 Content Provider 不是由 Intent 來啟動。<br>相反的，他是由目標透過 ContentResolver 來請求。<br>Content Resolver（內容解析器）處理所有與內容提供者之間的所有直接交易（存取？），使該 Component 不需要與提供者執行交易，而是呼叫 ContentResolver 物件中的方法。<br>這樣在內容提供者和 Component 請求訊息之間留下一層抽象（這是為了安全性）。</p>
+<p>有以下不同的方法來啟動每種Component：</p>
+<ul>
+<li>Activity: 透過傳遞 Intent 到 startActivity() 或是 startActivityForResult()</li>
+<li>Service: 傳遞 Intent 到 startService() 中，或是綁定一個服務，透過傳入 Intent 到 bindService() 中</li>
+<li>Broadcast: 傳遞 Intetn 到 sendBroadcast(), sendOrderedBroadcast() 或是 sentStickyBroadcast()</li>
+<li>Content provider: 透過呼叫 ContentResolver 的 query() 方法來查詢訊息提供者</li>
+</ul>
+<p>更多Intent的資訊，詳閱 <a href="http://developer.android.com/guide/components/intents-filters.html" target="_blank" rel="external">Intents and Intent Filters 文件</a>。</p>
+<h2 id="The_Manifest_File">The Manifest File</h2><p>在 Android 系統啟動 App Component 之前，系統必須透過讀取 App 的 AndroidManifest.xml 檔案來知道有那些 Component 存在。你的 App 必須聲明所有 Component 在這個檔案中，而這個檔案必須在 App 專案的跟目錄下。</p>
+<p>Manifest 除了聲明 App 的 Component 以外還做了很多事情，像是：</p>
+<ul>
+<li>確定 App 需要那些使用者權限，例如存取網路或存取聯絡人資料</li>
+<li>聲明 App 所需的最低 API Level</li>
+<li>聲明 App 需要使用的硬體和軟體功能，像是相機、藍芽服務或是多點觸控</li>
+<li>App 需要的 API 函式（除了 Android framework 以外）像是 Google Maps library 等</li>
+<li>其他</li>
+</ul>
+<h3 id="Declaring_Components">Declaring Components</h3><p>Manifest 的主要任務是告訴系統這個 App 有哪些元件和元件的相關資訊。<br>例如：一個 manifest 檔案可以像以下這樣聲明 Activity：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">manifest</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">application</span> <span class="attribute">android:icon</span>=<span class="value">"@drawable/app_icon.png"</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">activity</span> <span class="attribute">android:name</span>=<span class="value">"com.example.project.ExampleActivity"</span></span><br><span class="line">                  <span class="attribute">android:label</span>=<span class="value">"@string/example_label"</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">activity</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="title">application</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p> <code>&lt;application&gt;</code> 中的 <code>android:icon</code> 屬性填入 Resource 作為 APP 的識別 Icon<br> <code>&lt;activity&gt;</code> 的 <code>android:name</code> 屬性說明完整的 Activity 子類別的物件名稱，<code>android:label</code> 屬性用 String 說明 Activity 的 User-visible label<br> 你可以在這裡用這些標籤元素宣告所有的元件：</p>
+<ul>
+<li>Activities：<code>&lt;activity&gt;</code></li>
+<li>Services：<code>&lt;service&gt;</code></li>
+<li>Broadcast Receivers：<code>&lt;receiver&gt;</code></li>
+<li>Content Providers：<code>&lt;provider&gt;</code><br>Activities、Services 和 Content Providers 如果在程式碼中有寫但沒有宣告在 Manifest 中，系統會看不到他們，也既沒法被執行。但是 Broadcast Receivers 可以在任何地方被宣告，在 Manifest 或是在程式中動態的產生（ BroadcastReceiver 物件）再讓系統呼叫 registerReceiver() 來註冊就可以了。</li>
+</ul>
+<p>更多關於 Manifest 檔案的結構，可以閱讀 <a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html" target="_blank" rel="external">App Manifest</a> 文件。</p>
+<h3 id="Declaring_component_capabilities">Declaring component capabilities</h3><p>如同上面討論的，如要啟動 Components 你可以用 Intent 來啟動 Activities, Services 和 Broadcast Receivers，你可以在 Intent 中設定一個明確的 Component 作為目標（用物件名稱）。然而 Intents 真正厲害在於 Implicit Intents 的概念，Implicit Intents 可以簡單的描述了要操作的動作類型（另外也可以加上你希望操作這些動作的資料），並允許系統在裝置上找到一個 Component，讓系統去啟動與操作他。如果有不只一個 Components 可以操作這個 Inetnet 描述的動作，使用者就可以自己選出一個 Component 來用。</p>
+<p>系統從裝置上的其他 APP 的 Manifest 檔案提供中的 <code>Intent filters</code> 識別出可以回應這個 Intent 的 Components。</p>
+<p>當你在 Manifest 宣告一個 Activity，你可以選擇在把 Intent filter 加進去，這樣他就能回應給其他 APP 的 Intents。你可以加入 <code>&lt;intent-filter&gt;</code> 作為 Component 的子元素來宣告 Intent filter。</p>
+<p>例如你要建立一個 email APP，有一個撰寫新郵件的 Activity，你可以宣告 Intent filter 來回應 <code>Send</code> Intents，像這樣：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">manifest</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="title">application</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">activity</span> <span class="attribute">android:name</span>=<span class="value">"com.example.project.ComposeEmailActivity"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">action</span> <span class="attribute">android:name</span>=<span class="value">"android.intent.action.SEND"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">data</span> <span class="attribute">android:type</span>=<span class="value">"*/*"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">category</span> <span class="attribute">android:name</span>=<span class="value">"android.intent.category.DEFAULT"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">activity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">application</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>當其他 APP 用 ACTION_SEND 建立一個 Intent，然後呼叫 startActivity()，系統可能就會啟動你的 Activity 來讓使用者撰寫並寄出 email。</p>
+<p>更多關於建立 Intent filters 的資訊可以看 <a href="http://developer.android.com/guide/components/intents-filters.html" target="_blank" rel="external">Intents and Intent Filters</a> 文件。</p>
+<h3 id="Declaring_app_requirements">Declaring app requirements</h3><p>Android 支援提供不同的功能與效能的多種裝置，為了防止 APP 安裝在某個缺乏你需要的功能的裝置上，清楚的定義你的 APP 支援哪種類行的裝置是很重要的，可以在 Manifest 中宣告裝置和軟體需求。這些宣告大多只是提供一些訊息，系統不會讀取他們，但是外在的服務，像是 Google Play 會讀取他們，提供使用者搜尋時做為篩選出適合他們裝置的 APP 用。</p>
+<p>例如，如果你的 APP 需要 攝影機還有使用 Android 2.1（API Level 7）的APIs，你需要在你的 Manifest 檔案宣告這些需求：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">manifest</span> <span class="attribute">...</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">uses-feature</span> <span class="attribute">android:name</span>=<span class="value">"android.hardware.camera.any"</span></span><br><span class="line">                  <span class="attribute">android:required</span>=<span class="value">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">uses-sdk</span> <span class="attribute">android:minSdkVersion</span>=<span class="value">"7"</span> <span class="attribute">android:targetSdkVersion</span>=<span class="value">"19"</span> /&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="title">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>現在，沒有攝影機還有 Android 版本低於 2.1 的裝置就不能在 Google Play 安裝你的 APP。</p>
+<p>然而你也可以宣告 APP 使用攝影機，但不是必須的。在這個案例中，你的 APP 會把 <code>required</code> 屬性設為 <code>false</code>，然後在執行期中檢查裝置有沒有攝影機來決定停用攝影機相關的功能。</p>
+<p>更多關於管理 APP 和不同裝置的相容性的資訊在 <a href="http://developer.android.com/guide/practices/compatibility.html" target="_blank" rel="external">Device Compatibility 文件中</a>。</p>
+<h2 id="App_Resources">App Resources</h2><p>Android APP 不只是由程式碼組成的，他需要獨立於原始碼的 Resources，像是影像、影片檔和任何為 APP 做出視覺表現有關的東西。例如你會需要定義一些動畫、選單、樣式、顏色還有定義出 Activity UI 的 Layout XML 檔。使用 APP Resources 可以更簡單的更新 APP 的許多東西而不用更動程式碼。藉由提供一組 Alternative Resources ，可以讓你針對多樣化的裝置去優化配置（像是不同的語言或螢幕尺寸）。</p>
+<p>SDK Build tools 為你的 Android Project 中的每個 Resource 定義一個唯一的整數 ID，讓你可以使用在 APP 程式碼中參考到其他 XML 中定義的 Resource。例如你的 APP 中有個影像檔叫做 <code>logo.png</code>（存在 <code>res/drawable/</code> 目錄中），SDK tools 會產生一個 Resource ID 叫做 <code>R.drawable.logo</code>，你可以用這個 ID 參考到這張影像來把他加入到 UI 中。</p>
+<p>其中最重要的是，為你的程式碼分別提供 Resources，讓 Alternative Resources 可以有為不同裝置配置的能力。例如在 XML 中定義 UI 的字串，你可以把字串翻譯成其他語言，並把這些字串獨立在另一個檔案，然後放在加上 language <code>Qualifier</code> 的檔案目錄中（像是 <code>res/values-fr/</code> 用來存法語），根據使用者的語言設定，Android 系統會幫 UI 套用適合的字串。</p>
+<p>Android 為你的 Alternative Resources 支援非常多不同的 <code>Qualifier</code>，<code>Qualifier</code> 是在檔案資料夾名稱中的短字串，根據裝置設定來定義哪種 Resources 該被使用。舉例來說你應該常常會幫 Activity 建立不同的 layout 來對應不同的螢幕方向和尺寸，例如當裝置在 Portrait Orientation（高）的狀態下，你可能會希望 Layout 中的按鈕是垂直排列的，但是當螢幕是在 Landscape Orientation（寬）的狀態下，你會希望按鈕是水平對齊的。你可以定義兩個不同的 Layouts 並分別幫他們的檔案目錄名稱套用適合的 <code>Qualifier</code>，然後系統會根據現在的裝置方向，自動的套用適合的 Layout。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-API-Guides/">Android API Guides</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/Android-api-Application-Fundamentals/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Android-api-Bound-Services/" title="Android - Bound Services" itemprop="url">Android - Bound Services</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-22T01:20:22.000Z" itemprop="datePublished"> 發表於 2015-04-22</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Bound Services 是一個 Client-Server 界面的伺服器。允許元件（向是 Activity）去綁定服務、傳送請求、收到答覆還有主持 Interprocess communication (IPC)。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-API-Guides/">Android API Guides</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/Android-api-Bound-Services/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Android-api-Processes-and-Threads/" title="Android - Processes and Threads" itemprop="url">Android - Processes and Threads</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-17T00:03:30.000Z" itemprop="datePublished"> 發表於 2015-04-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>原文：<a href="http://developer.android.com/guide/components/processes-and-threads.html" target="_blank" rel="external">http://developer.android.com/guide/components/processes-and-threads.html</a></p>
+<p>當一個 APP 元件啟動，而且沒有其他 APP 元件在執行，Android 系統會開啟一個新的 Single thread Linux process 給這個 APP 執行。<br>基本上，所有同一個 APP 的元件是在同一個 Thread 和 Process（叫做 “main” thread）上執行。如果一個 APP 元件啟動，而這個 APP 已經有 Thread 了（其他元件還在這個APP上執行），這時元件會啟動在同一個 Thread 上執行。<br>你也可以安排你 APP 上的不同的元件在獨立的 Process 上執行，你可以為任何 Process 建立額外的 Thread。<br>這個文件將討論 Process 和 Thread 在 Android 應用程式中如何運作。</p>
+<h1 id="Processes">Processes</h1><p>如果你需要自己控制 Process，可以從 manifest 檔案來控制。<br>manifest 裡面有各種 元件的標籤 <code>&lt;activity&gt;</code>, <code>&lt;service&gt;</code>, <code>&lt;receiver&gt;</code>, <code>&lt;provider&gt;</code>，用 <code>android:process</code> 屬性可以更動元件執行的 Process。<br>你可以幫每個元件設定這個屬性讓他們執行在自己的 Process 中，你也可以設定 <code>android:process</code> 讓不同 APP 的元件執行在同一個 Process，讓他們共享同一個 Linux user ID 並且用同一個憑證註冊。</p>
+<p><code>&lt;application&gt;</code> 也支援 <code>android:process</code> 屬性，用來設定所有元件的預設值。</p>
+<p>Android 決定在某些時候關閉 Process，當記憶體不足以供應其他使用者正在使用的 Process 需求時，APP 元件執行的 Process 會被殺掉。當重新執行這些元件時，會有新的 Process 給他們執行。</p>
+<p>要決定殺掉某個 Process，Android 系統會衡量他們對於使用者的重要性，例如：會先殺掉用來服務某個不再顯示畫面的 Activity 會比看的到畫面的 Activity 容易被殺掉。<br>決定是否終止 Process 是由裡面執行的元件來決定，決定刪除哪個 Process 的規則會在下面討論。</p>
+<h2 id="Process_lifecycle">Process lifecycle</h2><p>Android 系統會試著讓 APP Process 盡可能的存活更久，但是最後還是會需要刪除舊的 Process 來回收記憶體給新的、更重要的 Process 使用。要決定哪個 Process 要留著，哪個 Process 要殺掉，系統基於元件的狀態給每個元件執行的 Process 一個 <code>importance hierarchy</code> （重要性等級），低重要性的 Process 會先被刪掉，再來是第二低重要性的…等，來回收系統資源。</p>
+<p>重要性有五個等級，以下介紹不同種類的 Process，依照重要性排列（第一個是最重要的，會最後殺掉）：</p>
+<ol>
+<li><code>Foreground process</code>（前景）<br> 使用者正在操作的 Process，如果 Process 符合以下狀況就是 Foreground process：<ul>
+<li>與使用者互動的 Activity（Activity 的 onResume()被呼叫）</li>
+<li>與上面那種 Activity 結合的 Service</li>
+<li>在前景執行的 Service－服務被 startForeground()呼叫</li>
+<li>執行一個 Lifecycle Callbacks（onCreate(), onStart() 或 onDestory() ）的 Service</li>
+<li>正在執行 onReceive() 的 BroadcastReceiver<br></li></ul>一般來說在同一時間中只會有一些前景 Process 再執行。他們只會在記憶體非常低，低到所有 Foreground process 不能全部繼續執行時才會被殺掉。一般來說在這個狀況下，設備會變成 memory paging 的狀況，所以刪除一些 Foreground process 來保持使用者介面會動。</li>
+
+
+<li><code>Visible process</code>（可見）<br> 一個 Process 雖然沒有前景元件，但還是可以對使用者看到的畫面有作用。如果 Process 符合下列狀況就可以是 Visible process：<ul>
+<li>執行的 Activity 雖然不在前景，但是使用者依然可以看到他（ onPause() 方法被呼叫），舉例來說，如果一個前景 Activity 啟動一個對話框，還是能允許原本的 Activity 留在背後。</li>
+<li>與上面那種 Activity 結合的 Service</li>
+</ul>
+</li>
+<li><code>Service process</code> （服務）<br> 執行 Service 的 Process（呼叫 startService() 方法執行 Service），且不屬於上面兩種 Process 之一。雖然服務 Process 不會直接被使用者看到，他們通常做一些使用者關心的事情（像是在背景播放音樂或是從網路上下載資料），所以系統會讓他們保持執行，除非記憶體不足維持上面兩種 Process。</li>
+<li><code>Background process</code> （背景）<br> Process 保持一個現在使用者看不到的 Activity（Activity onStop() 方法被呼叫）。這種 Process 不會直接影響使用者經驗，系統可能會在任何時候殺掉他們來回收記憶體給前三種 Process 使用。<br> 通常有許多背景 Process 在執行，所以他們被存在一個 LRU（least recently used 最近很少用）清單來刪除這些 Process 中使用者久沒用的 Process。<br> 如果 Activity 正確的實現他的生命週期方法，且將目前狀態儲存下來，刪除這個 Process 將不會影響使用者經驗，因為當使用者回到這個 Activity 時，他會回覆所有狀態。更多關於儲存和回復狀態的文件請看<a href="http://developer.android.com/guide/components/activities.html#SavingActivityState" target="_blank" rel="external">Activities</a>。</li>
+<li><code>Empty process</code> （空的）<br> Process 中沒有任何執行的元件，保留這種 Process 唯一的原因是為了作為快取，用來增加下次啟動這個元件的速度，系統通常會殺掉種 Process 來平衡整個系統資源。</li>
+</ol>
+<p>Android 會盡可能的將 Process 的重要性等級評的較高，如果一個 Process 提供一個服務而且是可見的，他的 Process 評分會是可見 Process 而不是服務 Process。</p>
+<h1 id="Thread">Thread</h1><p>當應用程式啟動，系統會建立一個 Thread 來給應用程式執行，稱為 “main”。這個 Thread 非常重要因為他負責指派事件給合適的 UI widgets 包含 drawing 事件。他也是應用程式從 Android UI toolkit（android.widget 和 android.view packages 的元件）和元件交流的 Thread。因此 main thread 有時候會呼叫 UI thread。</p>
+<p>系統不會為每個元件的實例建立獨立的 Thread，所有的元件在同一個 Process 中執行，實做在 UI thread 中，這個 Thread 指派系統呼叫每個元件。因此回應 system callbacks 的方法總是在 UI thread 中執行（像是 onKeyDown() 這種回應使用者的動作或是生命週期 callback 方法）。</p>
+<p>舉例來說，當一個使用者觸碰畫面上的按鈕，APP 的 UI thread 指派 touch event 給 widget，讓他將自己設定為按下的狀態並告訴 event queue 將請求作廢，UI thread 將請求移除以後再通知 widget 讓他重新繪製。</p>
+<p>當你的 APP 密集的進行影響 UI 的工作，這個 Single thread 的模型將會變的效能很差，除非你正確的實現你的應用程式。<br>具體來說，如果每一件事都發生在 UI thread，像是從網路訪問請求資料庫這種長時間的操作，將會讓你目前的 UI 卡住。當這個 Thread 被卡住，就沒辦法指派事件，包含 drawing event，在使用者的觀點，應用程式看起來就像當掉了。更糟的是如果 UI thread 被卡住超過幾秒鐘（目前大約是5秒）使用者會看到這個應用程式沒有回應（<a href="http://developer.android.com/training/articles/perf-anr.html" target="_blank" rel="external">ANR</a>）的視窗問使用者要不要關掉 APP，使用者通常會決定關掉你的 APP 並且很生氣的把他移除。<br><img src="http://developer.android.com/images/anr.png" alt=""></p>
+<p>另外 Android UI toolkit 並不是 Thread-safe。所以你不能在 Worker thread 操作 UI ，你必須在 UI thread 進行所有對 UI 的操作，因此對 Android 的 Single thread 模型有兩個簡單的規則：</p>
+<ol>
+<li>不要讓你的 UI thread 卡住</li>
+<li>不要從 UI thread 以外的地方存取 Android UI toolkit</li>
+</ol>
+<h2 id="Worker_threads">Worker threads</h2><p>因為 Single thread 模型像上面說的那樣，不讓 UI 卡住的去回應應用程式 UI 非常重要，如果你要進行一些不會即時反應的操作，你應該要確保讓這些事在別的 Thread 中執行（<code>background</code> 或 <code>worker</code> thread）。</p>
+<p>例如，下面有一些 click listener 的程式碼，要在一個獨立的 Thread 中下載一個影像並讓他顯示在 ImageView：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Bitmap b = loadImageFromNetwork(<span class="string">"http://example.com/image.png"</span>);</span><br><span class="line">            mImageView.setImageBitmap(b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>乍看之下看起來可以順利執行，因為他建立一個新的 Thread 來負責網路操作，然而這違反了 Single thread 模型第二條規則：不要從 UI thread 以外的地方存取 Android UI toolkit。<br>這裡簡單的從 Worker thread 取代 UI thread 去修改 ImageView，這會造成未定義或是意外的行為的結果，如果出問題DEBUG的時候可能會難以追蹤又耗時。</p>
+<p>要修正這個問題，Android 提出幾個方法來從其他 Thread 存取 UI thread：</p>
+<ul>
+<li>[Activity.runOnUiThread(Runnable)]<a href="http://developer.android.com/reference/android/app/Activity.html#runOnUiThread(java.lang.Runnable)" target="_blank" rel="external">http://developer.android.com/reference/android/app/Activity.html#runOnUiThread(java.lang.Runnable)</a></li>
+<li>[View.post(Runnable)]<a href="http://developer.android.com/reference/android/view/View.html#post(java.lang.Runnable)" target="_blank" rel="external">http://developer.android.com/reference/android/view/View.html#post(java.lang.Runnable)</a></li>
+<li>[View.postDelayed(Runnable, long)]<a href="http://developer.android.com/reference/android/view/View.html#postDelayed(java.lang.Runnable,%20long)" target="_blank" rel="external">http://developer.android.com/reference/android/view/View.html#postDelayed(java.lang.Runnable,%20long)</a></li>
+</ul>
+<p>例如你可以用 <code>View.post(Runnable)</code> 來修正上面的程式碼：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">final</span> Bitmap bitmap = loadImageFromNetwork(<span class="string">"http://example.com/image.png"</span>);</span><br><span class="line">            mImageView.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    mImageView.setImageBitmap(bitmap);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>這樣就變成 Thread-safe 了：網路操作在其他 Thread 結束，同時 ImageView 由 UI thread 操作。</p>
+<p>然而如果有一組複雜的操作，這類的程式碼會很複雜而且難以維持，要處理更多與 Worker thread 複雜的互動，你可以考慮在你的 Worker thread 使用 Handler 來處理和 UI thread 之間的訊息傳遞。<br>或許有更好的解決方法，就是繼承 <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank" rel="external">AsyncTask</a> 這個類別，他可以簡單的處理 需要和 UI 互動的 Worker thread 任務。</p>
+<h2 id="Using_AsyncTask">Using AsyncTask</h2><p><a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank" rel="external">AsyncTask</a> 允許你在 UI 做非同步的工作，他把會造成 Blocking 的操作放在 Worker thread，之後在發佈結果到 UI thread，這樣就不需要自己去掌握 thread 和 Handle。</p>
+<p>要使用這個，你必須繼承 AsyncTask 並在子類別實現 <code>doInBackground()</code> Callback 方法，這會在 Background thread 執行。要更新你的 UI，你需要實現 <code>onPostExecute()</code>，這將會傳遞 <code>doInBackground()</code> 的結果並在 UI thread 執行，所以你可以安全的更新你的 UI，然後你就可以呼叫 <code>execute()</code> 在 UI thread 執行任務。</p>
+<p>舉例來說，如果你用 AsyncTask 實現上面的範例：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">new</span> DownloadImageTask().execute(<span class="string">"http://example.com/image.png"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloadImageTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span>&lt;<span class="title">String</span>, <span class="title">Void</span>, <span class="title">Bitmap</span>&gt; </span>&#123;</span><br><span class="line">    <span class="javadoc">/** The system calls this to perform work in a Worker thread and</span><br><span class="line">      * delivers it the parameters given to AsyncTask.execute() */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Bitmap <span class="title">doInBackground</span><span class="params">(String... urls)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> loadImageFromNetwork(urls[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="javadoc">/** The system calls this to perform work in the UI thread and delivers</span><br><span class="line">      * the result from doInBackground() */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span><span class="params">(Bitmap result)</span> </span>&#123;</span><br><span class="line">        mImageView.setImageBitmap(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>這樣你的程式碼就變的安全又簡單了，因為會把工作分別在 Worker thread 和 UI thread 上完成。</p>
+<p>如果要瞭解如何使用這個類別，你可以閱讀 <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank" rel="external">AsyncTask</a> 的參考資料，這裡只會對他如何運作做一個簡單的概述：</p>
+<ul>
+<li>參數的型別都可以自訂</li>
+<li>doInBackground() 方法會自動執行在 Worker thread</li>
+<li>onPreExecute(), onPostExecute() 和 onProgressUpdate() 都會在 UI thread 被呼叫</li>
+<li>doInBackground() 的回傳直會送給 onPostExecute()</li>
+<li>你可以在 doInBackground() 中的任何地方呼叫 publishProgress() 來讓 onProgressUpdate() 在 UI thread 執行</li>
+<li>你可以在任何時候、任何 Thread 取消任務</li>
+</ul>
+<blockquote>
+<p>注意：另一個可能會遇到的問題是由於執行期的配置改變（像是使用者改變了畫面的方向），你使用的 Worker thread 在 Activity 可能會意外的重新啟動，可能會破壞你的 Worker thread。<br>要知道如何在重新啟動時保持留的任務，還有當 Activity 被消除時如何正確的取消工作，請看 <a href="http://code.google.com/p/shelves/" target="_blank" rel="external">Shelves</a> 範例程式的原始碼。</p>
+</blockquote>
+<h2 id="Thread-safe_methods">Thread-safe methods</h2><p>在某些情況下，你實現的方法可能會在不同的 Thread 中被呼叫，所以必須要寫成 Thread-safe 才行。</p>
+<p>主要是讓方法可以被遠端呼叫，像是 <a href="http://developer.android.com/guide/components/bound-services.html" target="_blank" rel="external">Bound Services</a> 中的方法。<br>TODO</p>
+<h1 id="Interprocess_Communication">Interprocess Communication</h1>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-API-Guides/">Android API Guides</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/Android-api-Processes-and-Threads/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Android-api-Drawable-Animation/" title="Android - Drawable Animation" itemprop="url">Android - Drawable Animation</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-15T02:32:46.000Z" itemprop="datePublished"> 發表於 2015-04-15</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>原文：<a href="http://developer.android.com/guide/topics/graphics/drawable-animation.html" target="_blank" rel="external">http://developer.android.com/guide/topics/graphics/drawable-animation.html</a></p>
+<h2 id="XML_動畫資源檔">XML 動畫資源檔</h2><p>可以用 xml 像下面這樣來定義動畫，檔案放在 <code>res/drawable</code> 目錄下，這個範例中檔名叫做 <code>rocket_thrust.xml</code>。<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">animation-list</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="attribute">android:oneshot</span>=<span class="value">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:drawable</span>=<span class="value">"@drawable/rocket_thrust1"</span> <span class="attribute">android:duration</span>=<span class="value">"200"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:drawable</span>=<span class="value">"@drawable/rocket_thrust2"</span> <span class="attribute">android:duration</span>=<span class="value">"200"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:drawable</span>=<span class="value">"@drawable/rocket_thrust3"</span> <span class="attribute">android:duration</span>=<span class="value">"200"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">animation-list</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><code>android:oneshot</code> 為 <code>true</code> 時，動畫會從第一張影像開始播放一次，停在最後一張，若為 <code>false</code> 動畫會一直重複播放。</p>
+<h2 id="使用動畫資源檔">使用動畫資源檔</h2><p>需要使用 <code>ImageView</code> 來顯示 Drawable 動畫、Drawable 動畫的類別叫做 <code>AnimationDrawable</code>，要播放動畫要呼叫 AnimationDrawable.start()。</p>
+<p>有兩種方法可以設定動畫：</p>
+<h3 id="ImageView-setBackgroundResource()">ImageView.setBackgroundResource()</h3><p>在 ImageView 直接把動畫資源設定好，AnimationDrawable，再用 getBackground() 拿出來。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">AnimationDrawable rocketAnimation;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.main);</span><br><span class="line"></span><br><span class="line">  ImageView rocketImage = (ImageView) findViewById(R.id.rocket_image);</span><br><span class="line">  rocketImage.setBackgroundResource(R.drawable.rocket_thrust);</span><br><span class="line">  rocketAnimation = (AnimationDrawable) rocketImage.getBackground();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (event.getAction() == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">    rocketAnimation.start();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="ImageView-setImageDrawable()">ImageView.setImageDrawable()</h3><p>這個方法需要多用一個 <code>Resources</code> 來取得 Drawable Resource 給 AnimationDrawable，再用 setImageDrawable() 設定給 ImageView。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">AnimationDrawable rocketAnimation;</span><br><span class="line">Resources res;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.main);</span><br><span class="line"></span><br><span class="line">  res = getResources();</span><br><span class="line"></span><br><span class="line">  ImageView rocketImage = (ImageView) findViewById(R.id.rocket_image);</span><br><span class="line">  rocketAnimation = (AnimationDrawable) res.getDrawable(R.drawable.rocket_thrust);</span><br><span class="line">  rocketImage.setImageDrawable(rocketAnimation);</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (event.getAction() == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">    rocketAnimation.start();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="讓動畫在_Activity_載入時開始">讓動畫在 Activity 載入時開始</h3><p>上面兩種方法的最下面有個 onTouchEvent() 要點一下畫面才會呼叫 start() 開始播放動畫，如果要讓動畫在 Activity 一載入就開始播放，要用 <code>onWindowFocusChanged()</code> 當 Window 被 Focus 時就會動了（一般會想說在 OnCreate() 裡面呼叫 start()，但是這時候 AnimationDrawable 其實還沒載入到 Window，所以不能在這裡呼叫 start() ）。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onWindowFocusChanged</span><span class="params">(<span class="keyword">boolean</span> hasFocus)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onWindowFocusChanged(hasFocus);</span><br><span class="line">    rocketAnimation.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="在程式中建立_Drawable_Animation">在程式中建立 Drawable Animation</h2><p>書上有提到可以用程式碼建立 Drawable Animation，把上面的範例直接改會變成下面這樣。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">AnimationDrawable rocketAnimation;</span><br><span class="line">Resources res;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.main);</span><br><span class="line"></span><br><span class="line">  res = getResources();</span><br><span class="line"></span><br><span class="line">  ImageView rocketImage = (ImageView) findViewById(R.id.rocket_image);</span><br><span class="line">  <span class="comment">//--------------</span></span><br><span class="line">  rocketAnimation = <span class="keyword">new</span> AnimationDrawable;</span><br><span class="line">  rocketAnimation.setOneShot(<span class="keyword">true</span>);</span><br><span class="line">  rocketAnimation.addFrame(res.getDrawable(R.drawable.rocket_thrust1), <span class="number">200</span>);</span><br><span class="line">  rocketAnimation.addFrame(res.getDrawable(R.drawable.rocket_thrust2), <span class="number">200</span>);</span><br><span class="line">  rocketAnimation.addFrame(res.getDrawable(R.drawable.rocket_thrust3), <span class="number">200</span>);</span><br><span class="line">  <span class="comment">//--------------</span></span><br><span class="line">  rocketImage.setImageDrawable(rocketAnimation);</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (event.getAction() == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">    rocketAnimation.start();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">super</span>.onTouchEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>變成直接把 AnimationDrawable new 出來，再把原本寫在 xml 裡面的東西設定給他。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-API-Guides/">Android API Guides</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/Android-api-Drawable-Animation/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Android-022-View-Animation/" title="Android 022 使用 View Animation 動畫效果" itemprop="url">Android 022 使用 View Animation 動畫效果</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-14T03:37:55.000Z" itemprop="datePublished"> 發表於 2015-04-14</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="動畫類型">動畫類型</h2><ul>
+<li>View Animation：指定動畫開始與結束時的物件屬性（透明度、大小、角度與動畫時間長度等）讓 Android 系統自動產生動畫過程中所有畫面。<a href="http://developer.android.com/guide/topics/graphics/view-animation.html" target="_blank" rel="external">API Guide</a></li>
+<li>Drawable Animation：類似卡通動畫的製作過程，自己指定每一影格播放的影像檔與時間長度，Android 系統依照我們的設定播放動畫。</li>
+</ul>
+<h2 id="建立方式">建立方式</h2><ul>
+<li>res 動畫資源檔（xml）</li>
+<li>程式碼中建立動畫物件並設定</li>
+</ul>
+<h2 id="動畫效果">動畫效果</h2><ul>
+<li>Alpha：改變影像透明度，alpha 值 1 表示完全不透明，0 代表完全透明。</li>
+<li>Scale：改變影像大小，scale 值 0 表示完全看不到，1 表示原影像大小，可獨立設定 x 和 y 方向的 scale。</li>
+<li>Translate：改變影像位置，以 x 和 y 方向移動量表示。</li>
+<li>Rotate：改變影像的角度。 </li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-Dev/">Android Dev</a>►<a class="article-category-link" href="/categories/Android-Dev/Reading-Note/">Reading Note</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/Android-022-View-Animation/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Android-021-ImageSwitcher-GridView/" title="Android 021 imageSwitcher 和 GridView 介面元件" itemprop="url">Android 021 imageSwitcher 和 GridView 介面元件</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-13T06:53:11.000Z" itemprop="datePublished"> 發表於 2015-04-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>之前看書看一看021 ImageSwicher 和 GridView 介面元件覺得講得有點含糊，Adapter 是什麼都沒解釋就繼承來寫 ImageAdapter，<br>然後就跑去看了 Android Developers 的 <a href="http://developer.android.com/guide/topics/ui/declaring-layout.html" target="_blank" rel="external">Layout</a> 和 <a href="http://developer.android.com/guide/topics/ui/layout/gridview.html" target="_blank" rel="external">GridView</a>，筆記在這邊：<a href="/2015/04/android-note-adapter-gridview/">Layouts(Adapter) &amp; GridView Example</a></p>
+<h2 id="範例的程式碼和註解">範例的程式碼和註解</h2><p>最後再回來看書做一遍範例，以下是範例的程式碼和註解。<br>activity_main.xml<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">LinearLayout</span></span><br><span class="line">    <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="attribute">xmlns:tools</span>=<span class="value">"http://schemas.android.com/tools"</span></span><br><span class="line">    <span class="attribute">android:id</span>=<span class="value">"@+id/LinearLayout"</span></span><br><span class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></span><br><span class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"match_parent"</span></span><br><span class="line">    <span class="attribute">android:orientation</span>=<span class="value">"vertical"</span></span><br><span class="line">    <span class="attribute">tools:context</span>=<span class="value">".MainActivity"</span> &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">GridView</span></span><br><span class="line">        <span class="attribute">android:id</span>=<span class="value">"@+id/gridView"</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">"0dp"</span></span><br><span class="line">        <span class="attribute">android:numColumns</span>=<span class="value">"3"</span></span><br><span class="line">        <span class="attribute">android:layout_weight</span>=<span class="value">"0.4"</span></span><br><span class="line">        <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">ImageSwitcher</span></span><br><span class="line">        <span class="attribute">android:id</span>=<span class="value">"@+id/imgSwitcher"</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">"wrap_content"</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">"0dp"</span></span><br><span class="line">        <span class="attribute">android:layout_weight</span>=<span class="value">"0.6"</span></span><br><span class="line">        <span class="attribute">android:layout_gravity</span>=<span class="value">"center"</span></span><br><span class="line">        <span class="attribute">android:layout_marginTop</span>=<span class="value">"10dp"</span></span><br><span class="line">        &gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">ImageSwitcher</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>MainActivity.java<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.gallery021;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.graphics.Color;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.support.v7.app.ActionBarActivity;</span><br><span class="line"><span class="keyword">import</span> android.view.Menu;</span><br><span class="line"><span class="keyword">import</span> android.view.MenuItem;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.view.animation.AnimationUtils;</span><br><span class="line"><span class="keyword">import</span> android.widget.AdapterView;</span><br><span class="line"><span class="keyword">import</span> android.widget.GridView;</span><br><span class="line"><span class="keyword">import</span> android.widget.ImageSwitcher;</span><br><span class="line"><span class="keyword">import</span> android.widget.ImageView;</span><br><span class="line"><span class="keyword">import</span> android.widget.ViewSwitcher;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 這邊多了 implements ViewSwitcher.ViewFactory 實做了 ViewFactory 這個介面</span></span><br><span class="line"><span class="comment">// ViewFactory 裡面的 makeView() 抽象方法，用來幫 ViewSwitcher 建立 View</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">ActionBarActivity</span> <span class="keyword">implements</span> <span class="title">ViewSwitcher</span>.<span class="title">ViewFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 宣告 layout 裡的兩個東西</span></span><br><span class="line">    <span class="keyword">private</span> GridView mGridView;</span><br><span class="line">    <span class="keyword">private</span> ImageSwitcher mImgSwitcher;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用來放圖片id的陣列</span></span><br><span class="line">    <span class="keyword">private</span> Integer[] iThumbImgArr = &#123;R.drawable.sample_0,</span><br><span class="line">            R.drawable.sample_1, R.drawable.sample_2,</span><br><span class="line">            R.drawable.sample_3, R.drawable.sample_4,</span><br><span class="line">            R.drawable.sample_5, R.drawable.sample_6,</span><br><span class="line">            R.drawable.sample_7&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 用findViewById 把 xml 中設定的 ImageSwitcher 元件</span></span><br><span class="line">        mImgSwitcher = (ImageSwitcher) findViewById(R.id.imgSwitcher);</span><br><span class="line">        <span class="comment">// 傳入ViewSwitcher.ViewFactory 用在 ViewSwitcher 翻轉之間建立兩個 View</span></span><br><span class="line">        mImgSwitcher.setFactory(<span class="keyword">this</span>);</span><br><span class="line">        <span class="comment">// 設定 View 進入和離開時要用哪種動畫</span></span><br><span class="line">        mImgSwitcher.setInAnimation(AnimationUtils.loadAnimation(<span class="keyword">this</span>, android.R.anim.fade_in));</span><br><span class="line">        mImgSwitcher.setOutAnimation(AnimationUtils.loadAnimation(<span class="keyword">this</span>, android.R.anim.fade_out));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 宣告一個 ImageAdapter 給 GridView 用</span></span><br><span class="line">        ImageAdapter imgAdap = <span class="keyword">new</span> ImageAdapter(<span class="keyword">this</span>, iThumbImgArr);</span><br><span class="line">        mGridView = (GridView) findViewById(R.id.gridView);</span><br><span class="line">        mGridView.setAdapter(imgAdap);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 傳入 OnItemClickListener 裡面會寫當按下 GridView 項目被點擊時要呼叫的 Callback</span></span><br><span class="line">        mGridView.setOnItemClickListener(gridViewOnItemClick);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// menu 用，這個範例中沒用</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Inflate the menu; this adds items to the action bar if it is present.</span></span><br><span class="line">        getMenuInflater().inflate(R.menu.menu_main, menu);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// menu 用，這個範例中沒用</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onOptionsItemSelected</span><span class="params">(MenuItem item)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Handle action bar item clicks here. The action bar will</span></span><br><span class="line">        <span class="comment">// automatically handle clicks on the Home/Up button, so long</span></span><br><span class="line">        <span class="comment">// as you specify a parent activity in AndroidManifest.xml.</span></span><br><span class="line">        <span class="keyword">int</span> id = item.getItemId();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//noinspection SimplifiableIfStatement</span></span><br><span class="line">        <span class="keyword">if</span> (id == R.id.action_settings) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onOptionsItemSelected(item);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 建立 OnItemClickListener 裡面寫 GridView 項目被按下時要呼叫的 Callback</span></span><br><span class="line">    <span class="keyword">private</span> AdapterView.OnItemClickListener gridViewOnItemClick = <span class="keyword">new</span> AdapterView.OnItemClickListener() &#123;</span><br><span class="line"></span><br><span class="line">        <span class="annotation">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 設定 ImageSwitcher 要顯示的圖片 id</span></span><br><span class="line">            mImgSwitcher.setImageResource(iThumbImgArr[position]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ViewFactory 的抽象方法 用來幫 ViewSwitcher 建立 View</span></span><br><span class="line">    <span class="comment">// return View</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">makeView</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ImageView imageView = <span class="keyword">new</span> ImageView(<span class="keyword">this</span>);</span><br><span class="line">        <span class="comment">// 書上不知道為什麼做了兩次 setBackgroundColor</span></span><br><span class="line">        <span class="comment">// 0xFF000000 這種顏色格式，前面的 FF 是不透明度 100%，再來 R G B 都是 00，所以把後面的setBackgroundColor註解調圖片背景就會變黑的</span></span><br><span class="line">        imageView.setBackgroundColor(<span class="number">0xFF000000</span>);</span><br><span class="line">        <span class="comment">// 設定如果影像需要被改變大小時要怎麼做</span></span><br><span class="line">        <span class="comment">// 有: matrix, fitXY, fitStart, fitCenter, fitEnd, center, centerCrop, centerInside</span></span><br><span class="line">        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);</span><br><span class="line">        imageView.setLayoutParams(<span class="keyword">new</span> ImageSwitcher.LayoutParams(ImageSwitcher.LayoutParams.MATCH_PARENT, ImageSwitcher.LayoutParams.MATCH_PARENT));</span><br><span class="line">        <span class="comment">// 書上不知道為什麼做了兩次 setBackgroundColor 第一次的設定會被第二次蓋掉，所以最後圖片背景是白的</span></span><br><span class="line">        imageView.setBackgroundColor(Color.WHITE);</span><br><span class="line">        <span class="keyword">return</span> imageView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>這邊多了 implements ViewSwitcher.ViewFactory 實做了 <a href="http://developer.android.com/reference/android/widget/ViewSwitcher.ViewFactory.html" target="_blank" rel="external">ViewFactory</a> 這個介面，所以必須要實做 ViewFactory 裡面的 makeView() 抽象方法，用來幫 ViewSwitcher 建立 View。</p>
+<p>ImageAdapter.java<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.gallery021;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Context;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.view.ViewGroup;</span><br><span class="line"><span class="keyword">import</span> android.widget.BaseAdapter;</span><br><span class="line"><span class="keyword">import</span> android.widget.GridView;</span><br><span class="line"><span class="keyword">import</span> android.widget.ImageView;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Adapter 可以把資料填入 AdapterView(像是ListView 或 GridView)</span></span><br><span class="line"><span class="comment">// 這邊繼承 BaseAdapter 做出 ImageAdapter 來把影像加入 GridView</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImageAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Context mContext;   <span class="comment">// 執行環境</span></span><br><span class="line">    <span class="keyword">private</span> Integer[] mImgArr;  <span class="comment">// 影像 id 陣列</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 建構式 要把 Context 和 影像陣列丟進來</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ImageAdapter</span><span class="params">(Context context, Integer[] imgArr)</span> </span>&#123;</span><br><span class="line">        mContext = context;</span><br><span class="line">        mImgArr = imgArr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用來回傳項目數量，陣列的話就用 .length 回傳長度</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mImgArr.length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 傳入 position 回傳 Item</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 傳入 position 回傳 Item 的 id</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getItemId</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用來建立有放進 GridView 的 ImageView，回傳 ImageView</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">        ImageView imageView;</span><br><span class="line">        <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) &#123;</span><br><span class="line">            imageView = <span class="keyword">new</span> ImageView(mContext);</span><br><span class="line">            imageView.setLayoutParams(<span class="keyword">new</span> GridView.LayoutParams(<span class="number">150</span>, <span class="number">150</span>));</span><br><span class="line">            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);</span><br><span class="line">            imageView.setPadding(<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            imageView = (ImageView) convertView;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        imageView.setImageResource(mImgArr[position]);</span><br><span class="line">        <span class="keyword">return</span> imageView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>執行結果：<br><img src="/2015/04/Android-021-ImageSwitcher-GridView/example021.jpg" alt=""></p>
+<p>有個莫名其妙的白色背景，看起來很醜，還有上面的縮圖區，影像看起來靠左而且大小很不整齊。<br>所以自己做了一些調整：</p>
+<ul>
+<li>layout xml GridView 多加一個 <code>android:gravity=&quot;center&quot;</code> 讓裡面的影像會置中。</li>
+<li><code>ImageAdapter.java</code> 的 <code>getView()</code> 中設定 imageView 的地方加上一行 <code>imageView.setCropToPadding(true);</code><br>  才不會長邊沒 padding，設定好以後每個縮圖看起來都是方方的。</li>
+<li><code>MainActivity.java</code> 把兩個 <code>setBackgroundColor()</code> 都註解掉，這樣下面大圖區就不會有白白的背景了。</li>
+</ul>
+<p>最後就變這樣：<br><img src="/2015/04/Android-021-ImageSwitcher-GridView/example021-2.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-Dev/">Android Dev</a>►<a class="article-category-link" href="/categories/Android-Dev/Reading-Note/">Reading Note</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/Android-021-ImageSwitcher-GridView/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Node-js-Workshop/" title="Node.js 工作坊" itemprop="url">Node.js 工作坊</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-11T02:56:11.000Z" itemprop="datePublished"> 發表於 2015-04-11</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>第六屆黑客松的Node.js Workshop 筆記，目的是做出聊天室後端。</p>
+<h2 id="環境">環境</h2><p>重點放在後端所以講師有先弄好一個<a href="http://goo.gl/7zALk0" target="_blank" rel="external">聊天室前端</a><br>做好的聊天室伺服器可以放在 <a href="https://c9.io/" target="_blank" rel="external">cloud9</a> 可以在雲端編輯、執行server<br>或是直接localhost跑 (推薦，因為這邊網路很爛把node.js裝好、聊天室前端 zip 下載下來、裝好 socket.io 就不用網路了)</p>
+<p>先裝好 <a href="https://nodejs.org/" target="_blank" rel="external">Node.js</a><br>開一個資料夾<br>進去以後<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm init</span><br></pre></td></tr></table></figure></p>
+<p>然後就會問你一些專案設定的東西，這邊就先一直 Enter<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">This utility will walk you through creating a package.json file.</span><br><span class="line">It only covers the most common items, and tries to guess sane defaults.</span><br><span class="line"></span><br><span class="line">See `npm <span class="built_in">help</span> json` <span class="keyword">for</span> definitive documentation on these fields</span><br><span class="line">and exactly what they do.</span><br><span class="line"></span><br><span class="line">Use `npm install &lt;pkg&gt; --save` afterwards to install a package and</span><br><span class="line">save it as a dependency <span class="keyword">in</span> the package.json file.</span><br><span class="line"></span><br><span class="line">Press ^C at any time to quit.</span><br><span class="line">name: (nodeWorkshop)</span><br><span class="line">version: (<span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">description:</span><br><span class="line">entry point: (index.js)</span><br><span class="line"><span class="built_in">test</span> <span class="built_in">command</span>:</span><br><span class="line">git repository:</span><br><span class="line">keywords:</span><br><span class="line">author:</span><br><span class="line">license: (ISC)</span><br><span class="line">About to write to /Users/yucing617/Documents/nodeWorkshop/package.json:</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"nodeWorkshop"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Is this ok? (yes)</span><br></pre></td></tr></table></figure></p>
+<p>OK以後再來安裝 socket.io<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install socket.io --save</span><br></pre></td></tr></table></figure></p>
+<h2 id="請求資料">請求資料</h2><p>server 和 client 溝通</p>
+<h3 id="polling_輪詢">polling 輪詢</h3><p>ㄟ 你有沒有話要跟我說<br>ㄟ 你有沒有話要跟我說<br>ㄟ 你有沒有話要跟我說<br>ㄟ 你有沒有話要跟我說</p>
+<h3 id="long_polling_長輪詢">long polling 長輪詢</h3><p>ㄟ 你有沒有話要跟我說<br>…<br>…<br>…<br>會等一陣子，不要求馬上回應<br>（像是facebook 某些服務 一次等10秒）</p>
+<h3 id="WebSocket">WebSocket</h3><p>在 server 或 client 建立一個穩定的連線，有訊息可以馬上告訴對方，減少不斷問的成本，反應速度更快。</p>
+<h2 id="Hello_World">Hello World</h2><p>在專案裡面開一個 <code>server.js</code><br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> socketio = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"><span class="keyword">var</span> io = socketio(<span class="number">7000</span>);</span><br></pre></td></tr></table></figure></p>
+<p>執行 server，指令下完以後會看起來卡住，正常，代表 server 在跑了。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node server.js</span><br></pre></td></tr></table></figure></p>
+<p>把下載下來的前端 index.html 直接點兩下打開<br>Server: 的地方填入 <code>http://127.0.0.1:7000</code> 按下<code>連線</code><br><img src="/2015/04/Node-js-Workshop/helloServer.png" alt=""><br>下面看到已連線就代表成功了。</p>
+<h2 id="Callback_基本觀念">Callback 基本觀念</h2><p>等LOL讀取的時候會先去滑手機，不會卡在那邊讀取<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">等LOL讀取(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    殺敵</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">滑手機()</span><br></pre></td></tr></table></figure></p>
+<p>像是下面這樣，ha ha ha 會先跑出來。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hello World'</span>);</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'ha ha ha'</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="連線聊天實做">連線聊天實做</h2><p>當有人連線進來時顯示訊息<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> socketio = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> io = socketio(<span class="number">7000</span>);</span><br><span class="line"></span><br><span class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(someone)</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'someone here'</span>, someone.id);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>當有人傳訊息時可以用emit()送訊息出來，就可以看到聊天室有訊息了。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> socketio = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 啟動socket.io server 這個server叫做io</span></span><br><span class="line"><span class="keyword">var</span> io = socketio(<span class="number">7000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// socket.io 事件 每調薪連線進來時會做事件綁定</span></span><br><span class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(someone)</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'someone here'</span>, someone.id);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// message是自訂的 收到訊息時的事件 然後發送給所有人</span></span><br><span class="line">    someone.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(form, msg)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 有人送訊息時 用io這個伺服器把訊息送出去</span></span><br><span class="line">        <span class="comment">// emit是送訊息的動作</span></span><br><span class="line">        io.emit(<span class="string">'message'</span>, form, msg);</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="實做使用者列表">實做使用者列表</h2><p>當有人連線或離現時更新使用者列表<br>上面要加一個userList記錄所有使用者<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> userList = &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>下面這些要寫在 <code>io.on(&#39;connection&#39;, function(someone)</code> 裡面：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用者上線通知</span></span><br><span class="line">    someone.on(<span class="string">'user_in'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">        userList[someone.id] = nickname;</span><br><span class="line">        io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用者離線通知</span></span><br><span class="line">    someone.on(<span class="string">'disconnect'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">        <span class="keyword">delete</span> userList[someone.id];</span><br><span class="line">        io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="發悄悄話給某人">發悄悄話給某人</h2><p>上面要加一個clients記錄所有client(連線物件)<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> clients = &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>因為我們多記錄了client，所以登入和離線的地方也要改，有人連線要紀錄他的連線物件，有人離線要多刪除一個client<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用者上線通知</span></span><br><span class="line">someone.on(<span class="string">'user_in'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">    userList[someone.id] = nickname;</span><br><span class="line">    clients[someone.id] = someone;</span><br><span class="line">    io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用者離線通知</span></span><br><span class="line">someone.on(<span class="string">'disconnect'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">    <span class="keyword">delete</span> userList[someone.id];</span><br><span class="line">    <span class="keyword">delete</span> clients[someone.id];</span><br><span class="line">    io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>主要的功能寫在 <code>io.on(&#39;connection&#39;, function(someone)</code> 裡面：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 發悄悄話給某人</span></span><br><span class="line">someone.on(<span class="string">'private message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(form, sendToId, msg)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 不能用io.emit()了 因為會送給io伺服器上所有人</span></span><br><span class="line">    <span class="comment">// 要改成送給client[]裡面的某人，從sendToId來選人</span></span><br><span class="line">    clients[sendToId].emit(<span class="string">'private message'</span>, form, msg);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>完成以後就可以開三個網頁用不同 nickname 用悄悄話看看了。</p>
+<h2 id="完整的code">完整的code</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> socketio = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 啟動socket.io server 這個server叫做io</span></span><br><span class="line"><span class="keyword">var</span> io = socketio(<span class="number">7000</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> clients = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> userList = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// socket.io 事件 每調薪連線進來時會做事件綁定</span></span><br><span class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(someone)</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'someone here'</span>, someone.id);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用者上線通知</span></span><br><span class="line">    someone.on(<span class="string">'user_in'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">        userList[someone.id] = nickname;</span><br><span class="line">        clients[someone.id] = someone;</span><br><span class="line">        io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用者離線通知</span></span><br><span class="line">    someone.on(<span class="string">'disconnect'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">        <span class="keyword">delete</span> userList[someone.id];</span><br><span class="line">        <span class="keyword">delete</span> clients[someone.id];</span><br><span class="line">        io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// message是自訂的 收到訊息時的事件 然後發送給所有人</span></span><br><span class="line">    someone.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(form, msg)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 有人送訊息時 用io這個伺服器把訊息送出去</span></span><br><span class="line">        <span class="comment">// emit是送訊息的動作</span></span><br><span class="line">        io.emit(<span class="string">'message'</span>, form, msg);</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 發悄悄話給某人</span></span><br><span class="line">    someone.on(<span class="string">'private message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(form, sendToId, msg)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 不能用io.emit()了 因為會送給io伺服器上所有人</span></span><br><span class="line">        <span class="comment">// 要改成送給clients[]裡面的某人，從sendToId來選人</span></span><br><span class="line">        clients[sendToId].emit(<span class="string">'private message'</span>, form, msg);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Node-js/">Node.js</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hackathon-Taiwan/">Hackathon Taiwan</a><a href="/tags/Node-js/">Node.js</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/Node-js-Workshop/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Android-Err-R/" title="Android Studio Cannot resolve symbol &#39;R&#39;" itemprop="url">Android Studio Cannot resolve symbol &#39;R&#39;</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-10T05:53:08.000Z" itemprop="datePublished"> 發表於 2015-04-10</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>有時候不知道為何專案一打開就會出現這樣的錯誤，java 裡面的 <code>R</code> 都紅紅的說 <code>Cannot resolve symbol &#39;R&#39;</code><br><img src="/2015/04/Android-Err-R/errR.png" alt=""></p>
+<p>解決方法是點上面選單的 <code>Build -&gt; Clean Project</code> 就好了。<br><img src="/2015/04/Android-Err-R/cleanProject.png" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-Dev/">Android Dev</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/Android-Err-R/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android-API-Guides/" title="Android API Guides">Android API Guides<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/" title="Android Dev">Android Dev<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/Reading-Note/" title="Reading Note">Reading Note<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sublime-Text/" title="Sublime Text">Sublime Text<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon-Taiwan/" title="Hackathon Taiwan">Hackathon Taiwan<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GitHub/" title="GitHub">GitHub<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Google-Analytics/" title="Google Analytics">Google Analytics<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Azyueki">Azyueki</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'kei-note';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>

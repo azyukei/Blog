@@ -1,0 +1,540 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Hexo 簡介 | Kei Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Azyueki">
+    
+
+    
+    <meta name="description" content="Hexo 是一個網誌框架，可以幫你把 Markdown 轉成靜態網頁，還可以直接發佈到 Heroku 或 GitHub Pages，用起來和 Octopress 差不多，不過改用 Node.js 來做檔案產生速度比 Octopress 快多了。開發者是台灣人（開發者家），而且官方文件都有正體中文的，大推！
+安裝Hexo 需要 Node.js 和 Git，詳細的安裝說明官方文件寫的很詳盡，只要照著做">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo 簡介">
+<meta property="og:url" content="http://azyukei.github.io/2015/03/Hexo-Intro/index.html">
+<meta property="og:site_name" content="Kei Note">
+<meta property="og:description" content="Hexo 是一個網誌框架，可以幫你把 Markdown 轉成靜態網頁，還可以直接發佈到 Heroku 或 GitHub Pages，用起來和 Octopress 差不多，不過改用 Node.js 來做檔案產生速度比 Octopress 快多了。開發者是台灣人（開發者家），而且官方文件都有正體中文的，大推！
+安裝Hexo 需要 Node.js 和 Git，詳細的安裝說明官方文件寫的很詳盡，只要照著做">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo 簡介">
+<meta name="twitter:description" content="Hexo 是一個網誌框架，可以幫你把 Markdown 轉成靜態網頁，還可以直接發佈到 Heroku 或 GitHub Pages，用起來和 Octopress 差不多，不過改用 Node.js 來做檔案產生速度比 Octopress 快多了。開發者是台灣人（開發者家），而且官方文件都有正體中文的，大推！
+安裝Hexo 需要 Node.js 和 Git，詳細的安裝說明官方文件寫的很詳盡，只要照著做">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Kei Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Kei Note" title="Kei Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Kei Note">Kei Note</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:azyukei.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/03/Hexo-Intro/" title="Hexo 簡介" itemprop="url">Hexo 簡介</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-03-29T01:40:54.000Z" itemprop="datePublished"> 發表於 2015-03-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#安裝"><span class="toc-number">1.</span> <span class="toc-text">安裝</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#建立Hexo專案資料夾"><span class="toc-number">2.</span> <span class="toc-text">建立Hexo專案資料夾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置"><span class="toc-number">3.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hexo常用指令"><span class="toc-number">4.</span> <span class="toc-text">Hexo常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#新文章"><span class="toc-number">4.1.</span> <span class="toc-text">新文章</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#產生網頁"><span class="toc-number">4.2.</span> <span class="toc-text">產生網頁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#部屬網頁"><span class="toc-number">4.3.</span> <span class="toc-text">部屬網頁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#啟動伺服器"><span class="toc-number">4.4.</span> <span class="toc-text">啟動伺服器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#清除產生檔案"><span class="toc-number">4.5.</span> <span class="toc-text">清除產生檔案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#常用指令縮寫"><span class="toc-number">4.6.</span> <span class="toc-text">常用指令縮寫</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>Hexo 是一個網誌框架，可以幫你把 Markdown 轉成靜態網頁，還可以直接發佈到 Heroku 或 GitHub Pages，用起來和 Octopress 差不多，不過改用 Node.js 來做檔案產生速度比 Octopress 快多了。<br>開發者是台灣人（<a href="http://zespia.tw/" target="_blank" rel="external">開發者家</a>），而且<a href="http://hexo.io/zh-tw/docs/index.html" target="_blank" rel="external">官方文件</a>都有正體中文的，大推！</p>
+<h4 id="安裝">安裝</h4><p>Hexo 需要 Node.js 和 Git，詳細的安裝說明官方文件寫的很詳盡，只要照著做應該就沒問題了，依照文件說的把 Git, Nodejs 裝好，再用Terminal下指令，就可以安裝了。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
+<p>Mac 使用者要注意，要先安裝 Xcode 不然安裝過程中會出問題。這邊官方文件說要開啟 XCode 前往 <code>Preferences -&gt; Download -&gt; Command Line Tools -&gt; Install</code> 安裝命令列工具，可是我發現我的 Download 那裡沒有 Command Line Tools 可以安裝，在 Locations 裡面已經有 Command Line Tools 了，應該是 XCode 版本不同（我是 version 6.2）或是因為我先裝了 iTerm2 的關係吧，這我不太確定，等下禮拜拿到新電腦再來試試看。</p>
+<h4 id="建立Hexo專案資料夾">建立Hexo專案資料夾</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p>這時候資料夾的結構會變這樣：<br><figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── <span class="keyword">package</span>.json</span><br><span class="line">├── <span class="keyword">public</span></span><br><span class="line">├── scaffolds</span><br><span class="line">├── scripts</span><br><span class="line">├── <span class="keyword">source</span></span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure><br>介紹一下檔案和資料夾：</p>
+<ul>
+<li><code>_config.yml</code> Hexo 相關的設定都在這邊修改。</li>
+<li><code>source/_posts</code> 文章都放在這邊，如果要放圖片的話也是放在 <code>source</code> 裡面。</li>
+<li><code>source/_drafts</code> 放草稿的地方，這邊的文章不會被發佈出去。</li>
+<li><code>theme</code> 網誌的主題，放進來以後還要去修改 <code>_config.yml</code> 才會有作用。</li>
+<li><code>scaffolds</code> 鷹架資料夾，文章的樣板。</li>
+<li><code>scripts</code> 資料夾裡面的 javascript 會被自動執行，不過我是新手還沒用到過:D</li>
+<li><code>package.json</code> 記錄你幫 Hexo 裝了什麼東西，用 npm 安裝東西會自動加進去，不用手動編輯。</li>
+<li><code>public</code> 資料夾放 hexo generate 產生出來的網頁檔案。</li>
+</ul>
+<p>要注意的是 Hexo 雖然有用 Git 做的版本控管，不過其實只是在 public 資料夾中而已，也就是只有你生成出的靜態網站檔案是有版本控管的，可以自己考慮一下要把 Hexo 專案整個資料夾放在哪裡，以免哪天電腦掛掉只剩下靜態網頁而失去辛苦寫的Markdown檔案，聽說有人把 Hexo 專案創在 Dropbox 裡面走到哪用到哪啦，反正已經在用 Git 了，所以我是把他放到另一個 Git Repository 去。</p>
+<h4 id="配置">配置</h4><p>新開的Hexo專案主要要改的就 <code>site</code> 和 <code>URL</code> 還有 <code>deploy</code>，<code>deploy</code> 部分<a href="http://azyukei.github.io/2015/03/30/hexo-on-github/" target="_blank" rel="external">下一篇</a>會介紹如果要發佈到 GitHub Page 要怎麼設定，其他配置可以參考<a href="http://hexo.io/zh-tw/docs/configuration.html" target="_blank" rel="external">官方文件-配置</a>。</p>
+<h4 id="Hexo常用指令">Hexo常用指令</h4><p>詳細的指令可以去看看<a href="http://hexo.io/zh-tw/docs/commands.html" target="_blank" rel="external">官方文件-指令</a>，這邊只列出我常用的幾個指令。</p>
+<h5 id="新文章">新文章</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<p>layout 如果沒設定會直接用<code>_config.yml</code> 中的 <code>default_layout</code> 預設是 post，title 如果有空白的話，要用引號刮起來，新文章會被放到 <code>source/_posts</code> 資料夾中，檔名為 <code>title.md</code> 再看要用什麼編輯器去編輯。</p>
+<h5 id="產生網頁">產生網頁</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate [<span class="operator">-d</span>]</span><br></pre></td></tr></table></figure>
+<p>會把文章產生成靜態網頁檔案放在 <code>public</code> 資料夾中，如果後面加上<code>-d</code> 則會在檔案產生完畢後直接部屬出去。</p>
+<h5 id="部屬網頁">部屬網頁</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy [-g]</span><br></pre></td></tr></table></figure>
+<p>部屬網站，我是部屬到 GitHub Pages，相關的設定請看<a href="http://azyukei.github.io/2015/03/30/hexo-on-github/" target="_blank" rel="external">下一篇</a>，如果在後面加上<code>-g</code> 則會在部屬前先產生靜態網站。</p>
+<h5 id="啟動伺服器">啟動伺服器</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server [-i IP] [-p Port]</span><br></pre></td></tr></table></figure>
+<p>啟動伺服器，就可以在 <code>http://localhost:4000</code> 預覽 public 中的網站，需要自訂 IP 或 Port 的話可以加上<code>-i</code> 或<code>-p</code> 參數。<br>要使用這個指令需要先安 hexo-server 才能使用。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-server --save</span><br></pre></td></tr></table></figure></p>
+<h5 id="清除產生檔案">清除產生檔案</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+<p>清除快取檔案 <code>db.json</code> 和已產生的靜態網站 <code>public</code> 資料夾。</p>
+<h5 id="常用指令縮寫">常用指令縮寫</h5><p><code>$ hexo generate</code> = <code>$ hexo g</code><br><code>$ hexo deploy</code> = <code>$ hexo d</code><br><code>$ hexo server</code> = <code>$ hexo s</code></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hexo/">Hexo</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://azyukei.github.io/2015/03/Hexo-Intro/" data-title="Hexo 簡介 | Kei Note" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/03/Hexo-on-Github/" title="在 GitHub Pages 上部屬 Hexo">
+  <strong>上一篇：</strong><br/>
+  <span>
+  在 GitHub Pages 上部屬 Hexo</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/03/Hello-World/"  title="Hello World">
+ <strong>下一篇：</strong><br/> 
+ <span>Hello World
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#安裝"><span class="toc-number">1.</span> <span class="toc-text">安裝</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#建立Hexo專案資料夾"><span class="toc-number">2.</span> <span class="toc-text">建立Hexo專案資料夾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置"><span class="toc-number">3.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hexo常用指令"><span class="toc-number">4.</span> <span class="toc-text">Hexo常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#新文章"><span class="toc-number">4.1.</span> <span class="toc-text">新文章</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#產生網頁"><span class="toc-number">4.2.</span> <span class="toc-text">產生網頁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#部屬網頁"><span class="toc-number">4.3.</span> <span class="toc-text">部屬網頁</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#啟動伺服器"><span class="toc-number">4.4.</span> <span class="toc-text">啟動伺服器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#清除產生檔案"><span class="toc-number">4.5.</span> <span class="toc-text">清除產生檔案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#常用指令縮寫"><span class="toc-number">4.6.</span> <span class="toc-text">常用指令縮寫</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android-API-Guides/" title="Android API Guides">Android API Guides<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/" title="Android Dev">Android Dev<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/Reading-Note/" title="Reading Note">Reading Note<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sublime-Text/" title="Sublime Text">Sublime Text<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon-Taiwan/" title="Hackathon Taiwan">Hackathon Taiwan<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GitHub/" title="GitHub">GitHub<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Google-Analytics/" title="Google Analytics">Google Analytics<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Azyueki">Azyueki</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'kei-note';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

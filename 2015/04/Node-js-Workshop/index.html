@@ -1,0 +1,537 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Node.js 工作坊 | Kei Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Azyueki">
+    
+
+    
+    <meta name="description" content="第六屆黑客松的Node.js Workshop 筆記，目的是做出聊天室後端。
+環境重點放在後端所以講師有先弄好一個聊天室前端做好的聊天室伺服器可以放在 cloud9 可以在雲端編輯、執行server或是直接localhost跑 (推薦，因為這邊網路很爛把node.js裝好、聊天室前端 zip 下載下來、裝好 socket.io 就不用網路了)
+先裝好 Node.js開一個資料夾進去以後$ npm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js 工作坊">
+<meta property="og:url" content="http://azyukei.github.io/2015/04/Node-js-Workshop/index.html">
+<meta property="og:site_name" content="Kei Note">
+<meta property="og:description" content="第六屆黑客松的Node.js Workshop 筆記，目的是做出聊天室後端。
+環境重點放在後端所以講師有先弄好一個聊天室前端做好的聊天室伺服器可以放在 cloud9 可以在雲端編輯、執行server或是直接localhost跑 (推薦，因為這邊網路很爛把node.js裝好、聊天室前端 zip 下載下來、裝好 socket.io 就不用網路了)
+先裝好 Node.js開一個資料夾進去以後$ npm">
+<meta property="og:image" content="/2015/04/Node-js-Workshop/helloServer.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js 工作坊">
+<meta name="twitter:description" content="第六屆黑客松的Node.js Workshop 筆記，目的是做出聊天室後端。
+環境重點放在後端所以講師有先弄好一個聊天室前端做好的聊天室伺服器可以放在 cloud9 可以在雲端編輯、執行server或是直接localhost跑 (推薦，因為這邊網路很爛把node.js裝好、聊天室前端 zip 下載下來、裝好 socket.io 就不用網路了)
+先裝好 Node.js開一個資料夾進去以後$ npm">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Kei Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Kei Note" title="Kei Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Kei Note">Kei Note</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:azyukei.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/Node-js-Workshop/" title="Node.js 工作坊" itemprop="url">Node.js 工作坊</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-11T02:56:11.000Z" itemprop="datePublished"> 發表於 2015-04-11</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#環境"><span class="toc-number">1.</span> <span class="toc-text">環境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#請求資料"><span class="toc-number">2.</span> <span class="toc-text">請求資料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#polling_輪詢"><span class="toc-number">2.1.</span> <span class="toc-text">polling 輪詢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#long_polling_長輪詢"><span class="toc-number">2.2.</span> <span class="toc-text">long polling 長輪詢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebSocket"><span class="toc-number">2.3.</span> <span class="toc-text">WebSocket</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello_World"><span class="toc-number">3.</span> <span class="toc-text">Hello World</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Callback_基本觀念"><span class="toc-number">4.</span> <span class="toc-text">Callback 基本觀念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#連線聊天實做"><span class="toc-number">5.</span> <span class="toc-text">連線聊天實做</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#實做使用者列表"><span class="toc-number">6.</span> <span class="toc-text">實做使用者列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#發悄悄話給某人"><span class="toc-number">7.</span> <span class="toc-text">發悄悄話給某人</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完整的code"><span class="toc-number">8.</span> <span class="toc-text">完整的code</span></a></li></ol>
+		
+		</div>
+		
+		<p>第六屆黑客松的Node.js Workshop 筆記，目的是做出聊天室後端。</p>
+<h2 id="環境">環境</h2><p>重點放在後端所以講師有先弄好一個<a href="http://goo.gl/7zALk0" target="_blank" rel="external">聊天室前端</a><br>做好的聊天室伺服器可以放在 <a href="https://c9.io/" target="_blank" rel="external">cloud9</a> 可以在雲端編輯、執行server<br>或是直接localhost跑 (推薦，因為這邊網路很爛把node.js裝好、聊天室前端 zip 下載下來、裝好 socket.io 就不用網路了)</p>
+<p>先裝好 <a href="https://nodejs.org/" target="_blank" rel="external">Node.js</a><br>開一個資料夾<br>進去以後<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm init</span><br></pre></td></tr></table></figure></p>
+<p>然後就會問你一些專案設定的東西，這邊就先一直 Enter<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">This utility will walk you through creating a package.json file.</span><br><span class="line">It only covers the most common items, and tries to guess sane defaults.</span><br><span class="line"></span><br><span class="line">See `npm <span class="built_in">help</span> json` <span class="keyword">for</span> definitive documentation on these fields</span><br><span class="line">and exactly what they do.</span><br><span class="line"></span><br><span class="line">Use `npm install &lt;pkg&gt; --save` afterwards to install a package and</span><br><span class="line">save it as a dependency <span class="keyword">in</span> the package.json file.</span><br><span class="line"></span><br><span class="line">Press ^C at any time to quit.</span><br><span class="line">name: (nodeWorkshop)</span><br><span class="line">version: (<span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">description:</span><br><span class="line">entry point: (index.js)</span><br><span class="line"><span class="built_in">test</span> <span class="built_in">command</span>:</span><br><span class="line">git repository:</span><br><span class="line">keywords:</span><br><span class="line">author:</span><br><span class="line">license: (ISC)</span><br><span class="line">About to write to /Users/yucing617/Documents/nodeWorkshop/package.json:</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"nodeWorkshop"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Is this ok? (yes)</span><br></pre></td></tr></table></figure></p>
+<p>OK以後再來安裝 socket.io<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install socket.io --save</span><br></pre></td></tr></table></figure></p>
+<h2 id="請求資料">請求資料</h2><p>server 和 client 溝通</p>
+<h3 id="polling_輪詢">polling 輪詢</h3><p>ㄟ 你有沒有話要跟我說<br>ㄟ 你有沒有話要跟我說<br>ㄟ 你有沒有話要跟我說<br>ㄟ 你有沒有話要跟我說</p>
+<h3 id="long_polling_長輪詢">long polling 長輪詢</h3><p>ㄟ 你有沒有話要跟我說<br>…<br>…<br>…<br>會等一陣子，不要求馬上回應<br>（像是facebook 某些服務 一次等10秒）</p>
+<h3 id="WebSocket">WebSocket</h3><p>在 server 或 client 建立一個穩定的連線，有訊息可以馬上告訴對方，減少不斷問的成本，反應速度更快。</p>
+<h2 id="Hello_World">Hello World</h2><p>在專案裡面開一個 <code>server.js</code><br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> socketio = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"><span class="keyword">var</span> io = socketio(<span class="number">7000</span>);</span><br></pre></td></tr></table></figure></p>
+<p>執行 server，指令下完以後會看起來卡住，正常，代表 server 在跑了。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node server.js</span><br></pre></td></tr></table></figure></p>
+<p>把下載下來的前端 index.html 直接點兩下打開<br>Server: 的地方填入 <code>http://127.0.0.1:7000</code> 按下<code>連線</code><br><img src="/2015/04/Node-js-Workshop/helloServer.png" alt=""><br>下面看到已連線就代表成功了。</p>
+<h2 id="Callback_基本觀念">Callback 基本觀念</h2><p>等LOL讀取的時候會先去滑手機，不會卡在那邊讀取<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">等LOL讀取(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    殺敵</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">滑手機()</span><br></pre></td></tr></table></figure></p>
+<p>像是下面這樣，ha ha ha 會先跑出來。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hello World'</span>);</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'ha ha ha'</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="連線聊天實做">連線聊天實做</h2><p>當有人連線進來時顯示訊息<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> socketio = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> io = socketio(<span class="number">7000</span>);</span><br><span class="line"></span><br><span class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(someone)</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'someone here'</span>, someone.id);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>當有人傳訊息時可以用emit()送訊息出來，就可以看到聊天室有訊息了。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> socketio = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 啟動socket.io server 這個server叫做io</span></span><br><span class="line"><span class="keyword">var</span> io = socketio(<span class="number">7000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// socket.io 事件 每調薪連線進來時會做事件綁定</span></span><br><span class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(someone)</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'someone here'</span>, someone.id);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// message是自訂的 收到訊息時的事件 然後發送給所有人</span></span><br><span class="line">    someone.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(form, msg)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 有人送訊息時 用io這個伺服器把訊息送出去</span></span><br><span class="line">        <span class="comment">// emit是送訊息的動作</span></span><br><span class="line">        io.emit(<span class="string">'message'</span>, form, msg);</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="實做使用者列表">實做使用者列表</h2><p>當有人連線或離現時更新使用者列表<br>上面要加一個userList記錄所有使用者<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> userList = &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>下面這些要寫在 <code>io.on(&#39;connection&#39;, function(someone)</code> 裡面：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用者上線通知</span></span><br><span class="line">    someone.on(<span class="string">'user_in'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">        userList[someone.id] = nickname;</span><br><span class="line">        io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用者離線通知</span></span><br><span class="line">    someone.on(<span class="string">'disconnect'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">        <span class="keyword">delete</span> userList[someone.id];</span><br><span class="line">        io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="發悄悄話給某人">發悄悄話給某人</h2><p>上面要加一個clients記錄所有client(連線物件)<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> clients = &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>因為我們多記錄了client，所以登入和離線的地方也要改，有人連線要紀錄他的連線物件，有人離線要多刪除一個client<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用者上線通知</span></span><br><span class="line">someone.on(<span class="string">'user_in'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">    userList[someone.id] = nickname;</span><br><span class="line">    clients[someone.id] = someone;</span><br><span class="line">    io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用者離線通知</span></span><br><span class="line">someone.on(<span class="string">'disconnect'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">    <span class="keyword">delete</span> userList[someone.id];</span><br><span class="line">    <span class="keyword">delete</span> clients[someone.id];</span><br><span class="line">    io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>主要的功能寫在 <code>io.on(&#39;connection&#39;, function(someone)</code> 裡面：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 發悄悄話給某人</span></span><br><span class="line">someone.on(<span class="string">'private message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(form, sendToId, msg)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 不能用io.emit()了 因為會送給io伺服器上所有人</span></span><br><span class="line">    <span class="comment">// 要改成送給client[]裡面的某人，從sendToId來選人</span></span><br><span class="line">    clients[sendToId].emit(<span class="string">'private message'</span>, form, msg);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>完成以後就可以開三個網頁用不同 nickname 用悄悄話看看了。</p>
+<h2 id="完整的code">完整的code</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> socketio = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 啟動socket.io server 這個server叫做io</span></span><br><span class="line"><span class="keyword">var</span> io = socketio(<span class="number">7000</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> clients = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> userList = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// socket.io 事件 每調薪連線進來時會做事件綁定</span></span><br><span class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(someone)</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'someone here'</span>, someone.id);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用者上線通知</span></span><br><span class="line">    someone.on(<span class="string">'user_in'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">        userList[someone.id] = nickname;</span><br><span class="line">        clients[someone.id] = someone;</span><br><span class="line">        io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用者離線通知</span></span><br><span class="line">    someone.on(<span class="string">'disconnect'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">        <span class="keyword">delete</span> userList[someone.id];</span><br><span class="line">        <span class="keyword">delete</span> clients[someone.id];</span><br><span class="line">        io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// message是自訂的 收到訊息時的事件 然後發送給所有人</span></span><br><span class="line">    someone.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(form, msg)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 有人送訊息時 用io這個伺服器把訊息送出去</span></span><br><span class="line">        <span class="comment">// emit是送訊息的動作</span></span><br><span class="line">        io.emit(<span class="string">'message'</span>, form, msg);</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 發悄悄話給某人</span></span><br><span class="line">    someone.on(<span class="string">'private message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(form, sendToId, msg)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 不能用io.emit()了 因為會送給io伺服器上所有人</span></span><br><span class="line">        <span class="comment">// 要改成送給clients[]裡面的某人，從sendToId來選人</span></span><br><span class="line">        clients[sendToId].emit(<span class="string">'private message'</span>, form, msg);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Node-js/">Node.js</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hackathon-Taiwan/">Hackathon Taiwan</a><a href="/tags/Node-js/">Node.js</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://azyukei.github.io/2015/04/Node-js-Workshop/" data-title="Node.js 工作坊 | Kei Note" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/Android-021-ImageSwitcher-GridView/" title="Android 021 imageSwitcher 和 GridView 介面元件">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Android 021 imageSwitcher 和 GridView 介面元件</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/04/Android-Err-R/"  title="Android Studio Cannot resolve symbol &#39;R&#39;">
+ <strong>下一篇：</strong><br/> 
+ <span>Android Studio Cannot resolve symbol &#39;R&#39;
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#環境"><span class="toc-number">1.</span> <span class="toc-text">環境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#請求資料"><span class="toc-number">2.</span> <span class="toc-text">請求資料</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#polling_輪詢"><span class="toc-number">2.1.</span> <span class="toc-text">polling 輪詢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#long_polling_長輪詢"><span class="toc-number">2.2.</span> <span class="toc-text">long polling 長輪詢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebSocket"><span class="toc-number">2.3.</span> <span class="toc-text">WebSocket</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello_World"><span class="toc-number">3.</span> <span class="toc-text">Hello World</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Callback_基本觀念"><span class="toc-number">4.</span> <span class="toc-text">Callback 基本觀念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#連線聊天實做"><span class="toc-number">5.</span> <span class="toc-text">連線聊天實做</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#實做使用者列表"><span class="toc-number">6.</span> <span class="toc-text">實做使用者列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#發悄悄話給某人"><span class="toc-number">7.</span> <span class="toc-text">發悄悄話給某人</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完整的code"><span class="toc-number">8.</span> <span class="toc-text">完整的code</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android-API-Guides/" title="Android API Guides">Android API Guides<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/" title="Android Dev">Android Dev<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/Reading-Note/" title="Reading Note">Reading Note<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sublime-Text/" title="Sublime Text">Sublime Text<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon-Taiwan/" title="Hackathon Taiwan">Hackathon Taiwan<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GitHub/" title="GitHub">GitHub<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Google-Analytics/" title="Google Analytics">Google Analytics<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Azyueki">Azyueki</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'kei-note';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
