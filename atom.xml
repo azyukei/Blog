@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://azyukei.github.io/"/>
-  <updated>2015-05-01T08:11:01.000Z</updated>
+  <updated>2015-05-04T00:47:02.000Z</updated>
   <id>http://azyukei.github.io/</id>
   
   <author>
@@ -19,9 +19,13 @@
     <link href="http://azyukei.github.io/2015/04/Android-api-System-Permissions/"/>
     <id>http://azyukei.github.io/2015/04/Android-api-System-Permissions/</id>
     <published>2015-04-28T08:17:40.000Z</published>
-    <updated>2015-05-01T08:11:01.000Z</updated>
+    <updated>2015-05-04T00:47:02.000Z</updated>
     <content type="html"><![CDATA[<p>Android 是一個 privilege-separated（權限分離）的作業系統，其中每個應用程式使用不同的系統 ID 來執行（Linux user ID 和 group ID）。其中一部份系統也有獨立的 ID。Linux 依此將每個應用程式從系統中彼此隔離。</p>
 <p>其他劃分更細的安全功能由 <code>permission</code> 的機制提供，他會強行限制</p>
+<ul>
+<li>123321</li>
+<li>123123</li>
+</ul>
 <h2 id="Security_Architecture">Security Architecture</h2><h2 id="Application_Signing">Application Signing</h2><h2 id="User_IDs_and_File_Access">User IDs and File Access</h2><h2 id="Using_Permissions">Using Permissions</h2><h2 id="Declaring_and_Enforcing_Permissions">Declaring and Enforcing Permissions</h2><h3 id="…in_AndroidManifest-xml">…in AndroidManifest.xml</h3><h3 id="…when_Sending_Broadcasts">…when Sending Broadcasts</h3><h3 id="Other_Permission_Enforcement">Other Permission Enforcement</h3><h2 id="URI_Permissions">URI Permissions</h2>]]></content>
     <summary type="html">
     <![CDATA[<p>Android 是一個 privilege-separated（權限分離）的作業系統，其中每個應用程式使用不同的系統 ID 來執行（Linux user ID 和 group ID）。其中一部份系統也有獨立的 ID。Linux 依此將每個應用程式從系統中彼此隔離。</p>
