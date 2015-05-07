@@ -90,13 +90,36 @@
 </header>
     <div class="article-content">
         
-        <p>Android 是一個 privilege-separated（權限分離）的作業系統，其中每個應用程式使用不同的系統 ID 來執行（Linux user ID 和 group ID）。其中一部份系統也有獨立的 ID。Linux 依此將每個應用程式從系統中彼此隔離。</p>
-<p>其他劃分更細的安全功能由 <code>permission</code> 的機制提供，他會強行限制</p>
+        <p>原文：<a href="http://developer.android.com/guide/topics/security/permissions.html" target="_blank" rel="external">http://developer.android.com/guide/topics/security/permissions.html</a><br>這篇翻的有點爛…</p>
+<p>Android 是一個 privilege-separated（權限分離）的作業系統，其中每個應用程式使用不同的系統 ID 來執行（Linux user ID 和 group ID），其中一部份系統也有獨立的 ID。Linux 依此將每個應用程式從系統中彼此隔離。</p>
+<p>其他劃分更細的安全功能由 <code>Permission</code> 的機制提供，他會強行限制 Process 可以執行的特定操作。每個 URI Permissions 允許特定的訪問去存取明確的資料區塊。</p>
+<p>這篇文章會描述開發者如何讓應用程式使用 Android 提供的安全功能，Android Open Source Project 有提供 <a href="source.android.com/tech/security/index.html">Android Security Overview</a> 可以看看。</p>
+<h2 id="Security_Architecture">Security Architecture</h2><p>Android 安全架構的設計重心在於－預設所有應用程式沒有 Permission 去做任何影響其他應用程式、系統或是使用者的操作，包含讀取或寫入使用者的個人資料（包含通訊錄和電子郵件）、讀取或寫入其他應用程式的檔案、執行網路訪問或是保持設備清醒（不進入休眠）等等。</p>
+<p>因為每個 Android 應用程式是在沙盒程序中執行，應用程式必須明確的分享資料和資源，他們必須宣告他們需要的 Permissions 以要求基本沙盒沒有提供的額外功能。<br>應用程式靜態的宣告他們需要的 Permission，Android 系統會在安裝應用程式時即時要求使用者同意讓 APP 使用這些 Permission，Android 沒有動態的（在執行期中）產生 permissions 的機制，因為這樣會讓使用者經驗變的更複雜而影響安全性。</p>
+<p>應用程式沙盒不依賴於編譯應用程式的技術。特別是 Dalvik VM 不是安全的邊界，任何 APP 可以執行 Native code（詳見 Android SDK）。任何類型的應用程式－JAVA、Native 或是混和的都是在沙盒中使用同樣的方式，而且彼此之間有相同程度的安全性。<br>（這句在工三小XD）</p>
+<h2 id="Application_Signing">Application Signing</h2><p>所有的 APK（.apk 檔案）必須簽署一個憑證，憑證的 Private key 在應用程式的開發者手上。這個憑證用來識別應用程式的作者，不需要由 Certificate Authority（CA，應該是指有公信力的第三方憑證機構）簽署，他允許 Android 應用程式使用自行簽核的憑證，用來讓系統能允許或拒絕應用程式訪問 Signature-level permissions（要有相同憑證的才能使用的 Permissions）、允許或拒絕應用程式請求給予和另一個應用程式相同的 Linux ID（要有相同的憑證才能使用同一個 Linux ID）。</p>
+<h2 id="User_IDs_and_File_Access">User IDs and File Access</h2><p>Android 在安裝的時候會給予每個 package 一個明確的 Linux User ID，當 package 在裝置上時這個 ID 都會保持不變，在不同的裝置上，相同的 package 可能會有不同的 UID，重要的是每個 package 在特定裝置上會有不同的 UID。</p>
+<p>因為 Process 等級的安全措施，任兩個 Package 的程式通常不能在同一個 Process 中執行，因為他們要用不同的 Linux 使用者來執行。你可以在 <code>AndroidManifest.xml</code> 的 <code>manifest</code> 標籤中為每個 Package 使用 <code>sharedUserId</code> 屬性，讓他們分配到相同的 User ID。為了兩個 Packages 的安全性，他們被視為相同的應用程式，使用相同的 User ID 和檔案 Permission。請注意，為了保持安全，只有相同簽署的兩個應用程式可以使用相同的 User ID。</p>
+<p>應用程式儲存的任何資料會被分配到該應用程式的 User ID 而不是一般的存取其他 Packages。當使用 <code>getSharedPreferences(String, int)</code>、<code>openFileOutput(String, int)</code> 或是 <code>openOrCreateDatabase(String, int, SQLiteDatabase.CursorFactory)</code> 建立新檔案時，你可以使用 <code>MODE_WORLD_READABLE</code> 或/和 <code>MODE_WORLD_WRITEABLE</code> 標記來允許任何其他的 Package 去讀寫檔案。當這些標記被設定時，檔案的擁有者還是你的應用程式，但會被設定為全域讀寫的 Permissions ，讓其他應用程式可以看到他。</p>
+<h2 id="Using_Permissions">Using Permissions</h2><p>基本的 Android 應用程式預設是沒有相關的 Permission，意思是他不能做任何事情，這樣會對使用者經驗或是裝置上的資料有不好的影響，要使用裝置上被保護的功能，你必須在 <code>AndroidManifest.xml</code> 加入 <code>&lt;uses-permission&gt;</code> 標籤來宣告應用程式需要的 Permissions。</p>
+<p>例如，這個 APP 需要顯示剛收到的 SMS 訊息：<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">manifest</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="attribute">package</span>=<span class="value">"com.android.app.myapp"</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">uses-permission</span> <span class="attribute">android:name</span>=<span class="value">"android.permission.RECEIVE_SMS"</span> /&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="title">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在 APP 安裝時，Package Installer 授予 APP 請求的 Permission，基於檢查 APP 宣告的這些 Permissions 和與使用者互動的簽名。使用者確認不是在應用程式執行時完成，APP 會在安裝時准許特定的 Permission，就可以使用他需要的功能，或是 Permission 沒有被允許，任何嘗試使用這些功能就會失敗，不會提示使用者。</p>
+<p>通常 Permission failure 會有 <code>SecurityException</code> 的結果回傳給應用程式。但是不能保證每個地方都會發生。舉例來說 <code>sendBroadcast(Intent)</code> 方法會檢查資料傳送到每個 Receiver 的 Permissions，當這個方法結束時，如果 Permission failure 時，你將不會接到這個例外。然而在幾乎所有狀況下，Permission failure 將會記錄在 system log 中。</p>
+<p>然而在一般的使用情況下（像是當 APP 從 Google Play Store 安裝），如果使用者沒有允許 APP 要求的 Permissions，APP 將會無法安裝。所以一般來說你不必擔心執行中失去 Permissions，因為 APP 已經安裝好了救代表所有你要求的 Permissions 已經得到了允許。</p>
+<p>Permissions 由 Android 系統提供，可以在 <code>Manifest.permission</code> 找到。任何應用程式也可能強制定義他自己的 Permission，所以這邊沒辦法列出所有可用的 Permissions。</p>
+<p>在你的程式操作過程中，特定的 Permission 可能會在很多地方被強制執行：</p>
 <ul>
-<li>123321</li>
-<li>123123</li>
+<li>呼叫系統時阻止應用程式執行特定功能</li>
+<li>當啟動 Activity 時防止應用程式啟動其他應用程式的 Activities</li>
+<li>傳送或接收 Broadcasts 時，控制誰可以接收你的 Broadcast或是誰可以傳送　Broadcast 給你</li>
+<li>當訪問和操作一個 Cotent Provider 時</li>
+<li>綁定或啟動 Service 時</li>
 </ul>
-<h2 id="Security_Architecture">Security Architecture</h2><h2 id="Application_Signing">Application Signing</h2><h2 id="User_IDs_and_File_Access">User IDs and File Access</h2><h2 id="Using_Permissions">Using Permissions</h2><h2 id="Declaring_and_Enforcing_Permissions">Declaring and Enforcing Permissions</h2><h3 id="…in_AndroidManifest-xml">…in AndroidManifest.xml</h3><h3 id="…when_Sending_Broadcasts">…when Sending Broadcasts</h3><h3 id="Other_Permission_Enforcement">Other Permission Enforcement</h3><h2 id="URI_Permissions">URI Permissions</h2>
+<blockquote>
+<p>警告：隨著平台版本更新，可能會出現新的限制，為了使用特定的 API，你的 APP 可能需要去要求之前版本不需要的 Permission。因為現存的 APP 可以自由的訪問那些 API，但 Android 可能會在 APP 的 Manifest 中要求新的 Permission 來避免 APP 在新的平台版本中壞掉。Android 基於 <code>targetSdkVersion</code> 屬性的值來決定 APP 是否需要 Permission，如果這個值低於 Permission 新增的版本，Android 會加入這個 Permission。</p>
+<p>舉例來說 <code>WRITE_EXTERNAL_STORAGE</code> Permission 在 API Level 4 被加入，用來限制存取共享的儲存空間。如果你的 <code>targetSdkVersion</code> 在 3 以下，這個 Permission 會在新的 Android 版本中被加入你的 APP。</p>
+</blockquote>
+<h2 id="Declaring_and_Enforcing_Permissions">Declaring and Enforcing Permissions</h2><h3 id="…in_AndroidManifest-xml">…in AndroidManifest.xml</h3><h3 id="…when_Sending_Broadcasts">…when Sending Broadcasts</h3><h3 id="Other_Permission_Enforcement">Other Permission Enforcement</h3><h2 id="URI_Permissions">URI Permissions</h2>
         
         
         <p class="article-more-link">
