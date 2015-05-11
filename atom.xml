@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://azyukei.github.io/"/>
-  <updated>2015-05-11T07:13:59.000Z</updated>
+  <updated>2015-05-11T07:18:43.000Z</updated>
   <id>http://azyukei.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://azyukei.github.io/2015/04/Android-api-System-Permissions/"/>
     <id>http://azyukei.github.io/2015/04/Android-api-System-Permissions/</id>
     <published>2015-04-28T08:17:40.000Z</published>
-    <updated>2015-05-11T07:13:59.000Z</updated>
+    <updated>2015-05-11T07:18:43.000Z</updated>
     <content type="html"><![CDATA[<p>原文：<a href="http://developer.android.com/guide/topics/security/permissions.html" target="_blank" rel="external">http://developer.android.com/guide/topics/security/permissions.html</a><br>這篇翻的有點爛…</p>
 <p>Android 是一個 privilege-separated（權限分離）的作業系統，其中每個應用程式使用不同的系統 ID 來執行（Linux user ID 和 group ID），其中一部份系統也有獨立的 ID。Linux 依此將每個應用程式從系統中彼此隔離。</p>
 <p>其他劃分更細的安全功能由 <code>Permission</code> 的機制提供，他會強行限制 Process 可以執行的特定操作。每個 URI Permissions 允許特定的訪問去存取明確的資料區塊。</p>
@@ -71,7 +71,7 @@
 <p>解決這個問題的方案是 per-URI permissions：當啟動 Activity 或將結果回傳給 Activity，可以設定 <code>Intent.FLAG_GRANT_READ_URI_PERMISSION</code> 和/或 <code>Intent.FLAG_GRANT_WRITE_URI_PERMISSION</code>。這樣不管他是否有任何 Permission 去存取 Intent 對應的 Content Provider 中的資料，都能在 Intent 中讓收到的 Activity 允許 Permission 訪問特定資料的 URI。</p>
 <p>這種機制允許一個常見的 Capability-style 模型－當使用者互動（打開附件、選擇一個聯絡人等）操作被臨時的 Fine-grained Permission 允許。這樣可以減少應用程式必須的 Permission 只留下與應用程式行為有關的行為。</p>
 <p>微調 URI Permission 需要和 Content Provider 合作持有這些 URI。強烈建議 Content Providers 實做這個功能，宣告 <code>android:grantUriPermissions</code> 屬性或 <code>&lt;grant-uri-permissions&gt; 標籤</code>。</p>
-<p>更多資訊可以在這些方法的介紹中找到：<br>[Context.grantUriPermission()]<a href="http://developer.android.com/reference/android/content/Context.html#grantUriPermission(java.lang.String,%20android.net.Uri,%20int)" target="_blank" rel="external">http://developer.android.com/reference/android/content/Context.html#grantUriPermission(java.lang.String,%20android.net.Uri,%20int)</a><br>[Context.revokeUriPermission()]<a href="http://developer.android.com/reference/android/content/Context.html#revokeUriPermission(android.net.Uri,%20int)" target="_blank" rel="external">http://developer.android.com/reference/android/content/Context.html#revokeUriPermission(android.net.Uri,%20int)</a><br>[Context.checkUriPermission()]<a href="http://developer.android.com/reference/android/content/Context.html#checkUriPermission(android.net.Uri,%20int,%20int,%20int)" target="_blank" rel="external">http://developer.android.com/reference/android/content/Context.html#checkUriPermission(android.net.Uri,%20int,%20int,%20int)</a></p>
+<p>更多資訊可以在這些方法的介紹中找到：<br><a href="http://developer.android.com/reference/android/content/Context.html#grantUriPermission(java.lang.String,%20android.net.Uri,%20int\" target="_blank" rel="external">Context.grantUriPermission()</a>)<br><a href="http://developer.android.com/reference/android/content/Context.html#revokeUriPermission(android.net.Uri,%20int\" target="_blank" rel="external">Context.revokeUriPermission()</a>)<br><a href="http://developer.android.com/reference/android/content/Context.html#checkUriPermission(android.net.Uri,%20int,%20int,%20int\" target="_blank" rel="external">Context.checkUriPermission()</a>)</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>原文：<a href="http://developer.android.com/guide/topics/security/permissions.html" target="_blank" rel="external">http://developer.android.]]>
