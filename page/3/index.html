@@ -77,6 +77,95 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/03/Hexo-on-Github/" title="在 GitHub Pages 上部屬 Hexo" itemprop="url">在 GitHub Pages 上部屬 Hexo</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://azyukei.github.io/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-03-30T05:08:12.000Z" itemprop="datePublished"> 發表於 2015-03-30</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p><img src="/2015/03/Hexo-on-Github/GithubPages.png" alt=""><br>要發佈到GitHub Pages需要先安裝 <code>hexo-deployer-git</code>。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<h3 id="GitHub_Pages">GitHub Pages</h3><p><a href="https://pages.github.com/" target="_blank" rel="external">GitHub Pages</a>可以讓你放靜態網頁，也有內建一些 CSS 主題給你選，除了自己編輯這些網頁以外，也可以用 OctoPress 或是 Hexo 之類的 Blog Framework 來產生靜態網頁發佈上來，GitHub Pages 分成兩種：</p>
+<h4 id="User_or_organization_site">User or organization site</h4><p>第一種網址為 <code>http://username.github.io</code> ，作為使用者或帳號用的網頁，一個帳號只能有一個，建立步驟：</p>
+<ul>
+<li><p>建立一個 Repository，名稱為：<code>username.github.io</code>，username 記得改成自己的。<br><img src="/2015/03/Hexo-on-Github/UserRepo.png" alt=""></p>
+</li>
+<li><p>設定 Hexo 的<code>_config.yml</code><br>  這個 Repository 就是你網站的 webroot，一般來說可以自己 push 網頁上來，不過我們是要用 hexo來產生靜態網頁發佈上來，所以要去設定 hexo 的<code>_config.yml</code> 中的 <code>deploy</code> 部分，把 <code>deploy</code> 設定成下面這樣：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">deploy:&#10;  type: git&#10;  repo: https://github.com/username/username.github.io.git&#10;  branch: master</span><br></pre></td></tr></table></figure>
+<p>  username 一樣要記得改，之後就可以 hexo deploy 直接部屬到 githib page 上囉。</p>
+</li>
+</ul>
+<hr>
+<h4 id="Project_site">Project site</h4><p>第二種 Project site 的網址為 <code>http://username.github.io/projectname</code> ，作為 Repo 或專案的介紹網頁，一個帳號有無限多個，每個 Repository 都可以幫他開一個，做法如下：</p>
+<ul>
+<li><p>進入一個 Repository，在他的右邊選單點選 Settings。<br><img src="/2015/03/Hexo-on-Github/RepoSettings.png" alt=""></p>
+</li>
+<li><p>在 GitHub Pages 項目中點選 Automatic page generator。<br><img src="/2015/03/Hexo-on-Github/GithubPagesGenerator.png" alt=""></p>
+</li>
+<li><p>點進去以後他會讓你編輯第一個頁面，不過我們是要用 Hexo 來發佈文章，所以這邊不用管他直接按下 Continue to layouts。<br><img src="/2015/03/Hexo-on-Github/NewPage.png" alt=""></p>
+</li>
+<li><p>皆下來是選主題，一樣對於要用 Hexo 的我們沒有用處，直接按下 Publish page 就 OK了！<br><img src="/2015/03/Hexo-on-Github/PageTheme.png" alt=""></p>
+</li>
+<li><p>設定 Hexo 的<code>_config.yml</code>：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">deploy:&#10;  type: git&#10;  repo: https://github.com/username/projectname.git&#10;  branch: gh-pages</span><br></pre></td></tr></table></figure>
+<p>  username 和 projectname 要改成自己的，要注意的是這裡的 branch 不是 master，master 是你原來的專案內容，<code>gh-pages</code> 分支才是 webroot，所以 branch 要改成 <code>gh-pages</code>，hexo deploy 才會把網頁部屬到這個分支。</p>
+</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/GitHub/">GitHub</a><a href="/tags/Hexo/">Hexo</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/03/Hexo-on-Github/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/03/Hexo-Intro/" title="Hexo 簡介" itemprop="url">Hexo 簡介</a>
   </h1>
   <p class="article-author">By
@@ -237,7 +326,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/Android-API-Guides/" title="Android API Guides">Android API Guides<sup>7</sup></a></li>
+			<li><a href="/categories/Android-API-Guides/" title="Android API Guides">Android API Guides<sup>8</sup></a></li>
 		  
 		
 		  
@@ -270,7 +359,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>10</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>11</sup></a></li>
 			
 		
 			

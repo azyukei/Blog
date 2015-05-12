@@ -1,0 +1,555 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Android - Intents and Intent Filters | Kei Note</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Azyueki">
+    
+
+    
+    <meta name="description" content="原文：http://developer.android.com/guide/components/intents-filters.html
+Intent 是傳遞訊息的物件，可以用來跟其他 APP Component 要求一個動作，Intents 讓幾個 Components 之間交流更加方便，以下有三個使用情況：
+
+啟動 Activity：  一個 Activity 相當於 APP 中的一個畫面。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android - Intents and Intent Filters">
+<meta property="og:url" content="http://azyukei.github.io/2015/05/Android-api-Intents-and-Intent-Filters/index.html">
+<meta property="og:site_name" content="Kei Note">
+<meta property="og:description" content="原文：http://developer.android.com/guide/components/intents-filters.html
+Intent 是傳遞訊息的物件，可以用來跟其他 APP Component 要求一個動作，Intents 讓幾個 Components 之間交流更加方便，以下有三個使用情況：
+
+啟動 Activity：  一個 Activity 相當於 APP 中的一個畫面。">
+<meta property="og:image" content="/2015/05/Android-api-Intents-and-Intent-Filters/intent-filters.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android - Intents and Intent Filters">
+<meta name="twitter:description" content="原文：http://developer.android.com/guide/components/intents-filters.html
+Intent 是傳遞訊息的物件，可以用來跟其他 APP Component 要求一個動作，Intents 讓幾個 Components 之間交流更加方便，以下有三個使用情況：
+
+啟動 Activity：  一個 Activity 相當於 APP 中的一個畫面。">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Kei Note" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Kei Note" title="Kei Note"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Kei Note">Kei Note</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/Android-api-Intents-and-Intent-Filters/" title="Android - Intents and Intent Filters" itemprop="url">Android - Intents and Intent Filters</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://azyukei.github.io/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-11T08:23:07.000Z" itemprop="datePublished"> 發表於 2015-05-11</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intent_Types"><span class="toc-number">1.</span> <span class="toc-text">Intent Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building_an_Intent"><span class="toc-number">2.</span> <span class="toc-text">Building an Intent</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Component_name"><span class="toc-number">2.0.1.</span> <span class="toc-text">Component name</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Action"><span class="toc-number">2.0.2.</span> <span class="toc-text">Action</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Data"><span class="toc-number">2.0.3.</span> <span class="toc-text">Data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Category"><span class="toc-number">2.0.4.</span> <span class="toc-text">Category</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Extras"><span class="toc-number">2.0.5.</span> <span class="toc-text">Extras</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Flags"><span class="toc-number">2.0.6.</span> <span class="toc-text">Flags</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example_explicit_intent"><span class="toc-number">2.1.</span> <span class="toc-text">Example explicit intent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example_implicit_intent"><span class="toc-number">2.2.</span> <span class="toc-text">Example implicit intent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forcing_an_app_chooser"><span class="toc-number">2.3.</span> <span class="toc-text">Forcing an app chooser</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Receiving_an_Implicit_Intent"><span class="toc-number">3.</span> <span class="toc-text">Receiving an Implicit Intent</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example_filters"><span class="toc-number">3.1.</span> <span class="toc-text">Example filters</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using_a_Pending_Intent"><span class="toc-number">4.</span> <span class="toc-text">Using a Pending Intent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intent_Resolution"><span class="toc-number">5.</span> <span class="toc-text">Intent Resolution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Action_test"><span class="toc-number">5.1.</span> <span class="toc-text">Action test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Category_test"><span class="toc-number">5.2.</span> <span class="toc-text">Category test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data_test"><span class="toc-number">5.3.</span> <span class="toc-text">Data test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Intent_matching"><span class="toc-number">5.4.</span> <span class="toc-text">Intent matching</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>原文：<a href="http://developer.android.com/guide/components/intents-filters.html" target="_blank" rel="external">http://developer.android.com/guide/components/intents-filters.html</a></p>
+<p>Intent 是傳遞訊息的物件，可以用來跟其他 APP Component 要求一個動作，Intents 讓幾個 Components 之間交流更加方便，以下有三個使用情況：</p>
+<ul>
+<li>啟動 <code>Activity</code>：<br>  一個 Activity 相當於 APP 中的一個畫面。你可以透過傳遞 Intent 到 <code>startActivity()</code> 來啟動一個新的 Activity 實例。Intent 描述要啟動哪種 Activity 還有攜帶必須的資料。</li>
+<li>啟動 <code>Service</code>：<br>  Service 是在背景運作的 Component 而且沒有使用者介面，你可以透過將 Intent 傳遞到 <code>startService()</code> 來啟動 Service 去處理一次性操作（像是下載一個檔案）。Intent 描述要啟動的 Service 來啟動並攜帶必要的資料給他。<br>  如果 Service 是以 client-server 介面設計的，你可以透過傳入 Intent 到 <code>bindService()</code> 綁定服務到其他 Component。更多資訊詳見 <a href="http://developer.android.com/guide/components/services.html" target="_blank" rel="external">Services</a> 手冊。</li>
+<li>傳送 <code>Broadcast</code>：<br>  Broadcast 是任何 APP 都可以接收的訊息。系統傳送許多系統事件的廣播，像是當系統開機或裝置開始充電等。你可以透過傳入 Intent 到 <code>sendBroadcast()</code>、<code>sendOrderedBroadcast()</code> 或 <code>sendStickyBroadcast()</code> 傳送廣播到其他 APP。</li>
+</ul>
+<h2 id="Intent_Types">Intent Types</h2><p>Intent 有兩種類型：</p>
+<ul>
+<li><p><strong>Explicit intents</strong>（明確意圖）有具體說明要啟動的 Component 名稱（完整的 Class name），你會在你自己的 APP 使用 Explicit intent 來啟動 Component 因為你知道 Activity 或 Service 的 Class name。例如啟動一個新的 Activity 來回映使用者的動作或是啟動一個 Service 在背景下載檔案。</p>
+</li>
+<li><p><strong>Implicit intents</strong>（含蓄意圖）沒有指定的 Component 名稱，Intent 宣告要做的動作，並允許其他 APP 的 Component 去應對他。舉例來說，如果你要顯示出使用者在地圖中的位置，你可以使用 Implicit intent 來要求其他有這方面能力的 APP 來顯示出地圖中特定的位置。</p>
+</li>
+</ul>
+<p>當你建立一個 Explicit intent 來啟動 Activity 或 Service，系統會立刻啟動 Intent 物件指定的 APP Component。</p>
+<p>當你建立 Implicit intent，Android 系統會透過比較 Intent 與 <em>Intent filters</em> 在 Manifest 長案中宣告的內容來尋找並啟動適合的 Component。如果 Intent 符合 Intent filter，系統會啟動 Component 並傳遞 Intent 物件，如果有多個 Intent filter 相符，系統會顯示一個對話，讓使用者選擇要用那個 APP。</p>
+<p>Intent filter 在 APP 的 Manifest 中宣告，用來說明 Intent 想接收 Component 的類型。例如，為一個 Activity 宣告 Intent filter，讓其他 APP 可以為了特定類型的 Intent 直接啟動你的 Activity。同樣的，你可以不幫你的 Activity 宣告任何 Intent filter，他就只能被 Explicit Intent 啟動。</p>
+<blockquote>
+<p><strong>小心</strong>：為了保證你的 APP 是安全的，總是使用 Explicit intent 來啟動 Service 並且不要為你的 Services 宣告 intent filter，使用 Implicit internt 啟動 Service 危害安全的，因為你不能確定那個服務會回應這個 Intent，使用者看不到那個 Service　被啟動了，從 Android 5.0（API level 21）開始，系統會在你使用 Implicit intent 呼叫 <code>bindService()</code> 時丟出例外。</p>
+</blockquote>
+<p><img src="/2015/05/Android-api-Intents-and-Intent-Filters/intent-filters.png" alt=""><br>上圖為 Implicit intent 如何重送給系統來啟動其他 Activity：<strong>[1]</strong> 一個 <code>Activity</code>（Activity A） 用 Action 的內容建立一個 <code>Intent</code> 然後傳入 <code>startActivity()</code> 方法。 <strong>[2]</strong> Android 系統搜尋所有 APP，尋找一個符合 <code>Intent</code> 的 <code>Intent filter</code>。當找到時 <strong>[3]</strong> 系統會啟動符合的 <code>Activity</code>（Activity A）呼叫他的 <code>onCreate()</code> 方法並將 <code>Intent</code> 傳給他。</p>
+<h2 id="Building_an_Intent">Building an Intent</h2><p>Intent 物件攜帶資訊讓 Android 系統確定那個 Component 要被啟動（像是確切的 Component 名稱或是 Component 種類），為了正確的執行這個動作也會有額外的資訊讓接收的 Component 使用（像是要採取的行動，和這個動作需要的資料）。</p>
+<p>Intent 主要的資訊內容如下：</p>
+<h4 id="Component_name">Component name</h4><p>要啟動的 Component 名稱。</p>
+<p>這是可選項目，但這是要讓 Intent <strong>explicit</strong> 的話就是很重要的資訊，代表 Intent 應該只能被傳遞給被定義名稱的 APP Component，如果沒有 Component name，Intent 就會是 <strong>Implicit</strong> 的，系統藉由其他的 Intent 資訊（像是下面會介紹的 Action、Data 和 Category）來決定應該要將 Intent 傳遞給那個 Component。如果你需要啟動你 APP 中特定的 Component，你應該具體說明 Component name。</p>
+<blockquote>
+<p><strong>Note</strong>：當啟動 Service 時，<strong>永遠都要明確指定 Component name</strong>，否則你無法確定那個 Service 會回應你的 Intent，使用者也看不到那個 Service 啟動了。</p>
+</blockquote>
+<p>這裡是要傳入 <code>ComponentName</code> 物件，也就是目標 Component 的完整 Class name，包含 APP 的 Package name。例如，<code>com.example.ExampleActivity</code>。你可以呼叫 <code>setComponent()</code>、<code>setClass()</code>、<code>setClassName</code> 或是用 Intent 的建構式來設定 Component name。</p>
+<h4 id="Action">Action</h4><p>是一個字串，用來表示要做的動作（像是 view 或 pick）。</p>
+<p>在 Broadcast intent 的例子中，發生了正在報告的 Action，Action 主要決定了 Intent 其他部分的結構，特別是他包含了哪些 Data 或 Extras。</p>
+<p>你可以在你的 APP（或是給其他 APP 用來請求你 APP 中的 Components） 指定自己的 Actions 來給 Intent 使用，但是你通常應該使用 Intent 類別或其他 framework 的類別中 constants defined 的 Action。這裡有一些用來啟動 Activity 的常見 Actions：</p>
+<ul>
+<li>ACTION_VIEW<br>  當你有一些資訊要讓 Activity 顯示給使用者看時，在 Intent 中用這個 Action。像是畫廊 APP 裡要看的照片，或是用來在地圖 APP 上查看的地址。</li>
+<li>ACTION_SEND<br>  也被稱為 “share” Intent，當你有一些資料要讓使用者分享到其他 APP 去，像是郵件 APP 或是社交分享 APP，你應該要在使用這個 Action 呼叫 <code>startActivity()</code>。</li>
+</ul>
+<p>更多一般定義的 Action 內容，參考 <a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank" rel="external">Intent 類別</a>的文件，其他 Actions 被定義在 Android framework 中，像是 <a href="http://developer.android.com/reference/android/provider/Settings.html" target="_blank" rel="external">Settings</a> 的 Action 用來在系統設定 APP 中打開特定的畫面。</p>
+<p>你可以使用 <code>setAction()</code> 或是 Intent 的建構式來為 Intent 設定具體的 Action。</p>
+<p>如果你要定義自己的 Action，請使用你 APP 的 Package name 作為前綴，像是：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> String ACTION_TIMMETRAVEL = <span class="string">"com.example.action.TIMETRAVEL"</span>;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Data">Data</h4><p>Data 是參考到要用到的資料的 URI（URI 物件）和/或 MIME 類型的資料。資料的類型是由 Intent 的 Action 決定。例如，如果 Action 是 <code>ACTION_EDIT</code>，資料應該要包含被編輯的文件的URI。</p>
+<p>當 Intent 建立時，通常需要具體說明資料的類型（MIME Type）還有資料的 URI。例如，儘管 URI 的格式是相似的，Activity 允許顯示影像但可能不允許播放影片檔。所以具體說明資料的 MIME type 可以幫助 Android 系統尋找最佳的 Component 來回應你的 Intent。然而 MIME type 有時可以透過 URI 推理出來，特別是當資料是 <code>content</code> 時（URI 指示資料在裝置上的位置並由 <code>ContentProvider</code> 控制，這樣就能讓資料的 MIME type 變成系統可以看見的）。</p>
+<p>要只設定資料 URI 可以呼叫 <code>setData()</code>，只設定 MIME type 可以呼叫 <code>setType()</code>，必要時可以用 <code>setDataAndType</code> 一次把 URI 和 MIME type。</p>
+<h4 id="Category">Category</h4><p>Category 是包含有關要處理這個 Intent 的 Component 類型的額外資訊字串。Intent 中可以放入任意數量的 Category 描述，但大多數的 Intent 不需要 Category，這裡有一些常見的 Categories：<br><code>CATEGORY_BROWSABLE</code><br>    目標 Activity 允許自己啟動網頁瀏覽器來顯示透過連結參考到的資料，像是影像或 e-mail 訊息。<br><code>CATEGORY_LAUNCHER</code><br>    這種 Activity 是任務中初始的 Activity，並且列於系統的應用程式啟動程序。</p>
+<p>可以在 <a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank" rel="external">Intent</a> 的文件來察看完整的 Category 清單。</p>
+<p>可以用 <code>addCategory</code> 來加入 Category。</p>
+<hr>
+<p>以上列出的屬性（Component name、Action、Data、Category）用來為 Intent 定義出他的特性。Android 系統透過讀取這些屬性，可以決定哪個 APP Component 應該被啟動。</p>
+<p>然而 Intent 可以攜帶一些額外的資料，而不影響系統決定使用哪個 Component，Intent 也支援下面這些資訊：</p>
+<h4 id="Extras">Extras</h4><p>Extra 是一組 Key-value pair，用來攜帶完成請求所需要的額外的資訊，就像一些 Action 使用特定種類的資料 URI，有些 Action 也需要使用特定的 Extra。</p>
+<p>可以使用各種 <code>putExtra()</code> 方法來加入 Extra 資料，每個方法都有兩個參數：Key 名稱和 Value。你也可以建立一個 <code>Bundle</code> 物件將所有 Extra 用 <code>putExtra()</code> 插入 Intent 的 Bundle 中。</p>
+<p>例如當你用 <code>ACTION_SEND</code> 來建立一個 Intent 用來傳送 email，你可以用 <code>EXTRA_EMAIL</code> Key 來宣告 <code>to</code> 收信人，並且用 <code>EXTRA_SUBJECT</code> 來宣告 <code>subject</code> 主旨。</p>
+<p>Intent 類別宣告很多 <code>EXTRA_*</code> 常數來標準化資料型別，如果你需要宣告自己的 Extra keys（為了讓你的的 APP 收到 Intent），請確認他包含你的 APP 的 package name 像下面這樣：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> String EXTRA_GIGAWATTS = <span class="string">"com.example.EXTRA_GIGAWATTS"</span>;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Flags">Flags</h4><p>Flags 定義在 Intent 類別中，作為 Intent 的 Metadata 的功能。Flags 可以告訴 Android 系統如何啟動一個 Activity（例如，Activity 應該是屬於哪一個 <code>task</code>），還有在啟動後如何對應他（例如，他是否屬於最近活動的 Activities 列表）。</p>
+<p>更多資訊詳見 <a href="http://developer.android.com/reference/android/content/Intent.html#setFlags(int)" title="setFlags" target="_blank" rel="external">setFlags()</a> 方法</p>
+<h3 id="Example_explicit_intent">Example explicit intent</h3><p>Explicit intent 用來啟動特定的 APP Component，像是你的 APP 中特定的 Activity 或是 Service，要建立一個 Explicit intent 要為 Intent 物件定義 Component 名稱，其他 Intent 屬性則是可選的。</p>
+<p>例如，要為你的 APP 建立一個 Service，用來從網路上下載檔案，叫做 <code>DownloadService</code>，你可以像這樣來寫程式碼：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Executed in an Activity, so 'this' is the Context</span></span><br><span class="line"><span class="comment">// The fileUrl is a string URL, such as "http://www.example.com/image.png"</span></span><br><span class="line">Intent downloadIntent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, DownloadService.class);</span><br><span class="line">downloadIntent.setData(Uri.parse(fileUrl));</span><br><span class="line">startService(downloadIntent);</span><br></pre></td></tr></table></figure></p>
+<p><code>Intent(Context, Class)</code> 建構式傳入 APP Context 還有 Component 的 Class 物件。因此在這個 APP 中這個 Intent 明確的啟動 <code>DownloadService</code> 類別。</p>
+<p>更多關於建立與啟動 Service 的資訊，詳見 <a href="http://developer.android.com/guide/components/services.html" target="_blank" rel="external">Service</a> 手冊。</p>
+<h3 id="Example_implicit_intent">Example implicit intent</h3><h3 id="Forcing_an_app_chooser">Forcing an app chooser</h3><h2 id="Receiving_an_Implicit_Intent">Receiving an Implicit Intent</h2><h3 id="Example_filters">Example filters</h3><h2 id="Using_a_Pending_Intent">Using a Pending Intent</h2><h2 id="Intent_Resolution">Intent Resolution</h2><h3 id="Action_test">Action test</h3><h3 id="Category_test">Category test</h3><h3 id="Data_test">Data test</h3><h3 id="Intent_matching">Intent matching</h3>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Android-API-Guides/">Android API Guides</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Android/">Android</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://azyukei.github.io/2015/05/Android-api-Intents-and-Intent-Filters/" data-title="Android - Intents and Intent Filters | Kei Note" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/04/Android-api-System-Permissions/"  title="Android - System Permissions">
+ <strong>下一篇：</strong><br/> 
+ <span>Android - System Permissions
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intent_Types"><span class="toc-number">1.</span> <span class="toc-text">Intent Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building_an_Intent"><span class="toc-number">2.</span> <span class="toc-text">Building an Intent</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Component_name"><span class="toc-number">2.0.1.</span> <span class="toc-text">Component name</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Action"><span class="toc-number">2.0.2.</span> <span class="toc-text">Action</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Data"><span class="toc-number">2.0.3.</span> <span class="toc-text">Data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Category"><span class="toc-number">2.0.4.</span> <span class="toc-text">Category</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Extras"><span class="toc-number">2.0.5.</span> <span class="toc-text">Extras</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Flags"><span class="toc-number">2.0.6.</span> <span class="toc-text">Flags</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example_explicit_intent"><span class="toc-number">2.1.</span> <span class="toc-text">Example explicit intent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example_implicit_intent"><span class="toc-number">2.2.</span> <span class="toc-text">Example implicit intent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forcing_an_app_chooser"><span class="toc-number">2.3.</span> <span class="toc-text">Forcing an app chooser</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Receiving_an_Implicit_Intent"><span class="toc-number">3.</span> <span class="toc-text">Receiving an Implicit Intent</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example_filters"><span class="toc-number">3.1.</span> <span class="toc-text">Example filters</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using_a_Pending_Intent"><span class="toc-number">4.</span> <span class="toc-text">Using a Pending Intent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intent_Resolution"><span class="toc-number">5.</span> <span class="toc-text">Intent Resolution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Action_test"><span class="toc-number">5.1.</span> <span class="toc-text">Action test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Category_test"><span class="toc-number">5.2.</span> <span class="toc-text">Category test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data_test"><span class="toc-number">5.3.</span> <span class="toc-text">Data test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Intent_matching"><span class="toc-number">5.4.</span> <span class="toc-text">Intent matching</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Android-API-Guides/" title="Android API Guides">Android API Guides<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/" title="Android Dev">Android Dev<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Android-Dev/Reading-Note/" title="Reading Note">Reading Note<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android/" title="Android">Android<sup>11</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sublime-Text/" title="Sublime Text">Sublime Text<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hackathon-Taiwan/" title="Hackathon Taiwan">Hackathon Taiwan<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GitHub/" title="GitHub">GitHub<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Google-Analytics/" title="Google Analytics">Google Analytics<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/https://github.com/azyukei" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="http://azyukei.github.io/about" target="_blank" title="Azyueki">Azyueki</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'kei-note';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-61616720-1', 'azyukei.github.io');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
