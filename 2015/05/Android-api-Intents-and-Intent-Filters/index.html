@@ -56,7 +56,7 @@ Intent 是傳遞訊息的物件，可以用來跟其他 APP Component 要求一�
 				<h1 class="site-name"><a href="/" title="Kei Note">Kei Note</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -70,7 +70,7 @@ Intent 是傳遞訊息的物件，可以用來跟其他 APP Component 要求一�
  					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
 					</form>
 					
 					</li>
@@ -92,14 +92,14 @@ Intent 是傳遞訊息的物件，可以用來跟其他 APP Component 要求一�
 		<a href="http://azyukei.github.io/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
 		
   <p class="article-time">
-    <time datetime="2015-05-11T08:23:07.000Z" itemprop="datePublished"> 發表於 2015-05-11</time>
+    <time datetime="2015-05-11T08:23:07.000Z" itemprop="datePublished"> Published 2015-05-11</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intent_Types"><span class="toc-number">1.</span> <span class="toc-text">Intent Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building_an_Intent"><span class="toc-number">2.</span> <span class="toc-text">Building an Intent</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Component_name"><span class="toc-number">2.0.1.</span> <span class="toc-text">Component name</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Action"><span class="toc-number">2.0.2.</span> <span class="toc-text">Action</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Data"><span class="toc-number">2.0.3.</span> <span class="toc-text">Data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Category"><span class="toc-number">2.0.4.</span> <span class="toc-text">Category</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Extras"><span class="toc-number">2.0.5.</span> <span class="toc-text">Extras</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Flags"><span class="toc-number">2.0.6.</span> <span class="toc-text">Flags</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example_explicit_intent"><span class="toc-number">2.1.</span> <span class="toc-text">Example explicit intent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example_implicit_intent"><span class="toc-number">2.2.</span> <span class="toc-text">Example implicit intent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forcing_an_app_chooser"><span class="toc-number">2.3.</span> <span class="toc-text">Forcing an app chooser</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Receiving_an_Implicit_Intent"><span class="toc-number">3.</span> <span class="toc-text">Receiving an Implicit Intent</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example_filters"><span class="toc-number">3.1.</span> <span class="toc-text">Example filters</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using_a_Pending_Intent"><span class="toc-number">4.</span> <span class="toc-text">Using a Pending Intent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intent_Resolution"><span class="toc-number">5.</span> <span class="toc-text">Intent Resolution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Action_test"><span class="toc-number">5.1.</span> <span class="toc-text">Action test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Category_test"><span class="toc-number">5.2.</span> <span class="toc-text">Category test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data_test"><span class="toc-number">5.3.</span> <span class="toc-text">Data test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Intent_matching"><span class="toc-number">5.4.</span> <span class="toc-text">Intent matching</span></a></li></ol></li></ol>
 		
@@ -226,22 +226,22 @@ Intent 是傳遞訊息的物件，可以用來跟其他 APP Component 要求一�
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intent_Types"><span class="toc-number">1.</span> <span class="toc-text">Intent Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building_an_Intent"><span class="toc-number">2.</span> <span class="toc-text">Building an Intent</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Component_name"><span class="toc-number">2.0.1.</span> <span class="toc-text">Component name</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Action"><span class="toc-number">2.0.2.</span> <span class="toc-text">Action</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Data"><span class="toc-number">2.0.3.</span> <span class="toc-text">Data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Category"><span class="toc-number">2.0.4.</span> <span class="toc-text">Category</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Extras"><span class="toc-number">2.0.5.</span> <span class="toc-text">Extras</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Flags"><span class="toc-number">2.0.6.</span> <span class="toc-text">Flags</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example_explicit_intent"><span class="toc-number">2.1.</span> <span class="toc-text">Example explicit intent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example_implicit_intent"><span class="toc-number">2.2.</span> <span class="toc-text">Example implicit intent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forcing_an_app_chooser"><span class="toc-number">2.3.</span> <span class="toc-text">Forcing an app chooser</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Receiving_an_Implicit_Intent"><span class="toc-number">3.</span> <span class="toc-text">Receiving an Implicit Intent</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example_filters"><span class="toc-number">3.1.</span> <span class="toc-text">Example filters</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using_a_Pending_Intent"><span class="toc-number">4.</span> <span class="toc-text">Using a Pending Intent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intent_Resolution"><span class="toc-number">5.</span> <span class="toc-text">Intent Resolution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Action_test"><span class="toc-number">5.1.</span> <span class="toc-text">Action test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Category_test"><span class="toc-number">5.2.</span> <span class="toc-text">Category test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data_test"><span class="toc-number">5.3.</span> <span class="toc-text">Data test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Intent_matching"><span class="toc-number">5.4.</span> <span class="toc-text">Intent matching</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分類</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -278,7 +278,7 @@ Intent 是傳遞訊息的物件，可以用來跟其他 APP Component 要求一�
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -326,14 +326,14 @@ Intent 是傳遞訊息的物件，可以用來跟其他 APP Component 要求一�
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
     </ul>
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
@@ -551,7 +551,7 @@ ga('send', 'pageview');
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

@@ -49,7 +49,7 @@ Android 是一個 privilege-separated（權限分離）的作業系統，其中�
 				<h1 class="site-name"><a href="/" title="Kei Note">Kei Note</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -63,7 +63,7 @@ Android 是一個 privilege-separated（權限分離）的作業系統，其中�
  					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
 					</form>
 					
 					</li>
@@ -85,14 +85,14 @@ Android 是一個 privilege-separated（權限分離）的作業系統，其中�
 		<a href="http://azyukei.github.io/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-28T08:17:40.000Z" itemprop="datePublished"> 發表於 2015-04-28</time>
+    <time datetime="2015-04-28T08:17:40.000Z" itemprop="datePublished"> Published 2015-04-28</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Security_Architecture"><span class="toc-number">1.</span> <span class="toc-text">Security Architecture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application_Signing"><span class="toc-number">2.</span> <span class="toc-text">Application Signing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User_IDs_and_File_Access"><span class="toc-number">3.</span> <span class="toc-text">User IDs and File Access</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using_Permissions"><span class="toc-number">4.</span> <span class="toc-text">Using Permissions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Declaring_and_Enforcing_Permissions"><span class="toc-number">5.</span> <span class="toc-text">Declaring and Enforcing Permissions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Enforcing_Permissions_in_AndroidManifest-xml"><span class="toc-number">5.1.</span> <span class="toc-text">Enforcing Permissions in AndroidManifest.xml</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Enforcing_Permissions_when_Sending_Broadcasts"><span class="toc-number">5.1.1.</span> <span class="toc-text">Enforcing Permissions when Sending Broadcasts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Other_Permission_Enforcement"><span class="toc-number">5.1.2.</span> <span class="toc-text">Other Permission Enforcement</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URI_Permissions"><span class="toc-number">6.</span> <span class="toc-text">URI Permissions</span></a></li></ol>
 		
@@ -214,22 +214,22 @@ Android 是一個 privilege-separated（權限分離）的作業系統，其中�
 </section>
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Security_Architecture"><span class="toc-number">1.</span> <span class="toc-text">Security Architecture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application_Signing"><span class="toc-number">2.</span> <span class="toc-text">Application Signing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User_IDs_and_File_Access"><span class="toc-number">3.</span> <span class="toc-text">User IDs and File Access</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Using_Permissions"><span class="toc-number">4.</span> <span class="toc-text">Using Permissions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Declaring_and_Enforcing_Permissions"><span class="toc-number">5.</span> <span class="toc-text">Declaring and Enforcing Permissions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Enforcing_Permissions_in_AndroidManifest-xml"><span class="toc-number">5.1.</span> <span class="toc-text">Enforcing Permissions in AndroidManifest.xml</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Enforcing_Permissions_when_Sending_Broadcasts"><span class="toc-number">5.1.1.</span> <span class="toc-text">Enforcing Permissions when Sending Broadcasts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Other_Permission_Enforcement"><span class="toc-number">5.1.2.</span> <span class="toc-text">Other Permission Enforcement</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URI_Permissions"><span class="toc-number">6.</span> <span class="toc-text">URI Permissions</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分類</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -266,7 +266,7 @@ Android 是一個 privilege-separated（權限分離）的作業系統，其中�
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -314,14 +314,14 @@ Android 是一個 privilege-separated（權限分離）的作業系統，其中�
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
     </ul>
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
@@ -539,7 +539,7 @@ ga('send', 'pageview');
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
