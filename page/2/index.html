@@ -77,6 +77,90 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/04/Node-js-Workshop/" title="Node.js 工作坊" itemprop="url">Node.js 工作坊</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://azyukei.github.io/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-11T02:56:11.000Z" itemprop="datePublished"> 發表於 2015-04-11</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>第六屆黑客松的Node.js Workshop 筆記，目的是做出聊天室後端。</p>
+<h2 id="環境">環境</h2><p>重點放在後端所以講師有先弄好一個<a href="http://goo.gl/7zALk0" target="_blank" rel="external">聊天室前端</a><br>做好的聊天室伺服器可以放在 <a href="https://c9.io/" target="_blank" rel="external">cloud9</a> 可以在雲端編輯、執行server<br>或是直接localhost跑 (推薦，因為這邊網路很爛把node.js裝好、聊天室前端 zip 下載下來、裝好 socket.io 就不用網路了)</p>
+<p>先裝好 <a href="https://nodejs.org/" target="_blank" rel="external">Node.js</a><br>開一個資料夾<br>進去以後<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm init</span><br></pre></td></tr></table></figure></p>
+<p>然後就會問你一些專案設定的東西，這邊就先一直 Enter<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">This utility will walk you through creating a package.json file.</span><br><span class="line">It only covers the most common items, and tries to guess sane defaults.</span><br><span class="line"></span><br><span class="line">See `npm <span class="built_in">help</span> json` <span class="keyword">for</span> definitive documentation on these fields</span><br><span class="line">and exactly what they do.</span><br><span class="line"></span><br><span class="line">Use `npm install &lt;pkg&gt; --save` afterwards to install a package and</span><br><span class="line">save it as a dependency <span class="keyword">in</span> the package.json file.</span><br><span class="line"></span><br><span class="line">Press ^C at any time to quit.</span><br><span class="line">name: (nodeWorkshop)</span><br><span class="line">version: (<span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">description:</span><br><span class="line">entry point: (index.js)</span><br><span class="line"><span class="built_in">test</span> <span class="built_in">command</span>:</span><br><span class="line">git repository:</span><br><span class="line">keywords:</span><br><span class="line">author:</span><br><span class="line">license: (ISC)</span><br><span class="line">About to write to /Users/yucing617/Documents/nodeWorkshop/package.json:</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"nodeWorkshop"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Is this ok? (yes)</span><br></pre></td></tr></table></figure></p>
+<p>OK以後再來安裝 socket.io<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install socket.io --save</span><br></pre></td></tr></table></figure></p>
+<h2 id="請求資料">請求資料</h2><p>server 和 client 溝通</p>
+<h3 id="polling_輪詢">polling 輪詢</h3><p>ㄟ 你有沒有話要跟我說<br>ㄟ 你有沒有話要跟我說<br>ㄟ 你有沒有話要跟我說<br>ㄟ 你有沒有話要跟我說</p>
+<h3 id="long_polling_長輪詢">long polling 長輪詢</h3><p>ㄟ 你有沒有話要跟我說<br>…<br>…<br>…<br>會等一陣子，不要求馬上回應<br>（像是facebook 某些服務 一次等10秒）</p>
+<h3 id="WebSocket">WebSocket</h3><p>在 server 或 client 建立一個穩定的連線，有訊息可以馬上告訴對方，減少不斷問的成本，反應速度更快。</p>
+<h2 id="Hello_World">Hello World</h2><p>在專案裡面開一個 <code>server.js</code><br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> socketio = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"><span class="keyword">var</span> io = socketio(<span class="number">7000</span>);</span><br></pre></td></tr></table></figure></p>
+<p>執行 server，指令下完以後會看起來卡住，正常，代表 server 在跑了。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ node server.js</span><br></pre></td></tr></table></figure></p>
+<p>把下載下來的前端 index.html 直接點兩下打開<br>Server: 的地方填入 <code>http://127.0.0.1:7000</code> 按下<code>連線</code><br><img src="/2015/04/Node-js-Workshop/helloServer.png" alt=""><br>下面看到已連線就代表成功了。</p>
+<h2 id="Callback_基本觀念">Callback 基本觀念</h2><p>等LOL讀取的時候會先去滑手機，不會卡在那邊讀取<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">等LOL讀取(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    殺敵</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">滑手機()</span><br></pre></td></tr></table></figure></p>
+<p>像是下面這樣，ha ha ha 會先跑出來。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hello World'</span>);</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'ha ha ha'</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="連線聊天實做">連線聊天實做</h2><p>當有人連線進來時顯示訊息<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> socketio = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> io = socketio(<span class="number">7000</span>);</span><br><span class="line"></span><br><span class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(someone)</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'someone here'</span>, someone.id);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>當有人傳訊息時可以用emit()送訊息出來，就可以看到聊天室有訊息了。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> socketio = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 啟動socket.io server 這個server叫做io</span></span><br><span class="line"><span class="keyword">var</span> io = socketio(<span class="number">7000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// socket.io 事件 每調薪連線進來時會做事件綁定</span></span><br><span class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(someone)</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'someone here'</span>, someone.id);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// message是自訂的 收到訊息時的事件 然後發送給所有人</span></span><br><span class="line">    someone.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(form, msg)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 有人送訊息時 用io這個伺服器把訊息送出去</span></span><br><span class="line">        <span class="comment">// emit是送訊息的動作</span></span><br><span class="line">        io.emit(<span class="string">'message'</span>, form, msg);</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="實做使用者列表">實做使用者列表</h2><p>當有人連線或離現時更新使用者列表<br>上面要加一個userList記錄所有使用者<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> userList = &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>下面這些要寫在 <code>io.on(&#39;connection&#39;, function(someone)</code> 裡面：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用者上線通知</span></span><br><span class="line">    someone.on(<span class="string">'user_in'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">        userList[someone.id] = nickname;</span><br><span class="line">        io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用者離線通知</span></span><br><span class="line">    someone.on(<span class="string">'disconnect'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">        <span class="keyword">delete</span> userList[someone.id];</span><br><span class="line">        io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="發悄悄話給某人">發悄悄話給某人</h2><p>上面要加一個clients記錄所有client(連線物件)<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> clients = &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>因為我們多記錄了client，所以登入和離線的地方也要改，有人連線要紀錄他的連線物件，有人離線要多刪除一個client<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用者上線通知</span></span><br><span class="line">someone.on(<span class="string">'user_in'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">    userList[someone.id] = nickname;</span><br><span class="line">    clients[someone.id] = someone;</span><br><span class="line">    io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用者離線通知</span></span><br><span class="line">someone.on(<span class="string">'disconnect'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">    <span class="keyword">delete</span> userList[someone.id];</span><br><span class="line">    <span class="keyword">delete</span> clients[someone.id];</span><br><span class="line">    io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>主要的功能寫在 <code>io.on(&#39;connection&#39;, function(someone)</code> 裡面：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 發悄悄話給某人</span></span><br><span class="line">someone.on(<span class="string">'private message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(form, sendToId, msg)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 不能用io.emit()了 因為會送給io伺服器上所有人</span></span><br><span class="line">    <span class="comment">// 要改成送給client[]裡面的某人，從sendToId來選人</span></span><br><span class="line">    clients[sendToId].emit(<span class="string">'private message'</span>, form, msg);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>完成以後就可以開三個網頁用不同 nickname 用悄悄話看看了。</p>
+<h2 id="完整的code">完整的code</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> socketio = <span class="built_in">require</span>(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 啟動socket.io server 這個server叫做io</span></span><br><span class="line"><span class="keyword">var</span> io = socketio(<span class="number">7000</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> clients = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> userList = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// socket.io 事件 每調薪連線進來時會做事件綁定</span></span><br><span class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(someone)</span></span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'someone here'</span>, someone.id);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用者上線通知</span></span><br><span class="line">    someone.on(<span class="string">'user_in'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">        userList[someone.id] = nickname;</span><br><span class="line">        clients[someone.id] = someone;</span><br><span class="line">        io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用者離線通知</span></span><br><span class="line">    someone.on(<span class="string">'disconnect'</span>, <span class="function"><span class="keyword">function</span><span class="params">(nickname)</span></span>&#123;</span><br><span class="line">        <span class="keyword">delete</span> userList[someone.id];</span><br><span class="line">        <span class="keyword">delete</span> clients[someone.id];</span><br><span class="line">        io.emit(<span class="string">'user_list'</span>, userList);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// message是自訂的 收到訊息時的事件 然後發送給所有人</span></span><br><span class="line">    someone.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(form, msg)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 有人送訊息時 用io這個伺服器把訊息送出去</span></span><br><span class="line">        <span class="comment">// emit是送訊息的動作</span></span><br><span class="line">        io.emit(<span class="string">'message'</span>, form, msg);</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 發悄悄話給某人</span></span><br><span class="line">    someone.on(<span class="string">'private message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(form, sendToId, msg)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 不能用io.emit()了 因為會送給io伺服器上所有人</span></span><br><span class="line">        <span class="comment">// 要改成送給clients[]裡面的某人，從sendToId來選人</span></span><br><span class="line">        clients[sendToId].emit(<span class="string">'private message'</span>, form, msg);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Node-js/">Node.js</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hackathon-Taiwan/">Hackathon Taiwan</a><a href="/tags/Node-js/">Node.js</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/Node-js-Workshop/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/04/Android-Err-R/" title="Android Studio Cannot resolve symbol &#39;R&#39;" itemprop="url">Android Studio Cannot resolve symbol &#39;R&#39;</a>
   </h1>
   <p class="article-author">By
@@ -722,77 +806,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/Hexo-Comment/" title="Hexo 啟用 Disqus 回應功能" itemprop="url">Hexo 啟用 Disqus 回應功能</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="http://azyukei.github.io/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-01T00:23:56.000Z" itemprop="datePublished"> 發表於 2015-04-01</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>要怎麼在文章頁面底下出現回應功能呢？</p>
-<ul>
-<li>到 <a href="https://disqus.com/admin/signup/" target="_blank" rel="external">Add Disqus to your site</a> 註冊 Disqus<br>  <img src="/2015/04/Hexo-Comment/AddDisqus.png" alt=""><br>  Choose your unique Disqus URL，這邊要把你填名稱的記下來，之後設定 Hexo 會用到，也就是 disqus_shortname。</li>
-<li><p>設定<code>_config.yml</code> ，把剛剛的 disqus_shortname 加進去</p>
-  <figure class="highlight"><table><tr><td class="code"><pre><span class="line">disqus_shortname: shortname</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>最後把網站部屬出去，在文章裡面就會出現 Disqus 了</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Hexo/">Hexo</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/Hexo-Comment/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
@@ -834,6 +847,10 @@
 			<li><a href="/categories/Android-Dev/Reading-Note/" title="Reading Note">Reading Note<sup>2</sup></a></li>
 		  
 		
+		  
+			<li><a href="/categories/Windows/" title="Windows">Windows<sup>1</sup></a></li>
+		  
+		
 		</ul>
 </div>
 
@@ -849,6 +866,10 @@
 		
 			
 				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Windows-10/" title="Windows 10">Windows 10<sup>1</sup></a></li>
 			
 		
 			
