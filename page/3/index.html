@@ -46,7 +46,7 @@
 				<h1 class="site-name"><a href="/" title="Kei Note">Kei Note</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -60,7 +60,7 @@
  					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
 					</form>
 					
 					</li>
@@ -77,6 +77,75 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/04/Hexo-Image/" title="Hexo 如何貼圖" itemprop="url">Hexo 如何貼圖</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://azyukei.github.io/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-01T03:33:30.000Z" itemprop="datePublished"> 發表於 2015-04-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>首先要知道 Markdown 貼圖的語法是：<br><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="link_label">替代文字</span>](<span class="link_url">圖片網址或路徑</span>)</span><br></pre></td></tr></table></figure></p>
+<p>如果你的圖片是丟在別的貼圖空間，用外連的話倒是沒什麼問題，直接在刮號裡貼上圖片網址就好了。<br>可是我用了 GitHub Pages 想把圖片也一起丟到 GitHub 上，所以貼圖的路徑就很重要了。</p>
+<p>Hexo 有一個功能可以讓你更方便的管理文章中的資源，在 <code>_config.yml</code> 中把 <code>post_asset_folder: false</code> 改成 <code>true</code><br>這樣使用 <code>hexo new xxx</code> 來產生文章的時候，會自動在 <code>_post</code> 裡面產生和文章相同名稱的資料夾，讓你放這篇文章用的圖片或檔案。</p>
+<p>Hexo 是網誌形式的，所以文章除了文章網址以外，也都會在首頁出現，如果你給他相對路徑，那其中一邊的圖片就會顯示不出來，<br>例如這篇文章的網址是<br><code>http://azyukei.github.io/2015/04/hexo-image/</code><br>但是在網誌的首頁 <code>http://azyukei.github.io/</code> 也看的到這篇文章，<br>如果貼圖的時候用 <code>![xxx](xxx.png)</code> 那網址就會變成<br><code>http://azyukei.github.io/2015/04/hexo-image/xxx.png</code> 和<br><code>http://azyukei.github.io/xxx.png</code><br>第一個網址可以正常顯示出圖片，因為這樣的網址剛好是正確的，但是在首頁就會顯示不出來了，因為在 GitHub Source 根目錄中根本沒有這張圖片。</p>
+<p>所以還是寫成絕對路徑比較好，變成這樣：<br><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="link_label">xxx</span>](<span class="link_url">/2015/04/hexo-image/xxx.png</span>)</span><br></pre></td></tr></table></figure></p>
+<p>雖然寫文章的時候會麻煩很多，但是在首頁和文章裡面都能正常顯示圖片。</p>
+<p>另外 Hexo 有一個 Plugin 叫做 <a href="https://github.com/timnew/hexo-tag-asset-res" target="_blank" rel="external">hexo-tag-asset-res</a><br>可以讓你在使用 post_asset_folder 的狀況下，不用寫出完整的路徑，感覺超級方便的。<br>不過我使用的時候會在 generate 時出現問題，爬了一下 Google 好像是因為 Hexo 改版 3.0.0 以後有改一些東西，插件沒有跟著修改會不支援 3.x.x，所以只好暫時用完整路徑來貼圖了。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hexo/">Hexo</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/04/Hexo-Image/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/04/Hexo-Comment/" title="Hexo 啟用 Disqus 回應功能" itemprop="url">Hexo 啟用 Disqus 回應功能</a>
   </h1>
   <p class="article-author">By
@@ -84,7 +153,7 @@
 		<a href="http://azyukei.github.io/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-01T00:23:56.000Z" itemprop="datePublished"> Published 2015-04-01</time>
+    <time datetime="2015-04-01T00:23:56.000Z" itemprop="datePublished"> 發表於 2015-04-01</time>
     
   </p>
 </header>
@@ -155,7 +224,7 @@
 		<a href="http://azyukei.github.io/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
 		
   <p class="article-time">
-    <time datetime="2015-03-30T05:08:12.000Z" itemprop="datePublished"> Published 2015-03-30</time>
+    <time datetime="2015-03-30T05:08:12.000Z" itemprop="datePublished"> 發表於 2015-03-30</time>
     
   </p>
 </header>
@@ -244,7 +313,7 @@
 		<a href="http://azyukei.github.io/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
 		
   <p class="article-time">
-    <time datetime="2015-03-29T01:40:54.000Z" itemprop="datePublished"> Published 2015-03-29</time>
+    <time datetime="2015-03-29T01:40:54.000Z" itemprop="datePublished"> 發表於 2015-03-29</time>
     
   </p>
 </header>
@@ -335,7 +404,7 @@
 		<a href="http://azyukei.github.io/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
 		
   <p class="article-time">
-    <time datetime="2015-03-27T04:37:29.000Z" itemprop="datePublished"> Published 2015-03-27</time>
+    <time datetime="2015-03-27T04:37:29.000Z" itemprop="datePublished"> 發表於 2015-03-27</time>
     
   </p>
 </header>
@@ -385,15 +454,15 @@
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分類</p>
 		<ul>
 		
 		  
@@ -409,11 +478,11 @@
 		  
 		
 		  
-			<li><a href="/categories/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
+			<li><a href="/categories/Mac/" title="Mac">Mac<sup>2</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+			<li><a href="/categories/Node-js/" title="Node.js">Node.js<sup>1</sup></a></li>
 		  
 		
 		  
@@ -430,11 +499,11 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Android/" title="Android">Android<sup>11</sup></a></li>
+				<li><a href="/tags/Android/" title="Android">Android<sup>12</sup></a></li>
 			
 		
 			
@@ -442,11 +511,11 @@
 			
 		
 			
-				<li><a href="/tags/Windows-10/" title="Windows 10">Windows 10<sup>1</sup></a></li>
+				<li><a href="/tags/Mac/" title="Mac">Mac<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/OS-X/" title="OS X">OS X<sup>1</sup></a></li>
+				<li><a href="/tags/Windows-10/" title="Windows 10">Windows 10<sup>1</sup></a></li>
 			
 		
 			
@@ -478,14 +547,14 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
     </ul>
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
 </div>
 
 </aside>
@@ -625,7 +694,7 @@ ga('send', 'pageview');
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

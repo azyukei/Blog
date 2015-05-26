@@ -4,31 +4,28 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>在 GitHub Pages 上部屬 Hexo | Kei Note</title>
+    <title>在 Mac 上使用 Android USB 網路共用 | Kei Note</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Azyueki">
     
 
     
-    <meta name="description" content="要發佈到GitHub Pages需要先安裝 hexo-deployer-git。$ npm install hexo-deployer-git --save
-GitHub PagesGitHub Pages可以讓你放靜態網頁，也有內建一些 CSS 主題給你選，除了自己編輯這些網頁以外，也可以用 OctoPress 或是 Hexo 之類的 Blog Framework 來產生靜態網頁發佈上來，Git">
+    <meta name="description" content="用 USB 分享網路給電腦用的好處是手機比較省電、也能順便充電（如果你的電腦有插座用的話），Windows 的話用起來很簡單，在手機設定裡把 USB 網路共用打勾就好了。可是 Mac 用戶就沒這麼簡單了，因為 Mac 沒有這方面的驅動，幸好有人幫我們把這個驅動（kext，Kernel 擴充套件 ）寫好了 HoRNDIS只要把 pkg 下載下來安裝就行了。
+安裝好以後把手機的 USB 網路共用打勾就">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在 GitHub Pages 上部屬 Hexo">
-<meta property="og:url" content="http://azyukei.github.io/2015/03/Hexo-on-Github/index.html">
+<meta property="og:title" content="在 Mac 上使用 Android USB 網路共用">
+<meta property="og:url" content="http://azyukei.github.io/2015/05/Mac-Android-USB-tethering/index.html">
 <meta property="og:site_name" content="Kei Note">
-<meta property="og:description" content="要發佈到GitHub Pages需要先安裝 hexo-deployer-git。$ npm install hexo-deployer-git --save
-GitHub PagesGitHub Pages可以讓你放靜態網頁，也有內建一些 CSS 主題給你選，除了自己編輯這些網頁以外，也可以用 OctoPress 或是 Hexo 之類的 Blog Framework 來產生靜態網頁發佈上來，Git">
-<meta property="og:image" content="/2015/03/Hexo-on-Github/GithubPages.png">
-<meta property="og:image" content="/2015/03/Hexo-on-Github/UserRepo.png">
-<meta property="og:image" content="/2015/03/Hexo-on-Github/RepoSettings.png">
-<meta property="og:image" content="/2015/03/Hexo-on-Github/GithubPagesGenerator.png">
-<meta property="og:image" content="/2015/03/Hexo-on-Github/NewPage.png">
-<meta property="og:image" content="/2015/03/Hexo-on-Github/PageTheme.png">
+<meta property="og:description" content="用 USB 分享網路給電腦用的好處是手機比較省電、也能順便充電（如果你的電腦有插座用的話），Windows 的話用起來很簡單，在手機設定裡把 USB 網路共用打勾就好了。可是 Mac 用戶就沒這麼簡單了，因為 Mac 沒有這方面的驅動，幸好有人幫我們把這個驅動（kext，Kernel 擴充套件 ）寫好了 HoRNDIS只要把 pkg 下載下來安裝就行了。
+安裝好以後把手機的 USB 網路共用打勾就">
+<meta property="og:image" content="2015/05/Mac-Android-USB-tethering/HoRNDIS.png">
+<meta property="og:image" content="2015/05/Mac-Android-USB-tethering/HoRNDIS2.png">
+<meta property="og:image" content="2015/05/Mac-Android-USB-tethering/USB-tethering.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在 GitHub Pages 上部屬 Hexo">
-<meta name="twitter:description" content="要發佈到GitHub Pages需要先安裝 hexo-deployer-git。$ npm install hexo-deployer-git --save
-GitHub PagesGitHub Pages可以讓你放靜態網頁，也有內建一些 CSS 主題給你選，除了自己編輯這些網頁以外，也可以用 OctoPress 或是 Hexo 之類的 Blog Framework 來產生靜態網頁發佈上來，Git">
+<meta name="twitter:title" content="在 Mac 上使用 Android USB 網路共用">
+<meta name="twitter:description" content="用 USB 分享網路給電腦用的好處是手機比較省電、也能順便充電（如果你的電腦有插座用的話），Windows 的話用起來很簡單，在手機設定裡把 USB 網路共用打勾就好了。可是 Mac 用戶就沒這麼簡單了，因為 Mac 沒有這方面的驅動，幸好有人幫我們把這個驅動（kext，Kernel 擴充套件 ）寫好了 HoRNDIS只要把 pkg 下載下來安裝就行了。
+安裝好以後把手機的 USB 網路共用打勾就">
 
     
     <link rel="alternative" href="/atom.xml" title="Kei Note" type="application/atom+xml">
@@ -84,14 +81,14 @@ GitHub PagesGitHub Pages可以讓你放靜態網頁，也有內建一些 CSS 主
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/03/Hexo-on-Github/" title="在 GitHub Pages 上部屬 Hexo" itemprop="url">在 GitHub Pages 上部屬 Hexo</a>
+      <a href="/2015/05/Mac-Android-USB-tethering/" title="在 Mac 上使用 Android USB 網路共用" itemprop="url">在 Mac 上使用 Android USB 網路共用</a>
   </h1>
   <p class="article-author">By
        
 		<a href="http://azyukei.github.io/about" title="Azyueki" target="_blank" itemprop="author">Azyueki</a>
 		
   <p class="article-time">
-    <time datetime="2015-03-30T05:08:12.000Z" itemprop="datePublished"> 發表於 2015-03-30</time>
+    <time datetime="2015-05-26T04:44:29.000Z" itemprop="datePublished"> 發表於 2015-05-26</time>
     
   </p>
 </header>
@@ -100,37 +97,12 @@ GitHub PagesGitHub Pages可以讓你放靜態網頁，也有內建一些 CSS 主
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#GitHub_Pages"><span class="toc-number">1.</span> <span class="toc-text">GitHub Pages</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#User_or_organization_site"><span class="toc-number">1.1.</span> <span class="toc-text">User or organization site</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Project_site"><span class="toc-number">1.2.</span> <span class="toc-text">Project site</span></a></li></ol></li></ol>
+			
 		
 		</div>
 		
-		<p><img src="/2015/03/Hexo-on-Github/GithubPages.png" alt=""><br>要發佈到GitHub Pages需要先安裝 <code>hexo-deployer-git</code>。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
-<h3 id="GitHub_Pages">GitHub Pages</h3><p><a href="https://pages.github.com/" target="_blank" rel="external">GitHub Pages</a>可以讓你放靜態網頁，也有內建一些 CSS 主題給你選，除了自己編輯這些網頁以外，也可以用 OctoPress 或是 Hexo 之類的 Blog Framework 來產生靜態網頁發佈上來，GitHub Pages 分成兩種：</p>
-<h4 id="User_or_organization_site">User or organization site</h4><p>第一種網址為 <code>http://username.github.io</code> ，作為使用者或帳號用的網頁，一個帳號只能有一個，建立步驟：</p>
-<ul>
-<li><p>建立一個 Repository，名稱為：<code>username.github.io</code>，username 記得改成自己的。<br><img src="/2015/03/Hexo-on-Github/UserRepo.png" alt=""></p>
-</li>
-<li><p>設定 Hexo 的<code>_config.yml</code><br>  這個 Repository 就是你網站的 webroot，一般來說可以自己 push 網頁上來，不過我們是要用 hexo來產生靜態網頁發佈上來，所以要去設定 hexo 的<code>_config.yml</code> 中的 <code>deploy</code> 部分，把 <code>deploy</code> 設定成下面這樣：</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">deploy:&#10;  type: git&#10;  repo: https://github.com/username/username.github.io.git&#10;  branch: master</span><br></pre></td></tr></table></figure>
-<p>  username 一樣要記得改，之後就可以 hexo deploy 直接部屬到 githib page 上囉。</p>
-</li>
-</ul>
-<hr>
-<h4 id="Project_site">Project site</h4><p>第二種 Project site 的網址為 <code>http://username.github.io/projectname</code> ，作為 Repo 或專案的介紹網頁，一個帳號有無限多個，每個 Repository 都可以幫他開一個，做法如下：</p>
-<ul>
-<li><p>進入一個 Repository，在他的右邊選單點選 Settings。<br><img src="/2015/03/Hexo-on-Github/RepoSettings.png" alt=""></p>
-</li>
-<li><p>在 GitHub Pages 項目中點選 Automatic page generator。<br><img src="/2015/03/Hexo-on-Github/GithubPagesGenerator.png" alt=""></p>
-</li>
-<li><p>點進去以後他會讓你編輯第一個頁面，不過我們是要用 Hexo 來發佈文章，所以這邊不用管他直接按下 Continue to layouts。<br><img src="/2015/03/Hexo-on-Github/NewPage.png" alt=""></p>
-</li>
-<li><p>皆下來是選主題，一樣對於要用 Hexo 的我們沒有用處，直接按下 Publish page 就 OK了！<br><img src="/2015/03/Hexo-on-Github/PageTheme.png" alt=""></p>
-</li>
-<li><p>設定 Hexo 的<code>_config.yml</code>：</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">deploy:&#10;  type: git&#10;  repo: https://github.com/username/projectname.git&#10;  branch: gh-pages</span><br></pre></td></tr></table></figure>
-<p>  username 和 projectname 要改成自己的，要注意的是這裡的 branch 不是 master，master 是你原來的專案內容，<code>gh-pages</code> 分支才是 webroot，所以 branch 要改成 <code>gh-pages</code>，hexo deploy 才會把網頁部屬到這個分支。</p>
-</li>
-</ul>
+		<p>用 USB 分享網路給電腦用的好處是手機比較省電、也能順便充電（如果你的電腦有插座用的話），Windows 的話用起來很簡單，在手機設定裡把 USB 網路共用打勾就好了。<br>可是 Mac 用戶就沒這麼簡單了，因為 Mac 沒有這方面的驅動，幸好有人幫我們把這個驅動（kext，Kernel 擴充套件 ）寫好了 <a href="http://joshuawise.com/horndis" target="_blank" rel="external">HoRNDIS</a><br>只要把 pkg <a href="http://joshuawise.com/horndis#available_versions" target="_blank" rel="external">下載</a>下來安裝就行了。<br><img src="2015/05/Mac-Android-USB-tethering/HoRNDIS.png" alt=""><br><img src="2015/05/Mac-Android-USB-tethering/HoRNDIS2.png" alt=""></p>
+<p>安裝好以後把手機的 USB 網路共用打勾就可以在網路看到 Android 已連線。<br><img src="2015/05/Mac-Android-USB-tethering/USB-tethering.png" alt=""></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -138,13 +110,13 @@ GitHub PagesGitHub Pages可以讓你放靜態網頁，也有內建一些 CSS 主
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+  <a class="article-category-link" href="/categories/Mac/">Mac</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/GitHub/">GitHub</a><a href="/tags/Hexo/">Hexo</a>
+  <span></span> <a href="/tags/Android/">Android</a><a href="/tags/Mac/">Mac</a>
   </div>
 
 </div>
@@ -153,7 +125,7 @@ GitHub PagesGitHub Pages可以讓你放靜態網頁，也有內建一些 CSS 主
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://azyukei.github.io/2015/03/Hexo-on-Github/" data-title="在 GitHub Pages 上部屬 Hexo | Kei Note" data-tsina="null" class="share clearfix">
+	  <div data-url="http://azyukei.github.io/2015/05/Mac-Android-USB-tethering/" data-title="在 Mac 上使用 Android USB 網路共用 | Kei Note" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -166,19 +138,11 @@ GitHub PagesGitHub Pages可以讓你放靜態網頁，也有內建一些 CSS 主
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/04/Hexo-Comment/" title="Hexo 啟用 Disqus 回應功能">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Hexo 啟用 Disqus 回應功能</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/03/Hexo-Intro/"  title="Hexo 簡介">
+<a href="/2015/05/Windows-10-Shortcut/"  title="Windows 10 新快捷鍵">
  <strong>下一篇：</strong><br/> 
- <span>Hexo 簡介
+ <span>Windows 10 新快捷鍵
 </span>
 </a>
 </div>
@@ -199,7 +163,7 @@ GitHub PagesGitHub Pages可以讓你放靜態網頁，也有內建一些 CSS 主
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#GitHub_Pages"><span class="toc-number">1.</span> <span class="toc-text">GitHub Pages</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#User_or_organization_site"><span class="toc-number">1.1.</span> <span class="toc-text">User or organization site</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Project_site"><span class="toc-number">1.2.</span> <span class="toc-text">Project site</span></a></li></ol></li></ol>
+ 
  
   </div>
 
